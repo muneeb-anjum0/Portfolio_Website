@@ -79,57 +79,97 @@ const Education: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Version - Compact and Focused */}
+      {/* Mobile Version - Terminal Themed */}
       <div className="md:hidden px-4 relative z-10">
-        {/* Simple mobile header */}
+        {/* Terminal Header */}
         <div className="mb-4">
-          <div className="flex items-center gap-2 font-mono text-sm">
-            <span className="text-green-400">$</span>
-            <span className="text-white">cat education.json</span>
+          <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
+            <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              </div>
+              <span className="font-mono text-xs text-gray-400">~/education</span>
+            </div>
+            <div className="p-2 font-mono text-xs">
+              <div className="flex items-center gap-1">
+                <span className="text-green-400">$</span>
+                <span className="text-white">cat education.json</span>
+              </div>
+              <div className="text-gray-500 ml-2">Bachelor in Software Engineering</div>
+            </div>
           </div>
-          <div className="text-gray-400 text-xs mt-1">Bachelor in Software Engineering</div>
         </div>
 
-        {/* Mobile Education Card */}
-        <div className="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
-          {/* University Info */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <h3 className="font-mono text-sm text-yellow-400">SZABIST University</h3>
-              <div className="text-xs text-gray-400">2023-2027</div>
+        {/* Mobile Education Terminal */}
+        <div className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
+          {/* Code editor header */}
+          <div className="bg-gray-900 px-3 py-1.5 border-b border-gray-800 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-1">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              </div>
+              <span className="font-mono text-xs text-gray-400">education.json</span>
             </div>
-            <div className="text-gray-300 text-xs">Islamabad, Pakistan</div>
+            <div className="font-mono text-xs text-gray-500">{currentTime.toLocaleTimeString()}</div>
           </div>
-
-          {/* Progress */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-gray-400">Progress</span>
-              <span className="text-green-400">75%</span>
+          
+          {/* Code content */}
+          <div className="p-3 font-mono text-xs space-y-2">
+            <div><span className="text-purple-400">class</span> <span className="text-yellow-400">Education</span> <span className="text-white">{'{'}</span></div>
+            
+            <div className="ml-2 space-y-1">
+              <div><span className="text-blue-400">degree</span>: <span className="text-green-400">"Bachelor in Software Engineering"</span>,</div>
+              <div><span className="text-blue-400">university</span>: <span className="text-green-400">"SZABIST University"</span>,</div>
+              <div><span className="text-blue-400">location</span>: <span className="text-green-400">"Islamabad, Pakistan"</span>,</div>
+              <div><span className="text-blue-400">duration</span>: <span className="text-green-400">"2023 - 2027"</span>,</div>
+              <div><span className="text-blue-400">cgpa</span>: <span className="text-orange-400">3.1</span>,</div>
+              <div><span className="text-blue-400">status</span>: <span className="text-yellow-400">"In Progress"</span>,</div>
+              
+              <div className="pt-1">
+                <span className="text-blue-400">core_subjects</span>: [
+                <div className="ml-2 space-y-0.5">
+                  {coreSubjects.map((subject, idx) => (
+                    <div key={idx} className="flex items-center gap-1">
+                      <span className="text-gray-600">
+                        {idx === coreSubjects.length - 1 ? '└─' : '├─'}
+                      </span>
+                      <span className="text-green-400">"{subject}"{idx < coreSubjects.length - 1 ? ',' : ''}</span>
+                    </div>
+                  ))}
+                </div>
+                ],
+              </div>
+              
+              <div className="pt-1">
+                <span className="text-blue-400">advanced_topics</span>: [
+                <div className="ml-2 space-y-0.5">
+                  {advancedTopics.slice(0, 3).map((topic, idx) => (
+                    <div key={idx} className="flex items-center gap-1">
+                      <span className="text-gray-600">
+                        {idx === 2 ? '└─' : '├─'}
+                      </span>
+                      <span className="text-cyan-400">"{topic}"{idx < 2 ? ',' : ''}</span>
+                    </div>
+                  ))}
+                </div>
+                ]
+              </div>
             </div>
-            <div className="w-full bg-gray-800 rounded-full h-1">
-              <div className="bg-green-400 h-1 rounded-full" style={{width: '75%'}}></div>
-            </div>
+            
+            <div><span className="text-white">{'}'}</span></div>
           </div>
-
-          {/* Key Subjects */}
-          <div className="space-y-2">
-            <div className="text-xs font-mono text-gray-400">Core Subjects:</div>
-            <div className="flex flex-wrap gap-1">
-              {coreSubjects.slice(0, 3).map((subject, idx) => (
-                <span key={idx} className="bg-gray-800 text-green-400 px-2 py-0.5 rounded text-xs font-mono">
-                  {subject}
-                </span>
-              ))}
-              <span className="text-gray-500 text-xs font-mono">+{coreSubjects.length - 3}</span>
+          
+          {/* Status bar */}
+          <div className="bg-gray-900 px-3 py-1 border-t border-gray-800 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span className="text-green-400">Education Active</span>
             </div>
-          </div>
-
-          {/* Status */}
-          <div className="flex items-center gap-2 text-xs font-mono">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <span className="text-green-400">Active</span>
-            <span className="text-gray-500">CGPA: 3.1</span>
+            <div className="text-green-400">✓ 75% completed</div>
           </div>
         </div>
       </div>

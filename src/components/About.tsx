@@ -232,42 +232,77 @@ const About = () => {
             {/* System Info - Mobile Compact */}
             <div className="bg-black border border-gray-900 rounded-lg hover:border-blue-400 transition-all duration-300">
               <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-                <span className="text-blue-400">💻</span>
+                <span className="text-blue-400 font-mono text-xs">{'>'}</span>
                 <span className="font-mono text-xs text-gray-400">system_info</span>
               </div>
               <div className="p-3 font-mono text-xs space-y-2">
-                <div><span className="text-blue-400">name:</span> <span className="text-white">"Muneeb Anjum"</span></div>
-                <div><span className="text-blue-400">role:</span> <span className="text-green-400">"Full-Stack Developer"</span></div>
-                <div><span className="text-blue-400">location:</span> <span className="text-cyan-400">"Pakistan"</span></div>
-                <div><span className="text-blue-400">experience:</span> <span className="text-yellow-400">"1+ years"</span></div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-blue-400">name:</span> 
+                  <span className="text-white">"Muneeb Anjum"</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-blue-400">role:</span> 
+                  <span className="text-green-400">"Full-Stack Developer"</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-blue-400">location:</span> 
+                  <span className="text-cyan-400">"Pakistan"</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">└─</span>
+                  <span className="text-blue-400">experience:</span> 
+                  <span className="text-yellow-400">"1+ years"</span>
+                </div>
               </div>
             </div>
 
             {/* Status - Mobile Compact */}
             <div className="bg-black border border-green-900 rounded-lg hover:border-green-400 transition-all duration-300">
               <div className="bg-green-950/50 px-3 py-1.5 flex items-center gap-2">
-                <span className="text-green-400">●</span>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="font-mono text-xs text-gray-400">status</span>
               </div>
-              <div className="p-3 font-mono text-xs">
-                <div className="text-green-400">✓ Available for opportunities</div>
-                <div className="text-cyan-400">✓ Open to collaborations</div>
-                <div className="text-yellow-400">✓ Learning new technologies</div>
+              <div className="p-3 font-mono text-xs space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-green-400">Available for opportunities</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-cyan-400">Open to collaborations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">└─</span>
+                  <span className="text-yellow-400">Learning new technologies</span>
+                </div>
               </div>
             </div>
 
             {/* Skills Preview - Mobile Compact */}
             <div className="bg-black border border-gray-900 rounded-lg hover:border-cyan-400 transition-all duration-300">
               <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-                <span className="text-cyan-400">⚡</span>
+                <span className="text-cyan-400 font-mono text-xs">{'>'}</span>
                 <span className="font-mono text-xs text-gray-400">quick_skills</span>
               </div>
-              <div className="p-3 font-mono text-xs">
-                <div className="grid grid-cols-2 gap-2 text-xs">
-                  <div className="text-green-400">• React</div>
-                  <div className="text-blue-400">• TypeScript</div>
-                  <div className="text-yellow-400">• Node.js</div>
-                  <div className="text-purple-400">• Python</div>
+              <div className="p-3 font-mono text-xs space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-green-400">React</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-blue-400">TypeScript</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">├─</span>
+                  <span className="text-yellow-400">Node.js</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600">└─</span>
+                  <span className="text-purple-400">Python</span>
                 </div>
               </div>
             </div>

@@ -119,16 +119,14 @@ const Skills: React.FC = () => {
                 </div>
                 <div className="p-2">
                   <div className="space-y-1">
-                    {category.skills.slice(0, 3).map((skill, idx) => (
-                      <div key={idx} className="font-mono text-xs text-gray-300">
-                        • {skill}
+                    {category.skills.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-1 font-mono text-xs text-gray-300">
+                        <span className="text-gray-600">
+                          {idx === category.skills.length - 1 ? '└─' : '├─'}
+                        </span>
+                        <span>{skill}</span>
                       </div>
                     ))}
-                    {category.skills.length > 3 && (
-                      <div className="font-mono text-xs text-gray-500">
-                        +{category.skills.length - 3} more
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>

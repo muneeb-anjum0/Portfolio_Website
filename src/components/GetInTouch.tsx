@@ -27,65 +27,109 @@ const GetInTouch: React.FC = () => (
       </div>
     </div>
 
-    {/* Mobile Version - Compact and Focused */}
+    {/* Mobile Version - Terminal Themed */}
     <div className="md:hidden px-4 relative z-10">
-      {/* Simple mobile header */}
+      {/* Terminal Header */}
       <div className="mb-4">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-green-400">$</span>
-          <span className="text-white">cat contact.md</span>
-        </div>
-        <div className="text-gray-400 text-xs mt-1">Let's connect!</div>
-      </div>
-
-      {/* Mobile Contact Card */}
-      <div className="bg-gray-900 border border-gray-700 rounded p-4 space-y-4">
-        {/* Email - Primary */}
-        <div className="text-center space-y-2">
-          <a 
-            href="mailto:muneeb.anjum@hotmail.com" 
-            className="block bg-green-400 text-black px-4 py-3 rounded font-mono text-sm hover:bg-green-300 transition-colors"
-          >
-            Send Email
-          </a>
-          <div className="text-xs text-gray-400 font-mono">muneeb.anjum@hotmail.com</div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="space-y-2">
-          <div className="text-xs font-mono text-gray-400">Quick Links:</div>
-          <div className="grid grid-cols-3 gap-2">
-            <a 
-              href="https://linkedin.com/in/muneebanjum335" 
-              className="bg-gray-800 text-blue-400 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href="https://github.com/muneebanjum" 
-              className="bg-gray-800 text-gray-300 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://medium.com/@muneebanjum335" 
-              className="bg-gray-800 text-green-400 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
-            >
-              Medium
-            </a>
+        <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
+          <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+            <div className="flex gap-1">
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <span className="font-mono text-xs text-gray-400">~/contact</span>
+          </div>
+          <div className="p-2 font-mono text-xs">
+            <div className="flex items-center gap-1">
+              <span className="text-green-400">$</span>
+              <span className="text-white">cat contact.md</span>
+            </div>
+            <div className="text-gray-500 ml-2">Ready to collaborate</div>
           </div>
         </div>
+      </div>
 
-        {/* Location */}
-        <div className="flex items-center gap-2 text-xs font-mono text-gray-400 justify-center">
-          <span>📍</span>
-          <span>Islamabad, Pakistan</span>
+      {/* Mobile Contact Terminal */}
+      <div className="bg-black border border-gray-900 rounded-lg hover:border-blue-400 transition-all duration-300">
+        {/* Terminal header */}
+        <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+          <div className="flex gap-1">
+            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          </div>
+          <span className="font-mono text-xs text-gray-400">get_in_touch.sh</span>
         </div>
+        
+        {/* Terminal content */}
+        <div className="p-3 font-mono text-xs space-y-3">
+          {/* Terminal command */}
+          <div className="space-y-1">
+            <div className="flex items-center gap-1">
+              <span className="text-green-400">$</span>
+              <span className="text-white">cat /dev/contact</span>
+            </div>
+            <div className="text-gray-500 ml-2">Displaying contact information...</div>
+          </div>
 
-        {/* Status */}
-        <div className="flex items-center justify-center gap-2 text-xs font-mono">
-          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="text-green-400">Available for collaboration</span>
+          {/* Social Links */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-1">
+              <span className="text-green-400">{'>'}</span>
+              <span className="text-gray-400">Social Links:</span>
+            </div>
+            <div className="ml-3 space-y-1">
+              <a href="https://linkedin.com/in/muneebanjum335" className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors">
+                <span className="text-gray-600">├─</span>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/muneebanjum" className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors">
+                <span className="text-gray-600">├─</span>
+                <span>GitHub</span>
+              </a>
+              <a href="https://medium.com/@muneebanjum335" className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors">
+                <span className="text-gray-600">└─</span>
+                <span>Medium</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Direct Contact */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-1">
+              <span className="text-green-400">{'>'}</span>
+              <span className="text-gray-400">Direct Contact:</span>
+            </div>
+            <div className="ml-3 space-y-1">
+              <a href="mailto:muneeb.anjum@hotmail.com" className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors">
+                <span className="text-gray-600">├─</span>
+                <span>muneeb.anjum@hotmail.com</span>
+              </a>
+              <div className="flex items-center gap-1 text-gray-300">
+                <span className="text-gray-600">└─</span>
+                <span>Islamabad, Pakistan</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Terminal Action */}
+          <div className="pt-2 space-y-2 text-center border-t border-gray-800">
+            <div className="flex items-center justify-center gap-1">
+              <span className="text-green-400">$</span>
+              <span className="text-white">echo</span>
+              <span className="text-blue-400">"Ready to collaborate?"</span>
+            </div>
+            <div className="text-gray-300">Ready to collaborate? Let's connect!</div>
+            <div className="pt-1">
+              <a 
+                href="mailto:muneeb.anjum@hotmail.com" 
+                className="inline-flex items-center gap-1 px-3 py-2 font-mono text-xs bg-green-400 text-black hover:bg-green-300 transition-colors border-2 border-green-400 hover:border-green-300"
+              >
+                <span>./send_email.sh</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

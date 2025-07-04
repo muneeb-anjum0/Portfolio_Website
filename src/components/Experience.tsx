@@ -93,16 +93,14 @@ const Experience: React.FC = () => {
                 <div className="font-mono text-sm text-white font-bold">{exp.title}</div>
                 <div className="font-mono text-xs text-green-400">{exp.company}</div>
                 <div className="space-y-1">
-                  {exp.details.slice(0, 3).map((detail, idx) => (
-                    <div key={idx} className="font-mono text-xs text-gray-300">
-                      • {detail.split('(')[0]}
+                  {exp.details.map((detail, idx) => (
+                    <div key={idx} className="flex items-center gap-1 font-mono text-xs text-gray-300">
+                      <span className="text-gray-600">
+                        {idx === exp.details.length - 1 ? '└─' : '├─'}
+                      </span>
+                      <span>{detail.split('(')[0]}</span>
                     </div>
                   ))}
-                  {exp.details.length > 3 && (
-                    <div className="font-mono text-xs text-gray-500">
-                      +{exp.details.length - 3} more achievements
-                    </div>
-                  )}
                 </div>
               </div>
             </div>

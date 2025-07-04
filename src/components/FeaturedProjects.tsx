@@ -181,46 +181,106 @@ const FeaturedProjects: React.FC = () => (
       </div>
     </div>
 
-    {/* Mobile Version - Compact and Focused */}
+    {/* Mobile Version - Terminal Themed and Compact */}
     <div className="md:hidden px-4 relative z-10">
-      {/* Simple mobile header */}
+      {/* Terminal Header */}
       <div className="mb-4">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-green-400">$</span>
-          <span className="text-white">ls projects/</span>
+        <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
+          <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+            <div className="flex gap-1">
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            </div>
+            <span className="font-mono text-xs text-gray-400">~/projects</span>
+          </div>
+          <div className="p-2 font-mono text-xs">
+            <div className="flex items-center gap-1">
+              <span className="text-green-400">$</span>
+              <span className="text-white">ls -la featured/</span>
+            </div>
+            <div className="text-gray-500 ml-2">2 featured projects found</div>
+          </div>
         </div>
-        <div className="text-gray-400 text-xs mt-1">2 featured projects found</div>
       </div>
 
-      {/* Mobile Projects - Simple List */}
-      <div className="space-y-3">
+      {/* Mobile Projects - Terminal Style */}
+      <div className="space-y-4">
         {projects.map((p, idx) => (
-          <div key={idx} className="bg-gray-900 border border-gray-700 rounded p-3">
-            {/* Project Header */}
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="font-mono text-sm text-green-400">{p.title}</h3>
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <div key={idx} className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
+            {/* Project Terminal Header */}
+            <div className="bg-gray-900 px-3 py-1.5 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="font-mono text-xs text-gray-300">{p.title}</span>
+              </div>
+              <span className="font-mono text-xs text-gray-500">{p.date.split(' ')[0]}</span>
             </div>
-            
-            {/* Quick description */}
-            <p className="text-gray-300 text-xs mb-2 line-clamp-2">{p.description}</p>
-            
-            {/* Top tech stack */}
-            <div className="flex flex-wrap gap-1 mb-2">
-              {p.techStack.slice(0, 3).map((tech, i) => (
-                <span key={i} className="bg-gray-800 text-cyan-400 px-2 py-0.5 rounded text-xs font-mono">
-                  {tech}
-                </span>
-              ))}
-              {p.techStack.length > 3 && (
-                <span className="text-gray-500 text-xs font-mono">+{p.techStack.length - 3}</span>
-              )}
-            </div>
-            
-            {/* View link */}
-            <div className="flex items-center gap-1 text-xs font-mono text-blue-400">
-              <span>{'>'}</span>
-              <a href={p.link} className="hover:text-blue-300">View Project</a>
+
+            {/* Project Content */}
+            <div className="p-3 space-y-3">
+              {/* Terminal command */}
+              <div className="font-mono text-xs space-y-1">
+                <div className="flex items-center gap-1">
+                  <span className="text-green-400">$</span>
+                  <span className="text-white">./run {p.title.toLowerCase().replace(/ /g, '_')}</span>
+                </div>
+                <div className="text-green-400 pl-3">✓ Process initialized</div>
+              </div>
+
+              {/* Description */}
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-mono text-xs">
+                  <span className="text-green-400">{'>'}</span>
+                  <span className="text-gray-400">Description:</span>
+                </div>
+                <p className="text-gray-300 text-xs font-mono ml-3">{p.description}</p>
+              </div>
+
+              {/* Achievements */}
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-mono text-xs">
+                  <span className="text-green-400">{'>'}</span>
+                  <span className="text-gray-400">Key Features:</span>
+                </div>
+                <div className="space-y-1 ml-3">
+                  {p.achievements.map((achievement, i) => (
+                    <div key={i} className="flex items-start gap-1 font-mono text-xs text-gray-300">
+                      <span className="text-gray-600 mt-0.5">
+                        {i === p.achievements.length - 1 ? '└─' : '├─'}
+                      </span>
+                      <span className="leading-relaxed">{achievement}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-mono text-xs">
+                  <span className="text-green-400">{'>'}</span>
+                  <span className="text-gray-400">Tech Stack:</span>
+                </div>
+                <div className="flex flex-wrap gap-1 ml-3">
+                  {p.techStack.map((tech, i) => (
+                    <span key={i} className="bg-gray-900 border border-gray-700 px-2 py-0.5 rounded font-mono text-xs text-cyan-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Project link */}
+              <div className="pt-1 border-t border-gray-800">
+                <a 
+                  href={p.link} 
+                  className="flex items-center gap-1 font-mono text-xs text-green-400 hover:text-green-300 transition-colors"
+                >
+                  <span>{'>'}</span>
+                  <span>View Project</span>
+                  <span className="text-gray-500">→</span>
+                </a>
+              </div>
             </div>
           </div>
         ))}
