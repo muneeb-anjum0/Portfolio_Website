@@ -5,6 +5,22 @@
 /* smooth scrolling */
 html { scroll-behavior: smooth; }
 
+/* Mobile-specific ultra-compact spacing utilities */
+@media (max-width: 768px) {
+  .mobile-compact {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .mobile-tight-spacing > * + * {
+    margin-top: 0.5rem !important;
+  }
+  
+  .mobile-ultra-compact {
+    padding: 0.75rem !important;
+  }
+}
+
 /* drop animation */
 @keyframes drop {
   0%,100% { transform: translateY(0); }

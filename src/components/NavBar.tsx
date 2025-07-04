@@ -112,85 +112,82 @@ export default function Navbar() {
       {/* Mobile terminal-style menu */}
       <div
         className={`
-          md:hidden fixed inset-x-0 top-16 bg-black/95 backdrop-blur-md border-t border-gray-800 z-40 select-none
+          md:hidden fixed inset-x-0 top-14 bg-black/95 backdrop-blur-md border-t border-gray-800 z-40 select-none
           transform transition-all duration-300 ease-out shadow-2xl
           ${mobileOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}
         `}
       >
         {/* Terminal window header for mobile */}
-        <div className="bg-gray-900/90 backdrop-blur-sm px-3 py-1.5 border-b border-gray-800">
+        <div className="bg-gray-900/90 backdrop-blur-sm px-3 py-1 border-b border-gray-800">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
-                <div className="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full"></div>
-                <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
               </div>
-              <span className="font-mono text-xs text-gray-400 ml-1.5">terminal_nav.sh</span>
+              <span className="font-mono text-xs text-gray-400 ml-1">nav.sh</span>
             </div>
             <div className="font-mono text-xs text-gray-500">
-              <span className="text-green-400">●</span> connected
+              <span className="text-green-400">●</span> online
             </div>
           </div>
         </div>
 
         {/* Terminal Profile Section */}
-        <div className="px-3 py-1.5 border-b border-gray-800 bg-gray-950/50">
-          <div className="font-mono text-xs space-y-0.5">
+        <div className="px-3 py-1 border-b border-gray-800 bg-gray-950/50">
+          <div className="font-mono text-xs space-y-0">
             <div className="flex items-center gap-2 text-gray-500">
               <span className="text-green-400">$</span>
               <span>whoami</span>
             </div>
-            <div className="pl-3 space-y-0.5">
-              <div className="text-white text-xs">muneeb@devmachine</div>
-              <div className="text-cyan-400 text-xs">Full-Stack Developer</div>
+            <div className="pl-2 flex items-center gap-2 text-xs">
+              <span className="text-white">muneeb</span>
+              <span className="text-cyan-400">dev</span>
             </div>
           </div>
         </div>
 
         {/* Navigation Commands */}
-        <div className="px-3 py-2 space-y-2 bg-gradient-to-b from-transparent to-black/20 max-h-80 overflow-y-auto">
-          <div className="font-mono text-xs text-gray-500 mb-2">
-            <span className="text-green-400">$</span> ls -la navigation/
+        <div className="px-3 py-1.5 space-y-1.5 bg-gradient-to-b from-transparent to-black/20 max-h-64 overflow-y-auto">
+          <div className="font-mono text-xs text-gray-500 mb-1.5">
+            <span className="text-green-400">$</span> ls nav/
           </div>
           
           {NAV_LINKS.map((label, index) => (
             <div key={label} className="font-mono">
               <button
                 onClick={() => scrollTo(label.toLowerCase())}
-                className="w-full text-left py-1.5 px-2.5 text-white hover:text-green-400 hover:bg-gray-900/50 rounded transition-all duration-200 flex items-center gap-2 border border-transparent hover:border-gray-700 group"
+                className="w-full text-left py-1 px-2 text-white hover:text-green-400 hover:bg-gray-900/50 rounded transition-all duration-200 flex items-center gap-2 border border-transparent hover:border-gray-700 group"
               >
                 <span className="text-gray-600 group-hover:text-green-400">→</span>
                 <span className="text-gray-500">./</span>
-                <span>{label.toLowerCase()}</span>
-                <span className="text-gray-500">.sh</span>
-                <div className="ml-auto flex items-center gap-2">
+                <span className="text-sm">{label.toLowerCase()}</span>
+                <div className="ml-auto flex items-center gap-1">
                   <span className="text-xs text-gray-600">0{index + 1}</span>
-                  <span className="text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
                 </div>
               </button>
             </div>
           ))}
           
           {/* Mobile Contact Section */}
-          <div className="pt-2 border-t border-gray-800 space-y-1.5">
+          <div className="pt-1.5 border-t border-gray-800 space-y-1">
             <div className="font-mono text-xs text-gray-500">
-              <span className="text-green-400">$</span> ./contact.sh --init
+              <span className="text-green-400">$</span> ./contact
             </div>
             <button
               onClick={() => scrollTo('contact')}
-              className="w-full px-2.5 py-2 font-mono text-xs border border-green-400 text-green-400 bg-transparent hover:bg-green-400 hover:text-black transition-all duration-200 flex items-center justify-center gap-2 rounded hover:shadow-lg hover:shadow-green-400/20 group"
+              className="w-full px-2 py-1.5 font-mono text-xs border border-green-400 text-green-400 bg-transparent hover:bg-green-400 hover:text-black transition-all duration-200 flex items-center justify-center gap-1.5 rounded hover:shadow-lg hover:shadow-green-400/20 group"
             >
-              <span>execute contact</span>
-              <span className="text-xs opacity-60 group-hover:opacity-100">[ENTER]</span>
+              <span>contact</span>
+              <span className="text-xs opacity-60 group-hover:opacity-100">↗</span>
             </button>
           </div>
 
           {/* Terminal Footer */}
-          <div className="pt-2 border-t border-gray-800">
+          <div className="pt-1.5 border-t border-gray-800">
             <div className="font-mono text-xs text-gray-500 text-center">
-              <span className="text-green-400">●</span> Session active • 
-              <span className="text-cyan-400 ml-1">mobile_terminal</span>
+              <span className="text-green-400">●</span> mobile
             </div>
           </div>
         </div>

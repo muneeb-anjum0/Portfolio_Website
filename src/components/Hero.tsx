@@ -75,7 +75,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" className="relative h-screen md:min-h-screen overflow-hidden bg-black text-white select-none">
+    <section id="home" className="relative h-[85vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Subtle grid pattern */}
@@ -132,9 +132,9 @@ export default function Hero() {
       </div>
 
       {/* MAIN TERMINAL WINDOW */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 py-8 md:py-0 md:min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 py-4 md:py-0 md:min-h-screen">
         {/* Terminal Window Header */}
-        <div className="w-full max-w-4xl mb-3 sm:mb-6 md:mb-8">
+        <div className="w-full max-w-4xl mb-2 sm:mb-4 md:mb-6 lg:mb-8">
           <div className="bg-gray-800 rounded-t-lg px-3 sm:px-4 py-2 flex items-center gap-2">
             <div className="flex gap-1 sm:gap-2">
               <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
@@ -148,7 +148,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal Content */}
-          <div className="bg-black border border-gray-800 rounded-b-lg p-2 sm:p-4 md:p-6 font-mono text-xs sm:text-sm space-y-1 sm:space-y-2 md:space-y-3">
+          <div className="bg-black border border-gray-800 rounded-b-lg p-1.5 sm:p-3 md:p-4 lg:p-6 font-mono text-xs sm:text-sm space-y-1 sm:space-y-2 md:space-y-3">
             {/* Current active line */}
             <div className="space-y-2">
               <div className={`${terminalLines[currentLine].color} transition-all duration-500 break-words`}>
@@ -168,9 +168,9 @@ export default function Hero() {
         </div>
 
         {/* HERO CONTENT */}
-        <div className="text-center space-y-3 sm:space-y-4 md:space-y-6 max-w-4xl px-2 sm:px-0">
+        <div className="text-center space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6 max-w-4xl px-2 sm:px-0">
           {/* Name and Role */}
-          <div className="space-y-1 sm:space-y-2 md:space-y-3">
+          <div className="space-y-0.5 sm:space-y-1 md:space-y-2 lg:space-y-3">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight">
               <span className="text-green-400">{'>'}</span> Muneeb Anjum
             </h1>
@@ -180,7 +180,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal-style mission */}
-          <div className="bg-black border border-gray-700 rounded-lg p-2 sm:p-3 md:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
+          <div className="bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
             <div className="text-white">
               <span className="text-yellow-400">const</span>{' '}
               <span className="text-blue-400">mission</span> = {'{'}
@@ -217,7 +217,7 @@ export default function Hero() {
       </div>
 
       {/* Terminal cursor at bottom */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-pulse">
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-pulse">
         <span className="text-2xl">▼</span>
       </div>
 

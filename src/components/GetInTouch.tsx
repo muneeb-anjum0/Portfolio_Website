@@ -2,7 +2,7 @@
 import React from 'react'
 
 const GetInTouch: React.FC = () => (
-  <section id="contact" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
+  <section id="contact" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
     {/* Background Elements */}
     <div className="absolute inset-0 z-0 pointer-events-none">
       {/* Terminal grid pattern */}
@@ -29,7 +29,7 @@ const GetInTouch: React.FC = () => (
 
     <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
       {/* Terminal Header */}
-      <div className="text-center mb-3 sm:mb-6 md:mb-8">
+      <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
         <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
           {/* Minimal header bar */}
           <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
@@ -146,7 +146,7 @@ const GetInTouch: React.FC = () => (
     </div>
 
     {/* Terminal Divider */}
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-4 sm:pb-6 md:pb-8 pt-4 sm:pt-6 md:pt-8">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px bg-gray-800"></div>
         <div className="font-mono text-xs text-gray-500 flex items-center gap-2">

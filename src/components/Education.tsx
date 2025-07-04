@@ -52,7 +52,7 @@ const Education: React.FC = () => {
   ]
 
   return (
-    <section id="education" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
+    <section id="education" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Terminal grid pattern */}
@@ -81,7 +81,7 @@ const Education: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
-        <div className="text-center mb-3 sm:mb-6 md:mb-8">
+        <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Terminal window header */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center justify-between group-hover:bg-gray-800 transition-colors duration-300">

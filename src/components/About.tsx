@@ -180,7 +180,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
+    <section id="about" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Terminal grid pattern */}
@@ -209,7 +209,7 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
-        <div className="text-center mb-4 sm:mb-8 md:mb-12">
+        <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
@@ -236,7 +236,7 @@ const About = () => {
         </div>
 
         {/* Main Terminal Content */}
-        <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
           {/* Main Terminal Window */}
           <div className="lg:col-span-2 h-fit order-2 lg:order-1">
             <div className="bg-black border border-gray-900 rounded-lg overflow-hidden hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group h-full">
@@ -328,7 +328,7 @@ const About = () => {
           </div>
 
           {/* Terminal Info Panel */}
-          <div className={`space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 transition-all duration-500 order-1 lg:order-2 ${isGlitching ? 'animate-pulse' : ''}`}>
+          <div className={`space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6 xl:space-y-8 transition-all duration-500 order-1 lg:order-2 ${isGlitching ? 'animate-pulse' : ''}`}>
             {cardComponents.map((card, index) => (
               <div 
                 key={`card-${index}`}
@@ -349,7 +349,7 @@ const About = () => {
       </div>
       
       {/* Simple Terminal Divider */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-4 sm:pb-6 md:pb-8 pt-4 sm:pt-6 md:pt-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-gray-800"></div>
           <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
