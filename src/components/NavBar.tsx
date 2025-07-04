@@ -70,7 +70,7 @@ export default function Navbar() {
           {/* Mobile hamburger - terminal style */}
           <button
             onClick={() => setMobileOpen((o) => !o)}
-            className="md:hidden p-2 text-green-400 hover:text-white transition-colors duration-200 font-mono"
+            className="md:hidden p-2 text-green-400 hover:text-white transition-colors duration-200 font-mono relative z-50"
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
@@ -85,7 +85,7 @@ export default function Navbar() {
       {/* Mobile terminal-style menu */}
       <div
         className={`
-          md:hidden fixed inset-x-0 top-16 bg-black/95 backdrop-blur-md border-t border-gray-800 z-40 select-none
+          md:hidden fixed inset-x-0 top-16 bg-black/95 backdrop-blur-md border-t border-gray-800 z-50 select-none
           transform transition-all duration-300 ease-out shadow-2xl
           ${mobileOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
         `}
