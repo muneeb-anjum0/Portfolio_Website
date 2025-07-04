@@ -23,6 +23,7 @@ const experiences = [
 
 const Experience: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [logIndex, setLogIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,6 +31,20 @@ const Experience: React.FC = () => {
     }, 1000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    const logTimer = setInterval(() => {
+      setLogIndex(prev => (prev + 1) % 4)
+    }, 2000)
+    return () => clearInterval(logTimer)
+  }, [])
+
+  const systemLogs = [
+    'INFO: System performance optimal',
+    'DEBUG: Memory usage within limits', 
+    'INFO: All processes running smoothly',
+    'SUCCESS: Experience loaded successfully'
+  ]
 
   return (
     <section id="experience" className="relative py-16 sm:py-20 bg-black text-white overflow-hidden select-none">
@@ -178,18 +193,18 @@ const Experience: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Compact metrics - responsive */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-sm font-mono">
+                {/* Compact metrics */}
+                <div className="flex items-center gap-3 text-sm font-mono">
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Performance:</span>
                     <span className="text-green-400 font-bold">Optimized</span>
                   </div>
-                  <div className="hidden sm:block w-px h-3 bg-gray-600"></div>
+                  <div className="w-px h-3 bg-gray-600"></div>
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Impact:</span>
                     <span className="text-blue-400 font-bold">High</span>
                   </div>
-                  <div className="hidden sm:block w-px h-3 bg-gray-600"></div>
+                  <div className="w-px h-3 bg-gray-600"></div>
                   <div className="flex items-center gap-1">
                     <span className="text-gray-400">Status:</span>
                     <span className="text-yellow-400 font-bold">Active</span>

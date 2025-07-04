@@ -1,11 +1,13 @@
 // src/components/Education.tsx
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 const Education: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [linesProcessed, setLinesProcessed] = useState(0)
   const [bytesProcessed, setBytesProcessed] = useState(0)
+  const [dynamicLineCount, setDynamicLineCount] = useState(17)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -23,9 +25,25 @@ const Education: React.FC = () => {
 
   useEffect(() => {
     const linesTimer = setInterval(() => {
-      setLinesProcessed(prev => prev >= 25 ? 0 : prev + 1)
+      setLinesProcessed(prev => prev >= dynamicLineCount ? 0 : prev + 1)
     }, 200)
     return () => clearInterval(linesTimer)
+  }, [dynamicLineCount])
+
+  useEffect(() => {
+    const calculateLineCount = () => {
+      if (contentRef.current) {
+        const contentHeight = contentRef.current.offsetHeight
+        const lineHeight = 24 // approximate line height in pixels
+        const calculatedLines = Math.ceil(contentHeight / lineHeight)
+        setDynamicLineCount(Math.max(17, calculatedLines)) // minimum 17 lines
+      }
+    }
+
+    calculateLineCount()
+    window.addEventListener('resize', calculateLineCount)
+    
+    return () => window.removeEventListener('resize', calculateLineCount)
   }, [])
 
   useEffect(() => {
@@ -131,7 +149,7 @@ const Education: React.FC = () => {
                   education.json
                 </span>
               </div>
-              <div className="font-mono text-xs text-gray-500">Lines: 25</div>
+              <div className="font-mono text-xs text-gray-500">Lines: {dynamicLineCount}</div>
             </div>
           </div>
           
@@ -140,14 +158,14 @@ const Education: React.FC = () => {
             {/* Line numbers */}
             <div className="bg-gray-900 px-2 py-3 border-r border-gray-800 text-gray-500 text-xs sm:text-sm select-none">
               <div className="space-y-0.5">
-                {Array.from({length: 25}, (_, i) => (
+                {Array.from({length: dynamicLineCount}, (_, i) => (
                   <div key={i} className="text-right">{i + 1}</div>
                 ))}
               </div>
             </div>
             
             {/* Code content */}
-            <div className="flex-1 p-3 space-y-0.5 text-sm sm:text-base overflow-x-auto">
+            <div ref={contentRef} className="flex-1 p-3 space-y-0.5 text-sm sm:text-base overflow-x-auto">
               <div className="leading-6">
                 <span className="text-purple-400">class</span>{' '}
                 <span className="text-yellow-400">Education</span>{' '}
@@ -217,7 +235,7 @@ const Education: React.FC = () => {
               </div>
               
               <div className="text-gray-500">
-                Lines: {linesProcessed}/25
+                Lines: {linesProcessed}/{dynamicLineCount}
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
