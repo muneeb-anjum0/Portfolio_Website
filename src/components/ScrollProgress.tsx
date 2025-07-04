@@ -54,7 +54,7 @@ const ScrollProgress = () => {
   }, [])
 
   return (
-    <div className="fixed top-0 left-0 w-full h-1 bg-black z-[60] select-none">
+    <div className="fixed top-0 left-0 w-full h-1 bg-black z-40 select-none">
       <div 
         className="h-full bg-gradient-to-r from-green-400 to-green-400 transition-all duration-75 ease-out will-change-transform"
         style={{ 
@@ -63,7 +63,7 @@ const ScrollProgress = () => {
         }}
       />
       {/* Terminal-style progress indicator */}
-      <div className="fixed top-2 right-4 bg-black/90 backdrop-blur-sm border border-gray-800 rounded px-3 py-1.5 font-mono text-xs text-green-400 z-[60] shadow-lg transition-all duration-200">
+      <div className="fixed top-2 right-4 md:right-4 md:top-2 bg-black/90 backdrop-blur-sm border border-gray-800 rounded px-3 py-1.5 font-mono text-xs text-green-400 z-40 shadow-lg transition-all duration-200">
         <div className="flex items-center gap-2">
           <span className="text-gray-500">~/</span>
           <span className="text-cyan-400 transition-all duration-300 hidden sm:inline">{currentSection.toLowerCase()}</span>
