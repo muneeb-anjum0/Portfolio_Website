@@ -1,13 +1,11 @@
 // src/components/Education.tsx
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Education: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [loadingProgress, setLoadingProgress] = useState(0)
   const [linesProcessed, setLinesProcessed] = useState(0)
   const [bytesProcessed, setBytesProcessed] = useState(0)
-  const [dynamicLineCount, setDynamicLineCount] = useState(17)
-  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,25 +23,9 @@ const Education: React.FC = () => {
 
   useEffect(() => {
     const linesTimer = setInterval(() => {
-      setLinesProcessed(prev => prev >= dynamicLineCount ? 0 : prev + 1)
+      setLinesProcessed(prev => prev >= 18 ? 0 : prev + 1)
     }, 200)
     return () => clearInterval(linesTimer)
-  }, [dynamicLineCount])
-
-  useEffect(() => {
-    const calculateLineCount = () => {
-      if (contentRef.current) {
-        const contentHeight = contentRef.current.offsetHeight
-        const lineHeight = 24 // approximate line height in pixels
-        const calculatedLines = Math.ceil(contentHeight / lineHeight)
-        setDynamicLineCount(Math.max(17, calculatedLines)) // minimum 17 lines
-      }
-    }
-
-    calculateLineCount()
-    window.addEventListener('resize', calculateLineCount)
-    
-    return () => window.removeEventListener('resize', calculateLineCount)
   }, [])
 
   useEffect(() => {
@@ -70,7 +52,7 @@ const Education: React.FC = () => {
   ]
 
   return (
-    <section id="education" className="relative py-16 sm:py-20 bg-black text-white overflow-hidden select-none">
+    <section id="education" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Terminal grid pattern */}
@@ -99,7 +81,7 @@ const Education: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="text-center mb-3 sm:mb-6 md:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Terminal window header */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center justify-between group-hover:bg-gray-800 transition-colors duration-300">
@@ -149,7 +131,7 @@ const Education: React.FC = () => {
                   education.json
                 </span>
               </div>
-              <div className="font-mono text-xs text-gray-500">Lines: {dynamicLineCount}</div>
+              <div className="font-mono text-xs text-gray-500">Lines: 18</div>
             </div>
           </div>
           
@@ -158,14 +140,14 @@ const Education: React.FC = () => {
             {/* Line numbers */}
             <div className="bg-gray-900 px-2 py-3 border-r border-gray-800 text-gray-500 text-xs sm:text-sm select-none">
               <div className="space-y-0.5">
-                {Array.from({length: dynamicLineCount}, (_, i) => (
+                {Array.from({length: 18}, (_, i) => (
                   <div key={i} className="text-right">{i + 1}</div>
                 ))}
               </div>
             </div>
             
             {/* Code content */}
-            <div ref={contentRef} className="flex-1 p-3 space-y-0.5 text-sm sm:text-base overflow-x-auto">
+            <div className="flex-1 p-3 space-y-0.5 text-sm sm:text-base overflow-x-auto">
               <div className="leading-6">
                 <span className="text-purple-400">class</span>{' '}
                 <span className="text-yellow-400">Education</span>{' '}
@@ -235,7 +217,7 @@ const Education: React.FC = () => {
               </div>
               
               <div className="text-gray-500">
-                Lines: {linesProcessed}/{dynamicLineCount}
+                Lines: {linesProcessed}/18
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">

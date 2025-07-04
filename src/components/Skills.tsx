@@ -62,7 +62,7 @@ const Skills: React.FC = () => {
   ]
 
   return (
-    <section id="skills" className="relative py-16 sm:py-20 bg-black text-white overflow-hidden select-none">
+    <section id="skills" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Terminal grid pattern */}
@@ -91,7 +91,7 @@ const Skills: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="text-center mb-3 sm:mb-6 md:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
@@ -118,7 +118,7 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Quick Overview */}
-        <div className="text-center mb-8 sm:mb-10">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <div className="max-w-4xl mx-auto space-y-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 font-mono text-xs sm:text-sm">
               <div className="flex items-center gap-2">
@@ -137,7 +137,7 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Skills Grid - Terminal Windows */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {skillCategories.map((category) => (
             <div
               key={category.name}

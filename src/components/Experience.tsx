@@ -23,7 +23,6 @@ const experiences = [
 
 const Experience: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [logIndex, setLogIndex] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,22 +31,8 @@ const Experience: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
 
-  useEffect(() => {
-    const logTimer = setInterval(() => {
-      setLogIndex(prev => (prev + 1) % 4)
-    }, 2000)
-    return () => clearInterval(logTimer)
-  }, [])
-
-  const systemLogs = [
-    'INFO: System performance optimal',
-    'DEBUG: Memory usage within limits', 
-    'INFO: All processes running smoothly',
-    'SUCCESS: Experience loaded successfully'
-  ]
-
   return (
-    <section id="experience" className="relative py-16 sm:py-20 bg-black text-white overflow-hidden select-none">
+    <section id="experience" className="relative py-8 md:py-16 lg:py-20 bg-black text-white overflow-hidden select-none">
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* System grid pattern */}
@@ -76,7 +61,7 @@ const Experience: React.FC = () => {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
-        <div className="text-center mb-6 sm:mb-8">
+        <div className="text-center mb-3 sm:mb-6 md:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center justify-between group-hover:bg-gray-800 transition-colors duration-300">
@@ -117,7 +102,7 @@ const Experience: React.FC = () => {
         </div>
 
         {/* Quick Overview */}
-        <div className="text-center mb-8 sm:mb-10">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-10">
           <div className="max-w-4xl mx-auto space-y-4">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 font-mono text-xs sm:text-sm">
               <div className="flex items-center gap-2">
@@ -136,7 +121,7 @@ const Experience: React.FC = () => {
         </div>
 
         {/* Process Monitor Style Experience */}
-        <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-3 sm:space-y-4 md:space-y-6">
           {experiences.map((exp) => (
             <div
               key={exp.title}
@@ -217,7 +202,7 @@ const Experience: React.FC = () => {
       </div>
 
       {/* Terminal Divider */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-8 pt-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-4 sm:pb-6 md:pb-8 pt-6 sm:pt-8 md:pt-12">
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-gray-800"></div>
           <div className="font-mono text-xs text-gray-500 flex items-center gap-2">

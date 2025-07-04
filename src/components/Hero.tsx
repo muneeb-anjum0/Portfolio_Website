@@ -75,7 +75,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-black text-white select-none">
+    <section id="home" className="relative h-screen md:min-h-screen overflow-hidden bg-black text-white select-none">
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Subtle grid pattern */}
@@ -132,9 +132,9 @@ export default function Hero() {
       </div>
 
       {/* MAIN TERMINAL WINDOW */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 py-8 md:py-0 md:min-h-screen">
         {/* Terminal Window Header */}
-        <div className="w-full max-w-4xl mb-6 sm:mb-8">
+        <div className="w-full max-w-4xl mb-3 sm:mb-6 md:mb-8">
           <div className="bg-gray-800 rounded-t-lg px-3 sm:px-4 py-2 flex items-center gap-2">
             <div className="flex gap-1 sm:gap-2">
               <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
@@ -148,7 +148,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal Content */}
-          <div className="bg-black border border-gray-800 rounded-b-lg p-3 sm:p-6 font-mono text-xs sm:text-sm space-y-2 sm:space-y-3">
+          <div className="bg-black border border-gray-800 rounded-b-lg p-2 sm:p-4 md:p-6 font-mono text-xs sm:text-sm space-y-1 sm:space-y-2 md:space-y-3">
             {/* Current active line */}
             <div className="space-y-2">
               <div className={`${terminalLines[currentLine].color} transition-all duration-500 break-words`}>
@@ -157,7 +157,7 @@ export default function Hero() {
             </div>
 
             {/* Active prompt */}
-            <div className="flex items-center gap-1 sm:gap-2 mt-4 sm:mt-6 flex-wrap">
+            <div className="flex items-center gap-1 sm:gap-2 mt-2 sm:mt-4 md:mt-6 flex-wrap">
               <span className="text-green-400">muneeb@devmachine</span>
               <span className="text-white">:</span>
               <span className="text-blue-400">~/portfolio</span>
@@ -168,9 +168,9 @@ export default function Hero() {
         </div>
 
         {/* HERO CONTENT */}
-        <div className="text-center space-y-4 sm:space-y-6 max-w-4xl px-2 sm:px-0">
+        <div className="text-center space-y-3 sm:space-y-4 md:space-y-6 max-w-4xl px-2 sm:px-0">
           {/* Name and Role */}
-          <div className="space-y-2 sm:space-y-3">
+          <div className="space-y-1 sm:space-y-2 md:space-y-3">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight">
               <span className="text-green-400">{'>'}</span> Muneeb Anjum
             </h1>
@@ -180,7 +180,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal-style mission */}
-          <div className="bg-black border border-gray-700 rounded-lg p-3 sm:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
+          <div className="bg-black border border-gray-700 rounded-lg p-2 sm:p-3 md:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
             <div className="text-white">
               <span className="text-yellow-400">const</span>{' '}
               <span className="text-blue-400">mission</span> = {'{'}
@@ -198,7 +198,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal-style action buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center pt-2">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center items-center pt-1 sm:pt-2">
             <a
               href="#projects"
               className="group relative px-4 sm:px-6 py-2 sm:py-3 font-mono text-sm sm:text-base text-black bg-green-400 border-2 border-green-400 hover:bg-black hover:text-green-400 hover:border-black transition-colors duration-300 w-full sm:w-auto text-center"
