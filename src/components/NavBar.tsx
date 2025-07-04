@@ -53,11 +53,12 @@ export default function Navbar() {
         {/* Terminal-style brand */}
         <button
           onClick={() => scrollTo('home')}
-          className="font-mono text-xl transition-colors group flex items-center gap-2"
+          className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
           <span className="text-green-400">$</span>
           <span className="text-white group-hover:text-green-400 transition-colors">muneeb</span>
-          <span className="text-green-400 group-hover:text-white transition-colors">@devmachine</span>
+          <span className="text-green-400 group-hover:text-white transition-colors hidden sm:inline">@devmachine</span>
+          <span className="text-green-400 group-hover:text-white transition-colors sm:hidden">@dev</span>
         </button>
 
         {/* Center nav links - terminal style */}
@@ -134,16 +135,15 @@ export default function Navbar() {
         </div>
 
         {/* Terminal Profile Section */}
-        <div className="px-4 py-3 border-b border-gray-800 bg-gray-950/50">
+        <div className="px-4 py-2 border-b border-gray-800 bg-gray-950/50">
           <div className="font-mono text-sm space-y-1">
             <div className="flex items-center gap-2 text-gray-500">
               <span className="text-green-400">$</span>
               <span>whoami</span>
             </div>
-            <div className="pl-4 space-y-1">
-              <div className="text-white">muneeb@devmachine</div>
+            <div className="pl-4 space-y-0.5">
+              <div className="text-white text-sm">muneeb@devmachine</div>
               <div className="text-cyan-400 text-xs">Full-Stack Developer</div>
-              <div className="text-gray-400 text-xs">~/portfolio/mobile_nav</div>
             </div>
           </div>
         </div>

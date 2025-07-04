@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './components/NavBar'
 import ScrollProgress from './components/ScrollProgress'
+import ScrollBar from './components/ScrollBar'
 import KeyboardNavigation from './components/KeyboardNavigation'
 import TerminalLoader from './components/TerminalLoader'
 import Hero   from './components/Hero'
@@ -15,6 +16,7 @@ const App: React.FC = () => (
   <div className="min-h-screen select-none">
     <TerminalLoader />
     <ScrollProgress />
+    <ScrollBar />
     <KeyboardNavigation />
     <Navbar />
     <Hero />

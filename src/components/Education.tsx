@@ -23,7 +23,7 @@ const Education: React.FC = () => {
 
   useEffect(() => {
     const linesTimer = setInterval(() => {
-      setLinesProcessed(prev => prev >= 15 ? 0 : prev + 1)
+      setLinesProcessed(prev => prev >= 25 ? 0 : prev + 1)
     }, 200)
     return () => clearInterval(linesTimer)
   }, [])
@@ -131,7 +131,7 @@ const Education: React.FC = () => {
                   education.json
                 </span>
               </div>
-              <div className="font-mono text-xs text-gray-500">Lines: 15</div>
+              <div className="font-mono text-xs text-gray-500">Lines: 25</div>
             </div>
           </div>
           
@@ -140,7 +140,7 @@ const Education: React.FC = () => {
             {/* Line numbers */}
             <div className="bg-gray-900 px-2 py-3 border-r border-gray-800 text-gray-500 text-xs sm:text-sm select-none">
               <div className="space-y-0.5">
-                {Array.from({length: 15}, (_, i) => (
+                {Array.from({length: 25}, (_, i) => (
                   <div key={i} className="text-right">{i + 1}</div>
                 ))}
               </div>
@@ -167,11 +167,11 @@ const Education: React.FC = () => {
               </div>
               <div className="leading-6 ml-4">
                 <span className="text-blue-400">duration</span>:{' '}
-                <span className="text-green-400">"2022 - 2026"</span>,
+                <span className="text-green-400">"2023 - 2027"</span>,
               </div>
               <div className="leading-6 ml-4">
                 <span className="text-blue-400">cgpa</span>:{' '}
-                <span className="text-orange-400">3.8</span>,
+                <span className="text-orange-400">3.1</span>,
               </div>
               <div className="leading-6 ml-4">
                 <span className="text-blue-400">status</span>:{' '}
@@ -217,7 +217,7 @@ const Education: React.FC = () => {
               </div>
               
               <div className="text-gray-500">
-                Lines: {linesProcessed}/15
+                Lines: {linesProcessed}/25
               </div>
             </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
