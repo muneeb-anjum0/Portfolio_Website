@@ -181,7 +181,54 @@ const FeaturedProjects: React.FC = () => (
       </div>
     </div>
 
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+    {/* Mobile Version - Compact and Focused */}
+    <div className="md:hidden px-4 relative z-10">
+      {/* Simple mobile header */}
+      <div className="mb-4">
+        <div className="flex items-center gap-2 font-mono text-sm">
+          <span className="text-green-400">$</span>
+          <span className="text-white">ls projects/</span>
+        </div>
+        <div className="text-gray-400 text-xs mt-1">2 featured projects found</div>
+      </div>
+
+      {/* Mobile Projects - Simple List */}
+      <div className="space-y-3">
+        {projects.map((p, idx) => (
+          <div key={idx} className="bg-gray-900 border border-gray-700 rounded p-3">
+            {/* Project Header */}
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-mono text-sm text-green-400">{p.title}</h3>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            </div>
+            
+            {/* Quick description */}
+            <p className="text-gray-300 text-xs mb-2 line-clamp-2">{p.description}</p>
+            
+            {/* Top tech stack */}
+            <div className="flex flex-wrap gap-1 mb-2">
+              {p.techStack.slice(0, 3).map((tech, i) => (
+                <span key={i} className="bg-gray-800 text-cyan-400 px-2 py-0.5 rounded text-xs font-mono">
+                  {tech}
+                </span>
+              ))}
+              {p.techStack.length > 3 && (
+                <span className="text-gray-500 text-xs font-mono">+{p.techStack.length - 3}</span>
+              )}
+            </div>
+            
+            {/* View link */}
+            <div className="flex items-center gap-1 text-xs font-mono text-blue-400">
+              <span>{'>'}</span>
+              <a href={p.link} className="hover:text-blue-300">View Project</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Desktop Version - Original Design */}
+    <div className="hidden md:block max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
       {/* Terminal Header */}
       <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
         <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">

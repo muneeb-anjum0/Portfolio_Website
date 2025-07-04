@@ -27,7 +27,71 @@ const GetInTouch: React.FC = () => (
       </div>
     </div>
 
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+    {/* Mobile Version - Compact and Focused */}
+    <div className="md:hidden px-4 relative z-10">
+      {/* Simple mobile header */}
+      <div className="mb-4">
+        <div className="flex items-center gap-2 font-mono text-sm">
+          <span className="text-green-400">$</span>
+          <span className="text-white">cat contact.md</span>
+        </div>
+        <div className="text-gray-400 text-xs mt-1">Let's connect!</div>
+      </div>
+
+      {/* Mobile Contact Card */}
+      <div className="bg-gray-900 border border-gray-700 rounded p-4 space-y-4">
+        {/* Email - Primary */}
+        <div className="text-center space-y-2">
+          <a 
+            href="mailto:muneeb.anjum@hotmail.com" 
+            className="block bg-green-400 text-black px-4 py-3 rounded font-mono text-sm hover:bg-green-300 transition-colors"
+          >
+            Send Email
+          </a>
+          <div className="text-xs text-gray-400 font-mono">muneeb.anjum@hotmail.com</div>
+        </div>
+
+        {/* Quick Links */}
+        <div className="space-y-2">
+          <div className="text-xs font-mono text-gray-400">Quick Links:</div>
+          <div className="grid grid-cols-3 gap-2">
+            <a 
+              href="https://linkedin.com/in/muneebanjum335" 
+              className="bg-gray-800 text-blue-400 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
+            >
+              LinkedIn
+            </a>
+            <a 
+              href="https://github.com/muneebanjum" 
+              className="bg-gray-800 text-gray-300 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
+            >
+              GitHub
+            </a>
+            <a 
+              href="https://medium.com/@muneebanjum335" 
+              className="bg-gray-800 text-green-400 px-3 py-2 rounded text-xs font-mono text-center hover:bg-gray-700 transition-colors"
+            >
+              Medium
+            </a>
+          </div>
+        </div>
+
+        {/* Location */}
+        <div className="flex items-center gap-2 text-xs font-mono text-gray-400 justify-center">
+          <span>📍</span>
+          <span>Islamabad, Pakistan</span>
+        </div>
+
+        {/* Status */}
+        <div className="flex items-center justify-center gap-2 text-xs font-mono">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+          <span className="text-green-400">Available for collaboration</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Desktop Version - Original Design */}
+    <div className="hidden md:block max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
       {/* Terminal Header */}
       <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
         <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">

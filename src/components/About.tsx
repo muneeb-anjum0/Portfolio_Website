@@ -208,8 +208,76 @@ const About = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Terminal Header */}
-        <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+        {/* Mobile: Compact About */}
+        <div className="md:hidden">
+          {/* Compact Terminal Header */}
+          <div className="text-center mb-4">
+            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-green-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <span className="font-mono text-xs text-gray-400 flex-1 text-center">about.json</span>
+              </div>
+              <div className="p-3 font-mono text-xs text-center">
+                <span className="text-green-400">$ cat about.json</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Single Column Compact Cards */}
+          <div className="space-y-3">
+            {/* System Info - Mobile Compact */}
+            <div className="bg-black border border-gray-900 rounded-lg hover:border-blue-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+                <span className="text-blue-400">💻</span>
+                <span className="font-mono text-xs text-gray-400">system_info</span>
+              </div>
+              <div className="p-3 font-mono text-xs space-y-2">
+                <div><span className="text-blue-400">name:</span> <span className="text-white">"Muneeb Anjum"</span></div>
+                <div><span className="text-blue-400">role:</span> <span className="text-green-400">"Full-Stack Developer"</span></div>
+                <div><span className="text-blue-400">location:</span> <span className="text-cyan-400">"Pakistan"</span></div>
+                <div><span className="text-blue-400">experience:</span> <span className="text-yellow-400">"1+ years"</span></div>
+              </div>
+            </div>
+
+            {/* Status - Mobile Compact */}
+            <div className="bg-black border border-green-900 rounded-lg hover:border-green-400 transition-all duration-300">
+              <div className="bg-green-950/50 px-3 py-1.5 flex items-center gap-2">
+                <span className="text-green-400">●</span>
+                <span className="font-mono text-xs text-gray-400">status</span>
+              </div>
+              <div className="p-3 font-mono text-xs">
+                <div className="text-green-400">✓ Available for opportunities</div>
+                <div className="text-cyan-400">✓ Open to collaborations</div>
+                <div className="text-yellow-400">✓ Learning new technologies</div>
+              </div>
+            </div>
+
+            {/* Skills Preview - Mobile Compact */}
+            <div className="bg-black border border-gray-900 rounded-lg hover:border-cyan-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+                <span className="text-cyan-400">⚡</span>
+                <span className="font-mono text-xs text-gray-400">quick_skills</span>
+              </div>
+              <div className="p-3 font-mono text-xs">
+                <div className="grid grid-cols-2 gap-2 text-xs">
+                  <div className="text-green-400">• React</div>
+                  <div className="text-blue-400">• TypeScript</div>
+                  <div className="text-yellow-400">• Node.js</div>
+                  <div className="text-purple-400">• Python</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop: Original Layout */}
+        <div className="hidden md:block">
+          {/* Terminal Header */}
+          <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
@@ -345,6 +413,7 @@ const About = () => {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
       

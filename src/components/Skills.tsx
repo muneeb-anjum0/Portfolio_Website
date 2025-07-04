@@ -90,8 +90,56 @@ const Skills: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Terminal Header */}
-        <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
+        {/* Mobile: Compact Skills Layout */}
+        <div className="md:hidden">
+          {/* Mobile Header */}
+          <div className="text-center mb-4">
+            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-green-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <span className="font-mono text-xs text-gray-400 flex-1 text-center">skills.json</span>
+              </div>
+              <div className="p-3 font-mono text-xs text-center">
+                <span className="text-green-400">$ cat skills.json</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Two-column compact grid */}
+          <div className="grid grid-cols-2 gap-3">
+            {skillCategories.slice(0, 6).map((category) => (
+              <div key={category.name} className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
+                <div className="bg-gray-900 px-2 py-1.5 flex items-center gap-1.5">
+                  <category.icon className="w-3 h-3 text-green-400" />
+                  <span className="font-mono text-xs text-gray-400 capitalize">{category.name}</span>
+                </div>
+                <div className="p-2">
+                  <div className="space-y-1">
+                    {category.skills.slice(0, 3).map((skill, idx) => (
+                      <div key={idx} className="font-mono text-xs text-gray-300">
+                        • {skill}
+                      </div>
+                    ))}
+                    {category.skills.length > 3 && (
+                      <div className="font-mono text-xs text-gray-500">
+                        +{category.skills.length - 3} more
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop: Original Layout */}
+        <div className="hidden md:block">
+          {/* Terminal Header */}
+          <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
@@ -254,6 +302,7 @@ const Skills: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 

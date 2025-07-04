@@ -75,7 +75,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="home" className="relative h-[85vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
+    <section id="home" className="relative h-[75vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
       {/* BACKGROUND ELEMENTS */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Subtle grid pattern */}
@@ -168,19 +168,26 @@ export default function Hero() {
         </div>
 
         {/* HERO CONTENT */}
-        <div className="text-center space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6 max-w-4xl px-2 sm:px-0">
+        <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-4xl px-2 sm:px-0">
           {/* Name and Role */}
-          <div className="space-y-0.5 sm:space-y-1 md:space-y-2 lg:space-y-3">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight">
+          <div className="space-y-1 md:space-y-2 lg:space-y-3">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight">
               <span className="text-green-400">{'>'}</span> Muneeb Anjum
             </h1>
-            <p className="text-lg sm:text-xl text-green-400 font-mono">
+            <p className="text-base sm:text-lg md:text-xl text-green-400 font-mono">
               {roles[currentRole]}
             </p>
           </div>
 
-          {/* Terminal-style mission */}
-          <div className="bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
+          {/* Mobile: Compact mission statement */}
+          <div className="md:hidden bg-black border border-gray-700 rounded-lg p-2 font-mono text-left max-w-sm mx-auto text-xs">
+            <div className="text-center">
+              <span className="text-green-400">"Building innovative solutions"</span>
+            </div>
+          </div>
+
+          {/* Desktop: Full mission object */}
+          <div className="hidden md:block bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
             <div className="text-white">
               <span className="text-yellow-400">const</span>{' '}
               <span className="text-blue-400">mission</span> = {'{'}

@@ -60,8 +60,59 @@ const Experience: React.FC = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Terminal Header */}
-        <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
+        {/* Mobile: Compact Experience */}
+        <div className="md:hidden">
+          {/* Mobile Header */}
+          <div className="text-center mb-4">
+            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-green-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                </div>
+                <span className="font-mono text-xs text-gray-400 flex-1 text-center">experience.json</span>
+              </div>
+              <div className="p-3 font-mono text-xs text-center">
+                <span className="text-green-400">$ cat experience.json</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Single Experience Card */}
+          {experiences.map((exp, index) => (
+            <div key={index} className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
+              <div className="bg-gray-900 px-3 py-2 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">●</span>
+                  <span className="font-mono text-xs text-gray-400">{exp.status}</span>
+                </div>
+                <div className="font-mono text-xs text-gray-500">{exp.date}</div>
+              </div>
+              <div className="p-3 space-y-2">
+                <div className="font-mono text-sm text-white font-bold">{exp.title}</div>
+                <div className="font-mono text-xs text-green-400">{exp.company}</div>
+                <div className="space-y-1">
+                  {exp.details.slice(0, 3).map((detail, idx) => (
+                    <div key={idx} className="font-mono text-xs text-gray-300">
+                      • {detail.split('(')[0]}
+                    </div>
+                  ))}
+                  {exp.details.length > 3 && (
+                    <div className="font-mono text-xs text-gray-500">
+                      +{exp.details.length - 3} more achievements
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: Original Layout */}
+        <div className="hidden md:block">
+          {/* Terminal Header */}
+          <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
             {/* Minimal header bar */}
             <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center justify-between group-hover:bg-gray-800 transition-colors duration-300">
@@ -198,6 +249,7 @@ const Experience: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
 

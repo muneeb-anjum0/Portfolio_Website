@@ -79,7 +79,63 @@ const Education: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      {/* Mobile Version - Compact and Focused */}
+      <div className="md:hidden px-4 relative z-10">
+        {/* Simple mobile header */}
+        <div className="mb-4">
+          <div className="flex items-center gap-2 font-mono text-sm">
+            <span className="text-green-400">$</span>
+            <span className="text-white">cat education.json</span>
+          </div>
+          <div className="text-gray-400 text-xs mt-1">Bachelor in Software Engineering</div>
+        </div>
+
+        {/* Mobile Education Card */}
+        <div className="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
+          {/* University Info */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <h3 className="font-mono text-sm text-yellow-400">SZABIST University</h3>
+              <div className="text-xs text-gray-400">2023-2027</div>
+            </div>
+            <div className="text-gray-300 text-xs">Islamabad, Pakistan</div>
+          </div>
+
+          {/* Progress */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-xs font-mono">
+              <span className="text-gray-400">Progress</span>
+              <span className="text-green-400">75%</span>
+            </div>
+            <div className="w-full bg-gray-800 rounded-full h-1">
+              <div className="bg-green-400 h-1 rounded-full" style={{width: '75%'}}></div>
+            </div>
+          </div>
+
+          {/* Key Subjects */}
+          <div className="space-y-2">
+            <div className="text-xs font-mono text-gray-400">Core Subjects:</div>
+            <div className="flex flex-wrap gap-1">
+              {coreSubjects.slice(0, 3).map((subject, idx) => (
+                <span key={idx} className="bg-gray-800 text-green-400 px-2 py-0.5 rounded text-xs font-mono">
+                  {subject}
+                </span>
+              ))}
+              <span className="text-gray-500 text-xs font-mono">+{coreSubjects.length - 3}</span>
+            </div>
+          </div>
+
+          {/* Status */}
+          <div className="flex items-center gap-2 text-xs font-mono">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span className="text-green-400">Active</span>
+            <span className="text-gray-500">CGPA: 3.1</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Version - Original Design */}
+      <div className="hidden md:block max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Terminal Header */}
         <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
           <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
