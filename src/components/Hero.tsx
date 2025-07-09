@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // WindParticles component for animated drifting dots (wind effect)
 function WindParticles(props: { particleCount?: number }) {
