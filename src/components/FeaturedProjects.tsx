@@ -1,18 +1,19 @@
-// src/components/FeaturedProjects.tsx
 import React from 'react'
 
+// Project portfolio data
 const projects = [
   {
     title: 'Sorting Visualizer',
     subtitle: 'Open Source Project (~40 hours)',
     date: 'February 2025 – April 2025',
     tag: 'Visualizing algorithms in action',
-    imgWebp: new URL('../assets/pic2.webp', import.meta.url).href,
-    imgJpg: new URL('../assets/pic2.jpg', import.meta.url).href,
+    // ...removed unused imgWebp, imgJpg fields...
     description:
       'Made a C++ and OpenGL based desktop Application allowing users to See how the alogrithms they use in their daily life actually sort a given list of xyz things.',
     achievements: [
       'Leveraged OpenGLs Imgui to make responsive UI so that it is easier for the user to navigate and use the application',
+      'Smooth and Clean Visuals to help users understand how different sorting algorithms work',
+      'Implemented real-time sorting visualization to show the process of each algorithm',
       'Used C++ as main brain to this application to implement various algorithms like Bubble Sort, Selection Sort, Merge Sort, Quick Sort, Heap Sort and many more',
     ],
     techStack: ['C++','OpenGL','ImGui','GLFW'],
@@ -23,14 +24,14 @@ const projects = [
     subtitle: 'Open Source Project (~30 hours)',
     date: 'February 2025 – April 2025',
     tag: 'Maze generation and solving',
-    imgWebp: new URL('../assets/pic1.webp', import.meta.url).href,
-    imgJpg: new URL('../assets/pic2.webp', import.meta.url).href,
+    // ...removed unused imgWebp, imgJpg fields...
     description:
       'Built Mazer Runner, a maze generation and solving application using C++ and OpenGL.',
     achievements: [
-      'Implemented various maze generation algorithms like Recursive Backtracking, Prim\'s Algorithm, and Kruskal\'s Algorithm',
+      'Implemented various maze generation algorithms like Recursive Backtracking, Prim\'s and Kruskal\'s Algorithm',
       'Developed a user-friendly interface with OpenGL and ImGui for interactive maze exploration',
       'Optimized maze rendering for smooth performance with large mazes',
+      'Implemented pathfinding algorithms like A* and Dijkstra for efficient maze solving',
       'Created a Maze using A* algorithm and find the shortest path through the maze using BFS and DFS algorithms',
     ],
     techStack: ['C++','OpenGL','ImGui','GLFW'],
@@ -38,125 +39,104 @@ const projects = [
   },
 ]
 
-const cardMarkup = (p: typeof projects[0]) => (
-  <div
-    key={p.title}
-    className="relative bg-black border border-gray-800 rounded-xl overflow-hidden transition-all duration-300 hover:border-green-400 hover:shadow-2xl hover:shadow-green-400/10 group"
-  >
-    {/* Status bar */}
-    <div className="bg-black border-b border-gray-800 px-4 sm:px-6 py-2 sm:py-3 flex items-center justify-between group-hover:bg-black transition-colors duration-300">
-      <div className="flex items-center gap-2 sm:gap-3">
-        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-        <span className="font-mono text-sm text-gray-300 truncate">
-          {p.title}
+// Reusable project card component styled like Experience card, with image
+const cardMarkup = (p: typeof projects[0]) => {
+  // ...removed unused 'now' variable...
+  return (
+    <div
+      key={p.title}
+      className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-blue-400/20 card-fade-glow"
+      style={{ minHeight: '220px' }}
+    >
+      {/* Subtle glowing border on hover, black themed, with fade-in blue overlay */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_32px_0_rgba(34,211,238,0.10)] group-hover:border-blue-400 border-2 border-transparent"></div>
+      {/* Fade-in blue overlay on hover */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl z-0 bg-gradient-to-br from-gray-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <style>{`
+        .card-fade-glow {
+          background: #000;
+        }
+        .card-fade-glow:hover {
+          /* No background color change, only overlay */
+        }
+      `}</style>
+
+      {/* Top status bar with animated dots */}
+      <div className="flex items-center gap-2 px-6 py-2 border-b border-gray-800 bg-black/80">
+        <span className="flex gap-1">
+          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
         </span>
-      </div>
-      <div className="font-mono text-sm text-gray-500 hidden sm:block">
-        {p.date.split(' ')[0]} {p.date.split(' ')[1]}
-      </div>
-    </div>
-
-    {/* Main content */}
-    <div className="p-2 sm:p-3 md:p-4 lg:p-6 space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4">
-      {/* Terminal command execution */}
-      <div className="font-mono text-sm space-y-1 border-b border-gray-800 pb-2">
-        <div className="flex items-center gap-2">
-          <span className="text-green-400">$</span>
-          <span className="text-white truncate">./run {p.title.toLowerCase().replace(/ /g, '_')}</span>
-        </div>
-        <div className="text-green-400 pl-4">
-          ✓ Process initialized successfully
-        </div>
+        <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">ACTIVE PROJECT</span>
+        <span className="ml-auto font-mono text-xs text-gray-600">{p.date}</span>
       </div>
 
-      {/* Project image with terminal overlay */}
-      <div className="relative rounded-lg overflow-hidden border border-gray-800">
-        <picture>
-          <source srcSet={p.imgWebp} type="image/webp" />
-          <img 
-            src={p.imgJpg} 
-            alt={`${p.title} screenshot`} 
-            className="w-full h-40 sm:h-48 object-cover transition-transform duration-300 group-hover:scale-105" 
-          />
-        </picture>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-        <div className="absolute top-2 sm:top-3 left-2 sm:left-3 bg-black/80 backdrop-blur-sm rounded px-2 py-1 border border-gray-800">
-          <span className="font-mono text-xs text-green-400">[PREVIEW]</span>
+      {/* Main content area: add short description and 1-2 key features */}
+      <div className="relative z-20 flex flex-col gap-2 px-6 pt-4 pb-6 transition-all duration-500">
+        <div className="font-mono text-xl md:text-2xl flex items-center gap-2 text-green-400">
+          <span className="select-none">$</span>
+          <span className="text-white font-bold">{p.title}</span>
+          <span className="text-gray-400 font-bold"> | </span>
+          <span className="text-blue-400 font-bold">{p.tag}</span>
         </div>
-        <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-black/80 backdrop-blur-sm rounded px-2 py-1 border border-gray-800 hidden sm:block">
-          <span className="font-mono text-xs text-green-400">{p.subtitle}</span>
-        </div>
-        <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 right-2 sm:right-3">
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <span className="text-green-400">Status:</span>
-            <span className="text-white">RUNNING</span>
-            <span className="text-green-400 animate-pulse ml-auto">●</span>
-          </div>
-        </div>
-      </div>
-
-      {/* System info style description */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-green-400">{'>'}</span>
-          <span className="text-gray-400">Description:</span>
-        </div>
-        <p className="text-gray-300 text-sm leading-relaxed ml-4">
-          {p.description}
-        </p>
-      </div>
-
-      {/* Terminal-style achievements */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-green-400">{'>'}</span>
-          <span className="text-gray-400">Key Features:</span>
-        </div>
-        <div className="space-y-1 ml-4">
-          {p.achievements.map((achievement, idx) => (
-            <div key={idx} className="flex items-start gap-2 font-mono text-sm text-gray-300">
-              <span className="text-gray-600 mt-1">├─</span>
-              <span className="leading-relaxed">{achievement}</span>
-            </div>
+        <div className="font-mono text-sm text-gray-400">{p.subtitle}</div>
+        <div className="text-gray-300 text-base font-mono mt-1 line-clamp-2">{p.description}</div>
+        <ul className="font-mono text-sm text-blue-300 mt-1 space-y-1">
+          {p.achievements.slice(0, 2).map((detail, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <span className="text-green-400 select-none">{i === 0 ? '┌─' : '└─'}</span>
+              <span>{detail}</span>
+            </li>
           ))}
-        </div>
-      </div>
-
-      {/* Dependencies as terminal list */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 font-mono text-sm">
-          <span className="text-green-400">{'>'}</span>
-          <span className="text-gray-400">Tech Stack:</span>
-        </div>
-        <div className="flex flex-wrap gap-2 ml-4">
+        </ul>
+        <div className="flex flex-wrap gap-2 mt-2">
           {p.techStack.map((tech, idx) => (
-            <span key={idx} className="bg-gray-900 border border-gray-700 px-2 py-1 rounded font-mono text-sm text-cyan-400 hover:border-cyan-400 transition-colors duration-200">
+            <span
+              key={idx}
+              className="inline-flex items-center gap-2 font-mono text-base text-gray-300 hover:text-blue-400 transition-colors duration-200"
+              style={{ fontWeight: 600, letterSpacing: '0.01em' }}
+            >
+              <svg width="16" height="16" fill="none" viewBox="0 0 16 16" className="tech-bullet">
+                <circle cx="8" cy="8" r="6" stroke="#a3a3a3" strokeWidth="1.5" className="tech-bullet-circle"/>
+                <circle cx="8" cy="8" r="3.5" fill="none" className="tech-bullet-inner"/>
+              </svg>
               {tech}
             </span>
           ))}
         </div>
-      </div>
-
-      {/* Project link */}
-      <div className="space-y-2 pt-2 border-t border-gray-800">
-        <a 
-          href={p.link} 
-          className="flex items-center gap-2 font-mono text-sm text-green-400 hover:text-green-300 transition-colors duration-200"
-        >
-          <span>{'>'}</span>
-          <span>View Project</span>
-          <span className="text-gray-500">→</span>
-        </a>
+        <style>{`
+          .tech-bullet-circle {
+            transition: fill 0.2s;
+          }
+          .tech-bullet-inner {
+            transition: fill 0.2s;
+            fill: none;
+          }
+          .group:hover .tech-bullet-inner {
+            fill: #3b82f6;
+          }
+        `}</style>
+        <div className="pt-2">
+          <a
+            href={p.link}
+            className="group/view-link inline-flex items-center gap-2 font-mono text-base text-green-400 hover:text-black hover:bg-green-400 border border-green-400 px-3 py-1 rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+            style={{ fontWeight: 700, letterSpacing: '0.03em' }}
+          >
+            <span className="transition-transform duration-200 group-hover/view-link:-translate-x-1">{'>'}</span>
+            <span className="underline underline-offset-4 decoration-green-400 group-hover/view-link:no-underline">View Project</span>
+            <span className="transition-transform duration-200 group-hover/view-link:translate-x-1 text-green-300">→</span>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-)
+  );
+};
 
 const FeaturedProjects: React.FC = () => (
   <section id="projects" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
-    {/* Background Elements */}
+    {/* Terminal-style background with decorative elements */}
     <div className="absolute inset-0 z-0 pointer-events-none">
-      {/* Terminal grid pattern */}
       <div 
         className="absolute inset-0 opacity-5"
         style={{
@@ -168,22 +148,20 @@ const FeaturedProjects: React.FC = () => (
         }}
       />
       
-      {/* Floating project commands - hidden on mobile */}
+      {/* Decorative terminal commands */}
       <div className="hidden lg:block absolute top-20 left-10 font-mono text-green-400 opacity-10 animate-pulse">
         <div>$ git clone projects</div>
         <div className="text-gray-500">Cloning repositories...</div>
       </div>
       
-      {/* Floating build command - repositioned */}
       <div className="hidden lg:block absolute bottom-20 right-10 font-mono text-blue-400 opacity-10 animate-pulse">
         <div>$ npm run build</div>
         <div className="text-gray-500">Build successful</div>
       </div>
     </div>
 
-    {/* Mobile Version - Terminal Themed and Compact */}
+    {/* Mobile-optimized project showcase */}
     <div className="md:hidden px-4 relative z-10">
-      {/* Terminal Header */}
       <div className="mb-4">
         <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
           <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
@@ -204,11 +182,11 @@ const FeaturedProjects: React.FC = () => (
         </div>
       </div>
 
-      {/* Mobile Projects - Terminal Style */}
+      {/* Mobile project cards in terminal style */}
       <div className="space-y-4">
         {projects.map((p, idx) => (
           <div key={idx} className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
-            {/* Project Terminal Header */}
+            {/* Project status header */}
             <div className="bg-gray-900 px-3 py-1.5 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
@@ -217,9 +195,9 @@ const FeaturedProjects: React.FC = () => (
               <span className="font-mono text-xs text-gray-500">{p.date.split(' ')[0]}</span>
             </div>
 
-            {/* Project Content */}
+            {/* Project details and features */}
             <div className="p-3 space-y-3">
-              {/* Terminal command */}
+              {/* Project initialization status */}
               <div className="font-mono text-xs space-y-1">
                 <div className="flex items-center gap-1">
                   <span className="text-green-400">$</span>
@@ -228,7 +206,7 @@ const FeaturedProjects: React.FC = () => (
                 <div className="text-green-400 pl-3">✓ Process initialized</div>
               </div>
 
-              {/* Description */}
+              {/* Project overview */}
               <div className="space-y-1">
                 <div className="flex items-center gap-1 font-mono text-xs">
                   <span className="text-green-400">{'>'}</span>
@@ -237,7 +215,7 @@ const FeaturedProjects: React.FC = () => (
                 <p className="text-gray-300 text-xs font-mono ml-3">{p.description}</p>
               </div>
 
-              {/* Achievements */}
+              {/* Feature highlights */}
               <div className="space-y-1">
                 <div className="flex items-center gap-1 font-mono text-xs">
                   <span className="text-green-400">{'>'}</span>
@@ -287,58 +265,75 @@ const FeaturedProjects: React.FC = () => (
       </div>
     </div>
 
-    {/* Desktop Version - Original Design */}
+    {/* Desktop full-featured project showcase */}
     <div className="hidden md:block max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-      {/* Terminal Header */}
-      <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
-        <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
-          <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
-            <div className="flex gap-1 sm:gap-1.5">
-              <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-              <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
+      {/* Terminal window header - styled like About/Skills/Experience */}
+      <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+        <div className="w-full max-w-2xl mx-auto mb-4">
+          {/* Redesigned Terminal Header (copied from About.tsx/Skills.tsx/Experience.tsx) */}
+          <div className="group terminal-header-container w-full">
+            <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              {/* Left dots */}
+              <div className="flex gap-1.5 mr-2">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              </div>
+              {/* Path and user info */}
+              <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                {/* Replicate Hero/About/Skills/Experience terminal user@host:path style */}
+                <span className="text-gray-400 font-mono text-sm">muneeb</span>
+                <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                <span className="text-gray-400 font-mono text-sm">:</span>
+                    <span className="text-blue-400 font-mono text-sm">~</span>
+                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/projects</span>
+              </div>
+              {/* Right dots */}
+              <div className="flex gap-1.5">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              </div>
             </div>
-            <span className="font-mono text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-              ~/portfolio/projects
-            </span>
-          </div>
-          <div className="p-3 font-mono text-xs sm:text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-white group-hover:text-green-300 transition-colors duration-300">
-                ls -la featured/
-              </span>
+            {/* Terminal body with prompt */}
+            <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-6 py-4 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              <div className="flex items-center gap-2">
+                <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
+                <span className="text-white font-semibold group-hover:text-green-200">npx projects --list</span>
+                <span className="blinking-cursor ml-1">|</span>
+              </div>
+              <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                {new Date().toLocaleTimeString()}
+              </div>
             </div>
+            {/* Blinking cursor animation */}
+            <style>{`
+              .blinking-cursor {
+                display: inline-block;
+                width: 1ch;
+                animation: blink 1s steps(2, start) infinite;
+              }
+              @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+              }
+            `}</style>
           </div>
         </div>
       </div>
 
-      {/* Quick Overview */}
-      <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10">
-        <div className="max-w-4xl mx-auto space-y-4">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 font-mono text-xs sm:text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">●</span>
-              <span className="text-gray-300">2 Featured</span>
-              <span className="text-gray-500">projects</span>
-            </div>
-            <div className="w-px h-4 bg-gray-600 hidden sm:block"></div>
-            <div className="flex items-center gap-2">
-              <span className="text-blue-400">●</span>
-              <span className="text-gray-300">C++ & OpenGL</span>
-              <span className="text-gray-500">focused</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Project portfolio overview */}
+      {/* ...existing code... */}
 
-      {/* Projects Grid */}
+      {/* Project showcase grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
         {projects.map(cardMarkup)}
       </div>
     </div>
 
-    {/* Terminal Divider */}
+    {/* Section navigation divider */}
     <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-3 sm:pt-6 md:pt-8 lg:pt-12">
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px bg-gray-800"></div>

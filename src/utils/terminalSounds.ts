@@ -1,4 +1,20 @@
 // src/utils/terminalSounds.ts
+// Play a retro "hacker" sound for the easter egg
+export const playHackerSound = () => {
+  const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  o.type = 'sawtooth';
+  o.frequency.setValueAtTime(120, ctx.currentTime);
+  o.frequency.linearRampToValueAtTime(40, ctx.currentTime + 0.25);
+  g.gain.setValueAtTime(0.18, ctx.currentTime);
+  g.gain.linearRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+  o.connect(g);
+  g.connect(ctx.destination);
+  o.start();
+  o.stop(ctx.currentTime + 0.25);
+  o.onended = () => ctx.close();
+};
 export const playTypeSound = () => {
   // Create a subtle typing sound using Web Audio API
   const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()

@@ -1,4 +1,4 @@
-// src/components/TerminalLoader.tsx
+
 import { useState, useEffect } from 'react'
 
 const TerminalLoader = () => {
@@ -18,21 +18,25 @@ const TerminalLoader = () => {
   ]
 
   useEffect(() => {
+    let finished = false;
     const timer = setInterval(() => {
       setCurrentLine(prev => {
         if (prev < bootSequence.length - 1) {
           return prev + 1
         } else {
-          setTimeout(() => setIsLoading(false), 500)
+          if (!finished) {
+            finished = true;
+            setTimeout(() => setIsLoading(false), 250)
+          }
           return prev
         }
       })
-    }, 300)
+    }, 90) // Faster animation
 
-    // Cursor blink effect
+    // Faster, smoother cursor blink
     const cursorTimer = setInterval(() => {
       setShowCursor(prev => !prev)
-    }, 400)
+    }, 200)
 
     return () => {
       clearInterval(timer)
@@ -41,35 +45,48 @@ const TerminalLoader = () => {
   }, [])
 
   if (!isLoading) return null
-
   return (
     <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center select-none">
       <div className="max-w-2xl w-full p-8">
-        <div className="bg-black border border-green-400 rounded-lg overflow-hidden">
+        <div className="bg-black border border-black rounded-lg overflow-hidden shadow-2xl animate-[terminalPop_0.4s_ease]">
           {/* Terminal header */}
-          <div className="bg-gray-900 px-4 py-2 flex items-center gap-2">
-            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="font-mono text-sm text-gray-400 ml-4">Terminal - Boot Sequence</span>
+          <div className="bg-black px-4 py-2 flex items-center gap-2 border-b border-black">
+            <div className="w-3 h-3 bg-red-500 rounded-full shadow-red-700/50 shadow-sm"></div>
+            <div className="w-3 h-3 bg-yellow-400 rounded-full shadow-yellow-700/50 shadow-sm"></div>
+            <div className="w-3 h-3 bg-green-500 rounded-full shadow-green-700/50 shadow-sm"></div>
+            <span className="font-mono text-sm text-green-300 ml-4 tracking-wide">Terminal - Boot Sequence</span>
           </div>
-          
+
           {/* Terminal content */}
-          <div className="p-6 font-mono text-sm space-y-2 min-h-[300px]">
+          <div className="p-6 font-mono text-[1rem] space-y-2 min-h-[300px] bg-black">
             {bootSequence.slice(0, currentLine + 1).map((line, index) => (
-              <div key={index} className={`${
-                line.startsWith('✓') ? 'text-green-400' : 
-                line.startsWith('$') ? 'text-cyan-400' : 'text-gray-300'
-              }`}>
+              <div
+                key={index}
+                className={`transition-all duration-75 will-change-transform
+                  ${line.startsWith('✓') ? 'text-green-400' :
+                    line.startsWith('$') ? 'text-blue-400' :
+                    'text-gray-400'}
+                  ${index === currentLine ? 'scale-105 font-bold' : ''}
+                `}
+                style={{
+                  letterSpacing: index === currentLine ? '0.04em' : undefined
+                }}
+              >
                 {line}
                 {index === currentLine && showCursor && (
-                  <span className="text-green-400 animate-pulse">|</span>
+                  <span className="text-blue-400 animate-pulse ml-1">|</span>
                 )}
               </div>
             ))}
           </div>
         </div>
       </div>
+      <style>{`
+        @keyframes terminalPop {
+          0% { transform: scale(0.95) translateY(30px); opacity: 0; }
+          100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+      `}</style>
     </div>
   )
 }

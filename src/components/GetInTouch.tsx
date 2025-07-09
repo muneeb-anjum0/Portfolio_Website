@@ -1,270 +1,240 @@
-// src/components/GetInTouch.tsx
-import React from 'react'
 
-const GetInTouch: React.FC = () => (
-  <section id="contact" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
-    {/* Background Elements */}
-    <div className="absolute inset-0 z-0 pointer-events-none">
-      {/* Terminal grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(34, 211, 238, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 211, 238, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}
-      />
-      {/* Floating contact commands - hidden on mobile */}
-      <div className="hidden lg:block absolute top-20 left-10 font-mono text-green-400 opacity-10 animate-pulse">
-        <div>$ mail muneeb.anjum@hotmail.com</div>
-        <div className="text-gray-500">Ready to connect</div>
-      </div>
-      <div className="hidden lg:block absolute bottom-20 right-10 font-mono text-blue-400 opacity-10 animate-pulse">
-        <div>$ whois muneebanjum335</div>
-        <div className="text-gray-500">LinkedIn, GitHub, Medium</div>
-      </div>
-    </div>
+import React, { useState, useEffect } from 'react'
 
-    {/* Mobile Version - Terminal Themed */}
-    <div className="md:hidden px-4 relative z-10">
-      {/* Terminal Header */}
-      <div className="mb-4">
-        <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
-          <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-            <div className="flex gap-1">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            </div>
-            <span className="font-mono text-xs text-gray-400">~/contact</span>
-          </div>
-          <div className="p-2 font-mono text-xs">
-            <div className="flex items-center gap-1">
-              <span className="text-green-400">$</span>
-              <span className="text-white">cat contact.md</span>
-            </div>
-            <div className="text-gray-500 ml-2">Ready to collaborate</div>
-          </div>
+const contactData = {
+  email: 'muneeb.anjum@hotmail.com',
+  location: 'Islamabad, Pakistan',
+  socials: [
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/muneebanjum335', color: 'text-blue-400', hover: 'hover:text-blue-300' },
+    { name: 'GitHub', url: 'https://github.com/muneeb-anjum0', color: 'text-gray-300', hover: 'hover:text-white' },
+    { name: 'Medium', url: 'https://medium.com/@muneebanjum335', color: 'text-green-400', hover: 'hover:text-green-300' },
+  ],
+}
+
+const GetInTouch: React.FC = () => {
+  const [currentTime, setCurrentTime] = useState(new Date())
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  return (
+    <section id="contact" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
+      {/* Terminal-style background with grid pattern */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(34, 211, 238, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(34, 211, 238, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
+        {/* Decorative contact-themed commands */}
+        <div className="hidden lg:block absolute top-20 left-10 font-mono text-green-400 opacity-10 animate-pulse">
+          <div>$ ping {contactData.email}</div>
+          <div className="text-gray-500">Awaiting response from human operator</div>
+        </div>
+        <div className="hidden lg:block absolute bottom-20 right-10 font-mono text-blue-400 opacity-10 animate-pulse">
+          <div>$ curl -s https://muneebanjum335.socials</div>
+          <div className="text-gray-500">Fetching digital footprints...</div>
         </div>
       </div>
 
-      {/* Mobile Contact Terminal */}
-      <div className="bg-black border border-gray-900 rounded-lg hover:border-blue-400 transition-all duration-300">
-        {/* Terminal header */}
-        <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-          </div>
-          <span className="font-mono text-xs text-gray-400">get_in_touch.sh</span>
-        </div>
-        
-        {/* Terminal content */}
-        <div className="p-3 font-mono text-xs space-y-3">
-          {/* Terminal command */}
-          <div className="space-y-1">
-            <div className="flex items-center gap-1">
-              <span className="text-green-400">$</span>
-              <span className="text-white">cat /dev/contact</span>
-            </div>
-            <div className="text-gray-500 ml-2">Displaying contact information...</div>
-          </div>
-
-          {/* Social Links */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-1">
-              <span className="text-green-400">{'>'}</span>
-              <span className="text-gray-400">Social Links:</span>
-            </div>
-            <div className="ml-3 space-y-1">
-              <a href="https://linkedin.com/in/muneebanjum335" className="flex items-center gap-1 text-blue-400 hover:text-blue-300 transition-colors">
-                <span className="text-gray-600">├─</span>
-                <span>LinkedIn</span>
-              </a>
-              <a href="https://github.com/muneebanjum" className="flex items-center gap-1 text-gray-300 hover:text-white transition-colors">
-                <span className="text-gray-600">├─</span>
-                <span>GitHub</span>
-              </a>
-              <a href="https://medium.com/@muneebanjum335" className="flex items-center gap-1 text-green-400 hover:text-green-300 transition-colors">
-                <span className="text-gray-600">└─</span>
-                <span>Medium</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Direct Contact */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-1">
-              <span className="text-green-400">{'>'}</span>
-              <span className="text-gray-400">Direct Contact:</span>
-            </div>
-            <div className="ml-3 space-y-1">
-              <a href="mailto:muneeb.anjum@hotmail.com" className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors">
-                <span className="text-gray-600">├─</span>
-                <span>muneeb.anjum@hotmail.com</span>
-              </a>
-              <div className="flex items-center gap-1 text-gray-300">
-                <span className="text-gray-600">└─</span>
-                <span>Islamabad, Pakistan</span>
+      {/* Terminal window header - styled like About/Skills/Experience/Projects/Education */}
+      <div className="hidden md:block text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+        <div className="w-full max-w-2xl mx-auto mb-4">
+          {/* Redesigned Terminal Header (copied from About/Skills/Experience/Projects/Education) */}
+          <div className="group terminal-header-container w-full">
+            <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              {/* Left dots */}
+              <div className="flex gap-1.5 mr-2">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              </div>
+              {/* Path and user info */}
+              <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                {/* Replicate Hero/About/Skills/Experience/Projects/Education terminal user@host:path style */}
+                <span className="text-gray-400 font-mono text-sm">muneeb</span>
+                <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                <span className="text-gray-400 font-mono text-sm">:</span>
+                    <span className="text-blue-400 font-mono text-sm">~</span>
+                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/contact</span>
+              </div>
+              {/* Right dots */}
+              <div className="flex gap-1.5">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
               </div>
             </div>
-          </div>
-
-          {/* Terminal Action */}
-          <div className="pt-2 space-y-2 text-center border-t border-gray-800">
-            <div className="flex items-center justify-center gap-1">
-              <span className="text-green-400">$</span>
-              <span className="text-white">echo</span>
-              <span className="text-blue-400">"Ready to collaborate?"</span>
-            </div>
-            <div className="text-gray-300">Ready to collaborate? Let's connect!</div>
-            <div className="pt-1">
-              <a 
-                href="mailto:muneeb.anjum@hotmail.com" 
-                className="inline-flex items-center gap-1 px-3 py-2 font-mono text-xs bg-green-400 text-black hover:bg-green-300 transition-colors border-2 border-green-400 hover:border-green-300"
-              >
-                <span>./send_email.sh</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Desktop Version - Original Design */}
-    <div className="hidden md:block max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
-      {/* Terminal Header */}
-      <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
-        <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
-          {/* Minimal header bar */}
-          <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 sm:gap-3 group-hover:bg-gray-800 transition-colors duration-300">
-            <div className="flex gap-1 sm:gap-1.5">
-              <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-              <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
-            </div>
-            <span className="font-mono text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-              ~/portfolio/contact
-            </span>
-          </div>
-          {/* Simple contact indicator */}
-          <div className="p-3 sm:p-4 font-mono text-xs sm:text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-white group-hover:text-green-300 transition-colors duration-300">
-                cat contact.md
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Terminal Content */}
-      <div className="bg-black border border-gray-900 rounded-lg overflow-hidden hover:border-blue-400 hover:shadow-lg hover:shadow-blue-400/20 transition-all duration-300 group">
-        {/* Terminal header */}
-        <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center gap-2 group-hover:bg-gray-800 transition-colors duration-300">
-          <div className="flex gap-1 sm:gap-2">
-            <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-            <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-            <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
-          </div>
-          <span className="font-mono text-xs text-gray-400 ml-2 group-hover:text-blue-400 transition-colors duration-300">get_in_touch.sh</span>
-        </div>
-        {/* Terminal content */}
-        <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-4">
-          {/* Terminal command output */}
-          <div className="space-y-2">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-white">cat /dev/contact</span>
-            </div>
-            <div className="text-gray-500 pl-4">
-              Displaying contact information...
-            </div>
-          </div>
-
-          {/* Contact Grid - Terminal style */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pl-4">
-            {/* Social Links Section */}
-            <div className="space-y-3">
+            {/* Terminal body with prompt */}
+            <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-6 py-4 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
               <div className="flex items-center gap-2">
-                <span className="text-green-400">{'>'}</span>
-                <span className="text-gray-400">Social Links:</span>
+                <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
+                <span className="text-white font-semibold group-hover:text-green-200">npx contact --log</span>
+                <span className="blinking-cursor ml-1">|</span>
               </div>
-              <div className="pl-4 space-y-2">
-                <a href="https://linkedin.com/in/muneebanjum335" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors duration-200 font-mono text-sm">
+              <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                {currentTime.toLocaleTimeString()}
+              </div>
+            </div>
+            {/* Blinking cursor animation */}
+            <style>{`
+              .blinking-cursor {
+                display: inline-block;
+                width: 1ch;
+                animation: blink 1s steps(2, start) infinite;
+              }
+              @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+              }
+            `}</style>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile-optimized contact layout */}
+      <div className="md:hidden">
+        <div className="flex flex-col gap-4">
+          {/* Contact details card */}
+          <div className="bg-black border border-gray-800 rounded-lg hover:border-blue-400 transition-all duration-300">
+            <div className="bg-black px-3 py-2 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-blue-400">●</span>
+                <span className="font-mono text-xs text-gray-400">Available</span>
+              </div>
+              <div className="font-mono text-xs text-gray-500">{currentTime.toLocaleDateString()}</div>
+            </div>
+            <div className="p-3 space-y-2">
+              <div className="font-mono text-sm text-white font-bold">Contact Info</div>
+              <div className="font-mono text-xs text-blue-400">{contactData.email}</div>
+              <div className="space-y-1">
+                <div className="flex items-center gap-1 font-mono text-xs text-gray-300">
                   <span className="text-gray-600">├─</span>
-                  <span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/muneebanjum" className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors duration-200 font-mono text-sm">
-                  <span className="text-gray-600">├─</span>
-                  <span>GitHub</span>
-                </a>
-                <a href="https://medium.com/@muneebanjum335" className="flex items-center gap-2 text-green-400 hover:text-green-300 transition-colors duration-200 font-mono text-sm">
-                  <span className="text-gray-600">├─</span>
-                  <span>Medium</span>
+                  <span>{contactData.location}</span>
+                </div>
+                <div className="flex items-center gap-1 font-mono text-xs text-gray-300">
+                  <span className="text-gray-600">└─</span>
+                  <span>Ready to collaborate</span>
+                </div>
+              </div>
+              <div className="pt-2">
+                <a href={`mailto:${contactData.email}`} className="inline-flex items-center gap-1 px-3 py-2 font-mono text-xs bg-blue-400 text-black hover:bg-blue-300 transition-colors border-2 border-blue-400 hover:border-blue-300">
+                  <span>./send_email.sh</span>
                 </a>
               </div>
             </div>
-
-            {/* Contact Info Section */}
-            <div className="space-y-3">
+          </div>
+          {/* Social Links card (same style as desktop) */}
+          <div className="bg-black border border-gray-800 rounded-lg hover:border-blue-400 transition-all duration-300">
+            <div className="bg-black px-3 py-2 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <span className="text-green-400">{'>'}</span>
-                <span className="text-gray-400">Direct Contact:</span>
+                <span className="text-blue-400">●</span>
+                <span className="font-mono text-xs text-gray-400">Socials</span>
               </div>
-              <div className="pl-4 space-y-2">
-                <a href="mailto:muneeb.anjum@hotmail.com" className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors duration-200 font-mono text-sm">
-                  <span className="text-gray-600">├─</span>
-                  <span>muneeb.anjum@hotmail.com</span>
-                </a>
-                <div className="flex items-center gap-2 text-gray-300 font-mono text-sm">
-                  <span className="text-gray-600">├─</span>
-                  <span>Islamabad, Pakistan</span>
+              <div className="font-mono text-xs text-gray-500">{currentTime.toLocaleDateString()}</div>
+            </div>
+            <div className="p-3">
+              <div className="font-mono text-xs text-gray-400 mb-2">// Social Links</div>
+              <ul className="space-y-2">
+                {contactData.socials.map((social, i) => {
+                  let symbol = '├─';
+                  if (i === 0) symbol = '┌─';
+                  else if (i === contactData.socials.length - 1) symbol = '└─';
+                  return (
+                    <li key={social.name} className={`font-mono text-sm flex items-center gap-2 transition-colors duration-200`}>
+                      <span className="text-blue-400 select-none transition-colors duration-200">{symbol}</span>
+                      <a href={social.url} className={`${social.color} ${social.hover} transition-colors duration-200`} target="_blank" rel="noopener noreferrer">{social.name}</a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop full-featured contact interface - side by side sub containers */}
+      <div className="hidden md:block">
+        <div className="max-w-3xl mx-auto flex flex-col">
+          <div className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-gray-400/10 mb-0 flex flex-col" style={{ minHeight: '220px', margin: '0 auto' }}>
+            <div className="relative z-20 px-8 pt-8 pb-8 flex flex-row gap-8 transition-all duration-500">
+              {/* Left: Direct Contact */}
+              <div className="flex-1 flex flex-col min-w-0" style={{ marginTop: '4px' }}>
+                {/* Fun terminal easter egg: "cat contact.json" (single line) */}
+                <div className="font-mono text-sm flex items-center gap-2 mb-4 whitespace-nowrap">
+                  <span className="italic text-blue-400">cat </span>
+                  <span className="italic text-green-400">contact.json</span>
+                  <span className="font-bold text-blue-300">'Let\'s connect!'</span>
+                </div>
+                {/* Direct Contact as terminal output */}
+                <div className="bg-black/80 border border-gray-800 rounded-lg p-4 shadow-inner">
+                  <ul className="space-y-2">
+                    <li className="font-mono text-sm flex items-center gap-2 group-hover:text-blue-300 transition-colors duration-200">
+                      <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">┌─</span>
+                      <a href={`mailto:${contactData.email}`} className="text-blue-400 hover:text-blue-300 transition-colors duration-200">Email</a>
+                    </li>
+                    <li className="font-mono text-sm flex items-center gap-2 group-hover:text-blue-300 transition-colors duration-200">
+                      <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">└─</span>
+                      <span className="text-gray-300">{contactData.location}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              {/* Right: Social Links */}
+              <div className="flex-1 flex flex-col min-w-0" style={{ marginTop: '32px' }}>
+                {/* Social Links as terminal output (matches left style) */}
+                <div className="bg-black/80 border border-gray-800 rounded-lg p-4 shadow-inner mt-2">
+                  <ul className="space-y-2">
+                    {contactData.socials.map((social, i) => {
+                      let symbol = '├─';
+                      if (i === 0) symbol = '┌─';
+                      else if (i === contactData.socials.length - 1) symbol = '└─';
+                      return (
+                        <li key={social.name} className={`font-mono text-sm flex items-center gap-2 transition-colors duration-200`}>
+                          <span className="text-blue-400 select-none transition-colors duration-200">{symbol}</span>
+                          <a href={social.url} className={`${social.color} ${social.hover} transition-colors duration-200`} target="_blank" rel="noopener noreferrer">{social.name}</a>
+                        </li>
+                      )
+                    })}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Terminal prompt for action */}
-          <div className="pt-4 space-y-2 text-center">
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-white">echo</span>
-              <span className="text-blue-400">"Ready to collaborate?"</span>
-            </div>
-            <div className="text-gray-300">
-              Ready to collaborate? Let's connect!
-            </div>
-            <div className="pt-2">
-              <a 
-                href="mailto:muneeb.anjum@hotmail.com" 
-                className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 font-mono text-xs sm:text-sm bg-green-400 text-black hover:bg-green-300 transition-colors duration-200 border-2 border-green-400 hover:border-green-300"
-              >
-                <span>./send_email.sh</span>
-                <span className="text-xs opacity-70">[ENTER]</span>
-              </a>
-            </div>
+      {/* Section navigation divider */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-3 sm:pt-6 md:pt-8 lg:pt-12">
+        <div className="flex items-center gap-4">
+          <div className="flex-1 h-px bg-gray-800"></div>
+          <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
+            <span className="text-blue-400">$</span>
+            <span>exit</span>
           </div>
+          <div className="flex-1 h-px bg-gray-800"></div>
+        </div>
+        {/* Status bar info */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-gray-500 gap-2 sm:gap-4 mt-2">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span>Last update: {currentTime.toLocaleDateString()} {currentTime.toLocaleTimeString()}</span>
+            <span className="hidden sm:inline">|</span>
+            <span>Contact log synced</span>
+          </div>
+          <span className="text-blue-400">✓ System operational</span>
         </div>
       </div>
-    </div>
-
-    {/* Terminal Divider */}
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-2 sm:pt-4 md:pt-6 lg:pt-8">
-      <div className="flex items-center gap-4">
-        <div className="flex-1 h-px bg-gray-800"></div>
-        <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
-          <span className="text-green-400">$</span>
-          <span>exit</span>
-        </div>
-        <div className="flex-1 h-px bg-gray-800"></div>
-      </div>
-    </div>
-  </section>
-)
+    </section>
+  )
+}
 
 export default GetInTouch

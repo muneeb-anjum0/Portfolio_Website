@@ -17,20 +17,20 @@ const ScrollBar = () => {
       }
 
       ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, #22c55e, #16a34a);
+        background: #d1d5db !important; /* Tailwind gray-300 */
         border-radius: 4px;
-        box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+        box-shadow: 0 0 10px #d1d5db80;
       }
 
       ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, #16a34a, #15803d);
-        box-shadow: 0 0 15px rgba(34, 197, 94, 0.7);
+        background: #9ca3af !important; /* Tailwind gray-400 */
+        box-shadow: 0 0 15px #9ca3afb3;
       }
 
       /* Firefox */
       html {
         scrollbar-width: thin;
-        scrollbar-color: #22c55e rgba(0, 0, 0, 0.8);
+        scrollbar-color: #d1d5db rgba(0, 0, 0, 0.8);
       }
 
       /* Mobile specific styles */
@@ -40,9 +40,9 @@ const ScrollBar = () => {
         }
         
         ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #22c55e, #16a34a);
+          background: #d1d5db !important;
           border-radius: 3px;
-          box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+          box-shadow: 0 0 8px #d1d5db99;
         }
 
         ::-webkit-scrollbar-track {

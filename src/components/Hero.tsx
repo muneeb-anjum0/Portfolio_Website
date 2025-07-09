@@ -1,64 +1,158 @@
-// src/components/Hero.tsx
-import { useState, useEffect } from 'react'
 
-type TerminalLine = {
-  command: string
-  output?: string
-  color: string
-  delay: string
+import React, { useState, useEffect, useRef } from 'react';
+
+// WindParticles component for animated drifting dots (wind effect)
+function WindParticles(props: { particleCount?: number }) {
+  const particleCount = props && props.particleCount !== undefined ? props.particleCount : 36;
+  const [particles, setParticles] = useState(() =>
+    Array.from({ length: particleCount }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      speed: 0.18 + Math.random() * 0.18, // faster wind
+      size: 1.1 + Math.random() * 1.3, // smaller, more subtle
+      color: (() => {
+        const r = Math.random();
+        if (r > 0.997) return '#22d3ee'; // rare blue
+        if (r > 0.992) return '#22c55e'; // rare green
+        return '#a3a3a3'; // Tailwind gray-400, brighter than gray-500
+      })(),
+      opacity: 0.32 + Math.random() * 0.22, // a bit brighter
+    }))
+  );
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    let running = true;
+    function animate() {
+      setParticles(ps =>
+        ps.map(p => {
+          let nx = p.x + p.speed * 0.0045; // faster
+          if (nx > 1.05) nx = -0.05; // wrap around
+          return { ...p, x: nx };
+        })
+      );
+      if (running) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    }
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      running = false;
+      if (animationRef.current !== null) cancelAnimationFrame(animationRef.current);
+    };
+  }, [particleCount]);
+
+  return (
+    <div className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+      <svg width="100%" height="100%" style={{ position: 'absolute', inset: 0, display: 'block' }}>
+        {particles.map((p, i) => (
+          <circle
+            key={i}
+            cx={(p.x * 100) + '%'}
+            cy={(p.y * 100) + '%'}
+            r={p.size}
+            fill={p.color}
+            opacity={p.opacity}
+            style={{ filter: 'blur(0.5px)' }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
 }
 
-type FloatingElement = {
-  char: string
-  color: string
-  size: string
-  top: string
-  left: string
-  delay: string
-}
-
-// Terminal command history floating in background
-const terminalHistory: TerminalLine[] = [
-  { command: 'npm install', output: '✓ Dependencies installed', color: 'text-green-400', delay: '0s' },
-  { command: 'git commit -m "feat: new feature"', color: 'text-blue-400', delay: '1.5s' },
-  { command: 'yarn build', output: '✓ Build successful', color: 'text-yellow-400', delay: '3s' },
-  { command: 'docker run -p 3000:3000', color: 'text-cyan-400', delay: '4.5s' },
-  { command: 'npm test', output: '✓ All tests passed', color: 'text-green-400', delay: '6s' },
-]
-
-// Floating terminal symbols
-const floatingElements: FloatingElement[] = [
-  { char: '$', color: 'text-green-400', size: '2rem', top: '20%', left: '10%', delay: '0s' },
-  { char: '>', color: 'text-blue-400', size: '1.5rem', top: '70%', left: '80%', delay: '1s' },
-  { char: '~', color: 'text-cyan-400', size: '1.8rem', top: '40%', left: '85%', delay: '2s' },
-  { char: '#', color: 'text-purple-400', size: '1.6rem', top: '60%', left: '15%', delay: '3s' },
-  { char: '/', color: 'text-yellow-400', size: '1.4rem', top: '30%', left: '75%', delay: '4s' },
-  { char: '|', color: 'text-red-400', size: '1.7rem', top: '80%', left: '20%', delay: '5s' },
-  { char: '&', color: 'text-indigo-400', size: '1.3rem', top: '25%', left: '65%', delay: '6s' },
-  { char: '*', color: 'text-pink-400', size: '1.5rem', top: '75%', left: '70%', delay: '7s' },
-]
 
 // Terminal window lines
 const terminalLines = [
-  { text: 'Last login: Thu Jul 3 09:42:31 2025', color: 'text-gray-500' },
-  { text: 'muneeb@devmachine:~/portfolio$ whoami', color: 'text-green-400' },
-  { text: 'Full-Stack Developer & Digital Architect', color: 'text-white' },
-  { text: 'muneeb@devmachine:~/portfolio$ ls -la skills/', color: 'text-green-400' },
-  { text: 'React, TypeScript, Node.js, Python, AWS', color: 'text-blue-400' },
-  { text: 'muneeb@devmachine:~/portfolio$ cat mission.txt', color: 'text-green-400' },
-  { text: 'Building innovative solutions through code', color: 'text-cyan-400' },
+  {
+    text: (
+      <>
+        <span className="text-green-400">Last login:</span> <span className="text-white">Thu Jul 3 09:42:31 2025</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-green-400">muneeb@devmachine:~/portfolio $</span> <span className="text-white">whoami</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-white">Full-Stack Developer & Digital Architect</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-green-400">muneeb@devmachine:~/portfolio$</span> <span className="text-white">ls -la skills/</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-white">React, TypeScript, Node.js, Python, AWS</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-green-400">muneeb@devmachine:~/portfolio $</span> <span className="text-white">cat mission.txt</span>
+      </>
+    ),
+    color: ''
+  },
+  {
+    text: (
+      <>
+        <span className="text-white">Building innovative solutions through code</span>
+      </>
+    ),
+    color: ''
+  },
 ]
 
 const roles = [
   'Full-Stack Developer',
-  'Digital Architect', 
+  'Digital Architect',
   'Problem Solver',
   'Code Craftsman',
 ]
 
 export default function Hero() {
+  // Matrix effect removed as requested
   const [currentRole, setCurrentRole] = useState(0)
-  const [currentLine, setCurrentLine] = useState(0)
+  // Only show the first line (Last login) in the terminal window, update in real time
+  const [lastLogin, setLastLogin] = useState(() => {
+    const now = new Date();
+    return now.toLocaleString('en-US', {
+      weekday: 'short', month: 'short', day: 'numeric',
+      hour: '2-digit', minute: '2-digit', second: '2-digit', year: 'numeric',
+      hour12: false
+    });
+  });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      setLastLogin(now.toLocaleString('en-US', {
+        weekday: 'short', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit', year: 'numeric',
+        hour12: false
+      }));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const roleInterval = setInterval(() => {
@@ -67,165 +161,273 @@ export default function Hero() {
     return () => clearInterval(roleInterval)
   }, [])
 
-  useEffect(() => {
-    const lineInterval = setInterval(() => {
-      setCurrentLine((l) => (l + 1) % terminalLines.length)
-    }, 4000)
-    return () => clearInterval(lineInterval)
-  }, [])
+  // Removed auto-advance for terminal lines; only show Last login
+
+  // Particle animation effect
+  // Removed unused particleCount effect
 
   return (
     <section id="home" className="relative h-[75vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
-      {/* BACKGROUND ELEMENTS */}
+      {/* Atmospheric background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Subtle grid pattern */}
-        <div 
-          className="absolute inset-0 opacity-5"
+        {/* Wind effect: drifting subtle dots */}
+        <WindParticles />
+        {/* Enhanced terminal grid pattern with glow effect */}
+        <div
+          className="absolute inset-0 opacity-10"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(34, 211, 238, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(34, 211, 238, 0.3) 1px, transparent 1px)
+              linear-gradient(rgba(34, 211, 238, 0.6) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(34, 211, 238, 0.6) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px'
+            backgroundSize: '50px 50px',
+            filter: 'drop-shadow(0 0 10px rgba(34, 211, 238, 0.3))'
           }}
         />
 
-        {/* Floating terminal symbols */}
-        {floatingElements.map((element, i) => (
-          <span
-            key={i}
-            className={`absolute font-mono ${element.color} opacity-20 animate-float`}
-            style={{
-              top: element.top,
-              left: element.left,
-              fontSize: element.size,
-              animationDelay: element.delay,
-            }}
-          >
-            {element.char}
-          </span>
-        ))}
+        {/* Matrix-style rain effect removed as requested */}
 
-        {/* Terminal history floating in background - hidden on mobile */}
-        <div className="hidden lg:block absolute top-20 left-8 font-mono text-xs opacity-10 space-y-2">
-          {terminalHistory.map((history, i) => (
-            <div
-              key={i}
-              className="animate-fade-in"
-              style={{ animationDelay: `${i * 0.8}s` }}
-            >
-              <div className={`${history.color}`}>$ {history.command}</div>
-              {history.output && (
-                <div className="text-gray-400 ml-2">{history.output}</div>
-              )}
-            </div>
-          ))}
+        {/* Floating matrix-style characters removed as requested */}
+        {/* Add custom CSS for matrix rain animation */}
+        <style>{`
+        @keyframes matrixRain {
+          0% { transform: translateY(-100vh); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(100vh); opacity: 0; }
+        }
+      `}</style>
+
+        {/* Floating terminal symbols removed as requested */}
+
+        {/* Glowing scan lines for retro terminal effect */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-green-400/20 to-transparent h-2 animate-scan-line" />
         </div>
 
-        {/* System info in top right - hidden on mobile */}
-        <div className="hidden lg:block absolute top-12 right-8 font-mono text-xs text-gray-600 opacity-30">
-          <div>System: Ubuntu 22.04.3 LTS</div>
-          <div>Memory: 16GB</div>
-          <div>CPU: 8 cores</div>
-          <div>Uptime: 147 days</div>
-        </div>
+      {/* Terminal history and System info removed as requested */}
       </div>
 
       {/* MAIN TERMINAL WINDOW */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 sm:px-6 lg:px-8 py-4 md:py-0 md:min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 sm:px-3 lg:px-4 py-2 md:py-0 md:min-h-[60vh]">
         {/* Terminal Window Header */}
-        <div className="w-full max-w-4xl mb-2 sm:mb-4 md:mb-6 lg:mb-8">
-          <div className="bg-gray-800 rounded-t-lg px-3 sm:px-4 py-2 flex items-center gap-2">
-            <div className="flex gap-1 sm:gap-2">
-              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full"></div>
-              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+        <div className="w-full max-w-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 transform hover:scale-105 transition-transform duration-300 group">
+          <div className="bg-black rounded-t-lg px-2 sm:px-3 py-1 flex items-center gap-1 border border-black group-hover:border-gray-800 transition-colors duration-300 relative overflow-hidden">
+            {/* Subtle animated background on hover */}
+            <div className="absolute inset-0 bg-black opacity-80"></div>
+            <div className="flex gap-1 sm:gap-2 relative z-10">
+              <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-red-500 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0s' }}></div>
+              <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-yellow-500 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0.2s' }}></div>
+              <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0.4s' }}></div>
             </div>
-            <div className="flex-1 text-center text-xs sm:text-sm text-gray-400 font-mono">
-              <span className="hidden sm:inline">muneeb@devmachine: ~/portfolio</span>
-              <span className="sm:hidden">~/portfolio</span>
+            <div className="flex-1 text-center text-xs sm:text-sm font-mono relative z-10">
+              <span className="hidden sm:inline text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-default">muneeb</span>
+              <span className="hidden sm:inline text-green-400 hover:text-green-300 transition-colors duration-300 cursor-default">
+                <span className="font-bold text-lg align-middle text-blue-400" style={{ fontFamily: 'monospace' }}>＠</span>
+                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+              </span>
+              <span className="hidden sm:inline text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-default">~/</span>
+              <span className="hidden sm:inline text-gray-400 hover:text-blue-300 transition-colors duration-300 cursor-default">portfolio</span>
+
+            </div>
+            {/* CPU usage indicator */}
+            <div className="hidden sm:flex items-center gap-1 text-xs relative z-10 hover:scale-110 transition-transform duration-200">
+              <span className='text-green-400'>CPU:</span>
+              <span className="animate-pulse font-bold inline-block text-right" style={{ minWidth: '2.5ch', fontVariantNumeric: 'tabular-nums' }}>{85 + Math.floor(Math.random() * 10)}%</span>
             </div>
           </div>
 
-          {/* Terminal Content */}
-          <div className="bg-black border border-gray-800 rounded-b-lg p-1.5 sm:p-3 md:p-4 lg:p-6 font-mono text-xs sm:text-sm space-y-1 sm:space-y-2 md:space-y-3">
-            {/* Current active line */}
-            <div className="space-y-2">
-              <div className={`${terminalLines[currentLine].color} transition-all duration-500 break-words`}>
-                {terminalLines[currentLine].text}
-              </div>
+          {/* Terminal Content with enhanced effects */}
+          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden">
+            {/* Subtle code-like pattern overlay */}
+
+
+            {/* Current active line with typewriter effect */}
+            <div className="space-y-2 relative z-10">
+              <span className="text-white transition-all duration-500 break-words animate-typewriter cursor-default">
+                Last login:
+              </span>
+              <span className="text-gray-400 transition-all duration-500 break-words animate-typewriter cursor-default"> </span>
+              <span className="text-gray-400 transition-all duration-500 break-words animate-typewriter cursor-default">
+                {lastLogin}
+              </span>
+
             </div>
 
-            {/* Active prompt */}
-            <div className="flex items-center gap-1 sm:gap-2 mt-2 sm:mt-4 md:mt-6 flex-wrap">
-              <span className="text-green-400">muneeb@devmachine</span>
-              <span className="text-white">:</span>
-              <span className="text-blue-400">~/portfolio</span>
-              <span className="text-white">$</span>
-              <span className="typing-cursor text-white break-words">echo "Welcome to my portfolio"</span>
+            {/* Active prompt with enhanced cursor */}
+            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap">
+              <span>
+                <span className="text-gray-400">muneeb</span>
+                <span className="text-blue-400">＠</span>
+                <span className="text-green-400">devmachine</span>
+                <span className="text-gray-400">:</span>
+
+                <span className="text-blue-400"> ~</span>
+                <span className="text-blue-400">/</span>
+                <span className="text-gray-400">portfolio</span>
+                <span className="text-green-500"> $</span>
+                <span className="text-gray-200">echo</span>
+                <span className="typing-cursor text-gray-400 break-words animate-typewriter">  "Welcome to my portfolio"</span>
+              </span>
+            </div>
+
+            {/* Terminal status indicators */}
+            <div className="flex items-center justify-between mt-1 text-xs opacity-80 gap-2">
+              <div className="flex items-center gap-1">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-gray-200">Online</span>
+              </div>
+              <div className="flex items-center gap-1 text-gray-300">
+                <span>
+                  Lines: <span className="text-blue-400">{terminalLines.length}</span>
+                </span>
+                <span className="text-white font-bold">|</span>
+                <span>
+                  Processes: <span className="text-blue-400">{Math.floor(Math.random() * 5) + 3}</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* HERO CONTENT */}
-        <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-4xl px-2 sm:px-0">
-          {/* Name and Role */}
+        <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-2xl px-2 sm:px-0">
+          {/* Name and Role with enhanced animations */}
           <div className="space-y-1 md:space-y-2 lg:space-y-3">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight">
-              <span className="text-green-400">{'>'}</span> Muneeb Anjum
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight animate-glow-text transform hover:scale-105 transition-transform duration-300 group cursor-default text-left mx-auto max-w-2xl">
+              <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'>'}</span>
+              <span className="hover:text-gray-400 transition-colors duration-300">Muneeb Anjum</span>
+              <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'<'}</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-green-400 font-mono">
+            <p className="text-base sm:text-lg md:text-lg text-gray-300 font-mono animate-role-switch hover:text-gray-300 transition-colors duration-300 cursor-default">
               {roles[currentRole]}
             </p>
-          </div>
-
-          {/* Mobile: Compact mission statement */}
-          <div className="md:hidden bg-black border border-gray-700 rounded-lg p-2 font-mono text-left max-w-sm mx-auto text-xs">
-            <div className="text-center">
-              <span className="text-green-400">"Building innovative solutions"</span>
+            {/* Role indicator dots */}
+            <div className="flex justify-center gap-2 mt-2">
+              {roles.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer hover:scale-150 ${index === currentRole
+                    ? 'bg-gray-400 animate-pulse scale-105 shadow-lg shadow-gray-400/50'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                    }`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Desktop: Full mission object */}
-          <div className="hidden md:block bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-2xl mx-auto text-xs sm:text-sm">
+          {/* Mobile: Enhanced compact mission statement */}
+          <div className="md:hidden bg-black border border-gray-700 rounded-lg p-2 font-mono text-left max-w-sm mx-auto text-xs hover:border-green-400 transition-colors duration-300 hover:shadow-lg hover:shadow-green-400/20">
+            <div className="text-center space-y-1">
+              <div className="text-green-400 animate-typewriter">"Building innovative solutions"</div>
+              <div className="flex justify-center">
+                <div className="w-4 h-0.5 bg-green-400 animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Enhanced mission object with interactive hover */}
+          <div
+            className="hidden md:block bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-md mx-auto text-xs sm:text-sm hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 transform hover:scale-105 cursor-pointer group"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
             <div className="text-white">
-              <span className="text-yellow-400">const</span>{' '}
-              <span className="text-blue-400">mission</span> = {'{'}
+              <span className="text-gray-400 group-hover:animate-pulse">const</span>{' '}
+              <span className="text-blue-400 group-hover:text-cyan-400 transition-colors duration-300">mission</span> = {'{'}
             </div>
             <div className="text-white ml-2 sm:ml-4 break-words">
-              <span className="text-red-400">passion</span>: <span className="text-green-400">"Building innovative solutions"</span>,
+              <span className="text-red-400 group-hover:text-pink-400 transition-colors duration-300">passion</span>: <span className="text-white-300 group-hover:text-blue-400 transition-all duration-300">"Building innovative solutions"</span>,
             </div>
             <div className="text-white ml-2 sm:ml-4 break-words">
-              <span className="text-red-400">approach</span>: <span className="text-green-400">"Clean code & thoughtful design"</span>,
+              <span className="text-red-400 group-hover:text-pink-400 transition-colors duration-300">approach</span>: <span className="text-white-300 group-hover:text-blue-400 transition-all duration-300">"Clean code & thoughtful design"</span>,
             </div>
             <div className="text-white ml-2 sm:ml-4 break-words">
-              <span className="text-red-400">mindset</span>: <span className="text-green-400">"Endless curiosity"</span>
+              <span className="text-red-400 group-hover:text-pink-400 transition-colors duration-300">mindset</span>: <span className="text-white-300 group-hover:text-blue-400 transition-all duration-300">"Endless curiosity"</span>
             </div>
             <div className="text-white">{'}'}</div>
+
+            {/* Progress bar animation on hover */}
+            <div className="mt-2 h-1 bg-gray-800 rounded overflow-hidden">
+              <div className="h-full bg-gray-200 rounded transition-all duration-1000 group-hover:w-full w-0 animate-pulse"></div>
+            </div>
           </div>
 
-          {/* Terminal-style action buttons */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center items-center pt-1 sm:pt-2">
-            <a
-              href="#projects"
-              className="group relative px-4 sm:px-6 py-2 sm:py-3 font-mono text-sm sm:text-base text-black bg-green-400 border-2 border-green-400 hover:bg-black hover:text-green-400 hover:border-black transition-colors duration-300 w-full sm:w-auto text-center"
-            >
-              <span className="absolute -inset-1 bg-green-400 opacity-20 group-hover:bg-black group-hover:opacity-100 group-hover:border-black transition-all duration-300 border-2 border-green-400 rounded-lg"></span>
-              <span className="relative">./view_projects.sh</span>
-            </a>
-            <a
-              href="#contact"
-              className="px-4 sm:px-6 py-2 sm:py-3 font-mono text-sm sm:text-base text-green-400 border-2 border-green-400 hover:bg-green-400 hover:text-black transition-colors duration-300 w-full sm:w-auto text-center"
-            >
-              ./contact_me.sh
-            </a>
-          </div>
+            {/* Enhanced terminal-style action buttons - black & grey theme, blue/green hover with black text */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
+                <a
+                  href="#projects"
+                  className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+                >
+                  <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
+                  <span className="relative flex items-center justify-center gap-2">
+                  <span
+                    className="text-blue-400 group-hover:text-black transition-colors duration-300 group-hover:animate-bounce"
+                    style={{
+                    display: 'inline-block',
+                    transition: 'transform 0.3s',
+                    // This will sync the bounce with the arrow by using the same animation
+                    animation: isHovered ? 'bounce 1s' : undefined,
+                    animationIterationCount: isHovered ? 'infinite' : undefined,
+                    }}
+                  >
+                    $
+                  </span>
+                  <span className="group-hover:tracking-wider transition-all duration-300">./view_projects.sh</span>
+                  <span
+                    className={`
+                    transition-colors duration-300
+                    text-blue-400
+                    opacity-100
+                    group-hover:text-black
+                    group-hover:animate-bounce
+                    `}
+                    style={{
+                    display: 'inline-block',
+                    transition: 'transform 0.3s',
+                    animation: isHovered ? 'bounce 1s' : undefined,
+                    animationIterationCount: isHovered ? 'infinite' : undefined,
+                    }}
+                  >▶</span>
+                  </span>
+                </a>
+                <a
+                  href="#contact"
+                  className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+                >
+                  <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
+                  <span className="relative flex items-center justify-center gap-2">
+                    <span
+                      className="
+                        animate-pulse
+                        group-hover:animate-bounce
+                        transition-colors duration-300
+                        text-green-400
+                        group-hover:text-black
+                      "
+                    >
+                      {'>'}
+                    </span>
+                    <span className="group-hover:tracking-wider transition-all duration-300">./contact_me.sh</span>
+                    <span
+                      className="
+                        transition-colors duration-300
+                        group-hover:animate-bounce
+                        text-green-400
+                        group-hover:text-black
+                      "
+                    >
+                      ✉
+                    </span>
+                  </span>
+                </a>
+            </div>
         </div>
       </div>
 
-      {/* Terminal cursor at bottom */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-pulse">
-        <span className="text-2xl">▼</span>
+      {/* Enhanced terminal cursor with glow effect */}
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-bounce">
+        <span className="text-2xl filter drop-shadow-lg animate-glow">▼</span>
       </div>
 
       {/* KEYFRAMES & UTILITIES */}
@@ -241,6 +443,11 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
         
         .animate-float { 
           animation: float 8s ease-in-out infinite; 
@@ -248,6 +455,10 @@ export default function Hero() {
         
         .animate-fade-in { 
           animation: fade-in 1s ease-out forwards; 
+        }
+
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
         }
 
         @keyframes typing-cursor {
@@ -263,6 +474,29 @@ export default function Hero() {
           content: '|';
           animation: typing-cursor 1s infinite;
           margin-left: 2px;
+        }
+
+        @keyframes enhanced-float {
+          0%, 100% { 
+            transform: translate(0, 0) rotate(0deg) scale(1); 
+            filter: drop-shadow(0 0 8px currentColor);
+          }
+          25% { 
+            transform: translate(-8px, -8px) rotate(2deg) scale(1.05); 
+            filter: drop-shadow(0 0 12px currentColor);
+          }
+          50% { 
+            transform: translate(8px, -12px) rotate(-2deg) scale(0.95); 
+            filter: drop-shadow(0 0 10px currentColor);
+          }
+          75% { 
+            transform: translate(-5px, 8px) rotate(1deg) scale(1.02); 
+            filter: drop-shadow(0 0 14px currentColor);
+          }
+        }
+
+        .animate-enhanced-float {
+          animation: enhanced-float 10s ease-in-out infinite;
         }
       `}</style>
     </section>

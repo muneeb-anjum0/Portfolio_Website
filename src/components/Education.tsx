@@ -1,11 +1,29 @@
-// src/components/Education.tsx
+
 import React, { useState, useEffect } from 'react'
+
+// Education data (Experience style)
+const educationData = [
+  {
+    degree: 'Bachelor in Software Engineering',
+    university: 'SZABIST University',
+    location: 'Islamabad, Pakistan',
+    duration: '2023 - 2027',
+    cgpa: '3.1',
+    status: 'IN PROGRESS',
+    // ...removed unused eid, memory, progress fields...
+    details: [
+      'Core: OOP, Data Structures, DB Systems, Web Dev',
+      'Advanced: OS, SRE, CS Fundamentals, Math, Physics',
+      'CGPA: 3.1 (current)',
+      'SZABIST University, Islamabad',
+      '2023–2027 (expected graduation)',
+      'Status: In Progress',
+    ],
+  },
+]
 
 const Education: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [loadingProgress, setLoadingProgress] = useState(0)
-  const [linesProcessed, setLinesProcessed] = useState(0)
-  const [bytesProcessed, setBytesProcessed] = useState(0)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -14,49 +32,11 @@ const Education: React.FC = () => {
     return () => clearInterval(timer)
   }, [])
 
-  useEffect(() => {
-    const progressTimer = setInterval(() => {
-      setLoadingProgress(prev => prev >= 100 ? 0 : prev + 1)
-    }, 100)
-    return () => clearInterval(progressTimer)
-  }, [])
-
-  useEffect(() => {
-    const linesTimer = setInterval(() => {
-      setLinesProcessed(prev => prev >= 18 ? 0 : prev + 1)
-    }, 200)
-    return () => clearInterval(linesTimer)
-  }, [])
-
-  useEffect(() => {
-    const bytesTimer = setInterval(() => {
-      setBytesProcessed(prev => prev >= 1024 ? 0 : prev + 7)
-    }, 150)
-    return () => clearInterval(bytesTimer)
-  }, [])
-
-  const coreSubjects = [
-    'Object-Oriented Programming',
-    'Data Structures',
-    'Database Systems',
-    'Software Design & Architecture',
-    'Web Development'
-  ]
-
-  const advancedTopics = [
-    'Operating Systems',
-    'Software Requirements Engineering',
-    'Computer Science Fundamentals',
-    'Mathematics for Computer Science',
-    'Applied Physics'
-  ]
-
   return (
     <section id="education" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
-      {/* Background Elements */}
+      {/* Terminal-style background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Terminal grid pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
@@ -66,265 +46,219 @@ const Education: React.FC = () => {
             backgroundSize: '50px 50px'
           }}
         />
-        
-        {/* Floating education commands - hidden on mobile */}
+
+        {/* Decorative system monitoring commands */}
         <div className="hidden lg:block absolute top-20 left-10 font-mono text-green-400 opacity-10 animate-pulse">
           <div>$ cat /etc/education.conf</div>
           <div className="text-gray-500">Bachelor in Software Engineering</div>
         </div>
-        
-        <div className="hidden lg:block absolute bottom-20 right-10 font-mono text-blue-400 opacity-10 animate-pulse">
+
+        <div className="hidden lg:block absolute bottom-20 right-10 font-mono text-green-400 opacity-10 animate-pulse">
           <div>$ grep -i "degree" academic.log</div>
-          <div className="text-gray-500">progress: 75% completed</div>
+          <div className="text-gray-500">progress: 65% completed</div>
         </div>
       </div>
 
-      {/* Mobile Version - Terminal Themed */}
-      <div className="md:hidden px-4 relative z-10">
-        {/* Terminal Header */}
-        <div className="mb-4">
-          <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
-            <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Terminal window header - styled like About/Skills/Experience/Projects */}
+        <div className="hidden md:block text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
+          <div className="w-full max-w-2xl mx-auto mb-4">
+            {/* Redesigned Terminal Header (copied from About/Skills/Experience/Projects) */}
+            <div className="group terminal-header-container w-full">
+              <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                {/* Left dots */}
+                <div className="flex gap-1.5 mr-2">
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                </div>
+                {/* Path and user info */}
+                <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                  {/* Replicate Hero/About/Skills/Experience/Projects terminal user@host:path style */}
+                  <span className="text-gray-400 font-mono text-sm">muneeb</span>
+                  <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                  <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                  <span className="text-gray-400 font-mono text-sm">:</span>
+                    <span className="text-blue-400 font-mono text-sm">~</span>
+                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/education</span>
+                </div>
+                {/* Right dots */}
+                <div className="flex gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                  <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                </div>
               </div>
-              <span className="font-mono text-xs text-gray-400">~/education</span>
-            </div>
-            <div className="p-2 font-mono text-xs">
-              <div className="flex items-center gap-1">
-                <span className="text-green-400">$</span>
-                <span className="text-white">cat education.json</span>
+              {/* Terminal body with prompt */}
+              <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-6 py-4 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
+                  <span className="text-white font-semibold group-hover:text-green-200">npx education --log</span>
+                  <span className="blinking-cursor ml-1">|</span>
+                </div>
+                <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                  {currentTime.toLocaleTimeString()}
+                </div>
               </div>
-              <div className="text-gray-500 ml-2">Bachelor in Software Engineering</div>
+              {/* Blinking cursor animation */}
+              <style>{`
+                .blinking-cursor {
+                  display: inline-block;
+                  width: 1ch;
+                  animation: blink 1s steps(2, start) infinite;
+                }
+                @keyframes blink {
+                  0%, 100% { opacity: 1; }
+                  50% { opacity: 0; }
+                }
+              `}</style>
             </div>
           </div>
         </div>
 
-        {/* Mobile Education Terminal */}
-        <div className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
-          {/* Code editor header */}
-          <div className="bg-gray-900 px-3 py-1.5 border-b border-gray-800 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+        {/* Mobile-optimized education layout */}
+        <div className="md:hidden">
+          <div className="text-center mb-4">
+            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-blue-400 transition-all duration-300">
+              <div className="bg-black px-3 py-1.5 flex items-center gap-2 border-b border-blue-900">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <span className="font-mono text-xs text-blue-400 flex-1 text-center">education.json</span>
               </div>
-              <span className="font-mono text-xs text-gray-400">education.json</span>
+              <div className="p-3 font-mono text-xs text-center">
+                <span className="text-blue-400">$ cat education.json</span>
+              </div>
             </div>
-            <div className="font-mono text-xs text-gray-500">{currentTime.toLocaleTimeString()}</div>
           </div>
-          
-          {/* Code content */}
-          <div className="p-3 font-mono text-xs space-y-2">
-            <div><span className="text-purple-400">class</span> <span className="text-yellow-400">Education</span> <span className="text-white">{'{'}</span></div>
-            
-            <div className="ml-2 space-y-1">
-              <div><span className="text-blue-400">degree</span>: <span className="text-green-400">"Bachelor in Software Engineering"</span>,</div>
-              <div><span className="text-blue-400">university</span>: <span className="text-green-400">"SZABIST University"</span>,</div>
-              <div><span className="text-blue-400">location</span>: <span className="text-green-400">"Islamabad, Pakistan"</span>,</div>
-              <div><span className="text-blue-400">duration</span>: <span className="text-green-400">"2023 - 2027"</span>,</div>
-              <div><span className="text-blue-400">cgpa</span>: <span className="text-orange-400">3.1</span>,</div>
-              <div><span className="text-blue-400">status</span>: <span className="text-yellow-400">"In Progress"</span>,</div>
-              
-              <div className="pt-1">
-                <span className="text-blue-400">core_subjects</span>: [
-                <div className="ml-2 space-y-0.5">
-                  {coreSubjects.map((subject, idx) => (
-                    <div key={idx} className="flex items-center gap-1">
+
+          {/* Education details card */}
+          {educationData.map((edu, index) => (
+            <div key={index} className="bg-black border border-gray-800 rounded-lg hover:border-blue-400 transition-all duration-300">
+              <div className="bg-black px-3 py-2 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-blue-400">●</span>
+                  <span className="font-mono text-xs text-gray-400">{edu.status}</span>
+                </div>
+                <div className="font-mono text-xs text-gray-500">{edu.duration}</div>
+              </div>
+              <div className="p-3 space-y-2">
+                <div className="font-mono text-sm text-white font-bold">{edu.degree}</div>
+                <div className="font-mono text-xs text-blue-400">{edu.university}</div>
+                <div className="space-y-1">
+                  {edu.details.map((detail, idx) => (
+                    <div key={idx} className="flex items-center gap-1 font-mono text-xs text-gray-300">
                       <span className="text-gray-600">
-                        {idx === coreSubjects.length - 1 ? '└─' : '├─'}
+                        {idx === edu.details.length - 1 ? '└─' : '├─'}
                       </span>
-                      <span className="text-green-400">"{subject}"{idx < coreSubjects.length - 1 ? ',' : ''}</span>
+                      <span>{detail}</span>
                     </div>
                   ))}
                 </div>
-                ],
               </div>
-              
-              <div className="pt-1">
-                <span className="text-blue-400">advanced_topics</span>: [
-                <div className="ml-2 space-y-0.5">
-                  {advancedTopics.slice(0, 3).map((topic, idx) => (
-                    <div key={idx} className="flex items-center gap-1">
-                      <span className="text-gray-600">
-                        {idx === 2 ? '└─' : '├─'}
-                      </span>
-                      <span className="text-cyan-400">"{topic}"{idx < 2 ? ',' : ''}</span>
-                    </div>
-                  ))}
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop full-featured layout */}
+        <div className="hidden md:block">
+          {/* Redesigned black-themed education card, stacked vertically */}
+          <div className="max-w-3xl mx-auto">
+            {educationData.map((edu) => (
+              <div
+                key={edu.degree}
+                className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-blue-400/30"
+                style={{ minHeight: '320px' }}
+              >
+                {/* Animated glowing border on hover */}
+                <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.25)] group-hover:border-blue-400 border border-transparent group-hover:border-[1px]"></div>
+
+                {/* Top status bar with animated dots */}
+                <div className="flex items-center gap-2 px-6 py-2 border-b border-gray-800 bg-black/80">
+                  <span className="flex gap-1">
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
+                  </span>
+                  <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">{edu.status} EDUCATION</span>
+                  <span className="ml-auto font-mono text-xs text-gray-600">{edu.duration}</span>
                 </div>
-                ]
+
+                {/* Redesigned content area */}
+                <div className="relative z-20 px-8 pt-1 pb-8 flex flex-col gap-3 transition-all duration-500">
+                  {/* Degree and University as a terminal command */}
+                  <div className="font-mono text-lg md:text-xl flex items-center gap-2 text-blue-400 mb-0 pb-0">
+                    <span className="select-none">$</span>
+                    <span className="text-white font-bold">{edu.degree}</span>
+                    <span className="text-gray-400 font-bold"> | </span>
+                    <span className="text-blue-300 font-bold">{edu.university}</span>
+                  </div>
+                  {/* Fun terminal easter egg: "cat education.json" */}
+                  <div className="font-mono text-sm flex items-center gap-2 mb-1">
+                    <span className="italic text-blue-400">cat </span>
+                    <span className="italic text-green-400">education.json</span>
+                    <span className="font-bold text-blue-300">'Learning in progress!'</span>
+                  </div>
+                  {/* Achievements as terminal output */}
+                  <div className="bg-black/80 border border-gray-800 rounded-lg p-4 shadow-inner">
+                    <div className="font-mono text-xs text-gray-400 mb-2">// Key Details</div>
+                    <ul className="space-y-2">
+                      {edu.details.map((detail, i) => {
+                        let symbol = '├─';
+                        if (i === 0) symbol = '┌─';
+                        else if (i === edu.details.length - 1) symbol = '└─';
+                        return (
+                          <li
+                            key={i}
+                            className="font-mono text-sm text-gray-200 flex items-start gap-2 group-hover:text-blue-300 transition-colors duration-200"
+                          >
+                            <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">{symbol}</span>
+                            <span>{detail}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Animated bottom status bar */}
+                <div className="flex items-center justify-between px-6 py-2 border-t border-gray-800 bg-black/80">
+                  <div className="flex items-center gap-2 font-mono text-xs text-gray-500">
+                    <span className="animate-pulse text-blue-400">●</span>
+                    <span className="tracking-widest uppercase">Education synced</span>
+                  </div>
+                  <div className="flex items-center gap-2 font-mono text-xs text-blue-400">
+                    <span className="animate-pulse">{`Last update: ${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-            
-            <div><span className="text-white">{'}'}</span></div>
+            ))}
           </div>
-          
-          {/* Status bar */}
-          <div className="bg-gray-900 px-3 py-1 border-t border-gray-800 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-green-400">Education Active</span>
-            </div>
-            <div className="text-green-400">✓ 75% completed</div>
-          </div>
+
         </div>
       </div>
 
-      {/* Desktop Version - Original Design */}
-      <div className="hidden md:block max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-        {/* Terminal Header */}
-        <div className="text-center mb-2 sm:mb-4 md:mb-6 lg:mb-8">
-          <div className="bg-black border border-gray-900 rounded-lg max-w-2xl mx-auto hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group overflow-hidden">
-            {/* Terminal window header */}
-            <div className="bg-gray-900 px-3 sm:px-4 py-2 flex items-center justify-between group-hover:bg-gray-800 transition-colors duration-300">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="flex gap-1 sm:gap-1.5">
-                  <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
-                </div>
-                <span className="font-mono text-xs text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-                  ~/portfolio/education
-                </span>
-              </div>
-              <div className="font-mono text-xs text-gray-400">
-                {currentTime.toLocaleTimeString()}
-              </div>
-            </div>
-            
-            {/* Terminal content */}
-            <div className="p-3 font-mono text-xs sm:text-sm space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="text-green-400">$</span>
-                <span className="text-white group-hover:text-green-300 transition-colors duration-300">
-                  cat education.json
-                </span>
-              </div>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-gray-500 gap-2 sm:gap-4">
-                <span>Progress: 75% completed</span>
-                <span className="text-green-400">Bachelor of Software Engineering</span>
-              </div>
-            </div>
+      {/* Section navigation divider */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-2 sm:pb-4 md:pb-6 lg:pb-8 pt-3 sm:pt-6 md:pt-8 lg:pt-12">
+        <div className="flex items-center gap-4">
+          <div className="flex-1 h-px bg-gray-800"></div>
+          <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
+            <span className="text-blue-400">$</span>
+            <span>cd ../experience</span>
           </div>
+          <div className="flex-1 h-px bg-gray-800"></div>
         </div>
-
-        {/* Education Code Editor Style */}
-        <div className="bg-black border border-gray-800 rounded-lg overflow-hidden hover:border-green-400 hover:shadow-lg hover:shadow-green-400/20 transition-all duration-300 group">
-          {/* Code editor header */}
-          <div className="bg-gray-900 px-3 sm:px-4 py-1.5 border-b border-gray-800 group-hover:bg-gray-800 transition-colors duration-300">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="flex gap-1 sm:gap-1.5">
-                  <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
-                </div>
-                <span className="font-mono text-xs sm:text-sm text-gray-400 group-hover:text-green-400 transition-colors duration-300">
-                  education.json
-                </span>
-              </div>
-              <div className="font-mono text-xs text-gray-500">Lines: 18</div>
-            </div>
+        {/* Status bar info */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-gray-500 gap-2 sm:gap-4 mt-2">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span>Last update: {currentTime.toLocaleDateString()} {currentTime.toLocaleTimeString()}</span>
+            <span className="hidden sm:inline">|</span>
+            <span>Education log synced</span>
           </div>
-          
-          {/* Code content with line numbers */}
-          <div className="flex font-mono text-sm sm:text-base">
-            {/* Line numbers */}
-            <div className="bg-gray-900 px-2 py-3 border-r border-gray-800 text-gray-500 text-xs sm:text-sm select-none">
-              <div className="space-y-0.5">
-                {Array.from({length: 18}, (_, i) => (
-                  <div key={i} className="text-right">{i + 1}</div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Code content */}
-            <div className="flex-1 p-3 space-y-0.5 text-sm sm:text-base overflow-x-auto">
-              <div className="leading-6">
-                <span className="text-purple-400">class</span>{' '}
-                <span className="text-yellow-400">Education</span>{' '}
-                <span className="text-white">{'{'}</span>
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">degree</span>:{' '}
-                <span className="text-green-400">"Bachelor in Software Engineering"</span>,
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">university</span>:{' '}
-                <span className="text-green-400">"SZABIST University"</span>,
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">location</span>:{' '}
-                <span className="text-green-400">"Islamabad, Pakistan"</span>,
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">duration</span>:{' '}
-                <span className="text-green-400">"2023 - 2027"</span>,
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">cgpa</span>:{' '}
-                <span className="text-orange-400">3.1</span>,
-              </div>
-              <div className="leading-6 ml-4">
-                <span className="text-blue-400">status</span>:{' '}
-                <span className="text-yellow-400">"In Progress"</span>,
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 pt-2">
-                <div className="leading-6 ml-4">
-                  <span className="text-blue-400">core_subjects</span>: [
-                  <div className="ml-4 space-y-0.5">
-                    {coreSubjects.map((subject, idx) => (
-                      <div key={idx} className="text-green-400">"{subject}"{idx < coreSubjects.length - 1 ? ',' : ''}</div>
-                    ))}
-                  </div>
-                  ],
-                </div>
-                <div className="leading-6 ml-4">
-                  <span className="text-blue-400">advanced_topics</span>: [
-                  <div className="ml-4 space-y-0.5">
-                    {advancedTopics.map((topic, idx) => (
-                      <div key={idx} className="text-cyan-400">"{topic}"{idx < advancedTopics.length - 1 ? ',' : ''}</div>
-                    ))}
-                  </div>
-                  ]
-                </div>
-              </div>
-              <div className="leading-6">
-                <span className="text-white">{'}'}</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Status bar */}
-          <div className="bg-gray-900 px-3 sm:px-4 py-1 border-t border-gray-800 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs gap-2 sm:gap-4">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-400">Education Active</span>
-              </div>
-              
-              <div className="text-gray-500">
-                Progress: {loadingProgress}%
-              </div>
-              
-              <div className="text-gray-500">
-                Lines: {linesProcessed}/18
-              </div>
-            </div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-              <div className="text-gray-500">
-                Memory: {bytesProcessed}KB
-              </div>
-              <div className="text-green-400">
-                ✓ Compiled successfully
-              </div>
-            </div>
-          </div>
+          <span className="text-blue-400">✓ System operational</span>
         </div>
       </div>
     </section>

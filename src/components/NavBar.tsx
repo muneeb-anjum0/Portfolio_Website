@@ -1,9 +1,13 @@
-// src/components/Navbar.tsx
-import { useState, useEffect, useRef } from 'react'
 
-const NAV_LINKS = ['About', 'Skills', 'Experience', 'Projects', 'Education'] as const
+import { useState, useEffect, useRef } from 'react';
 
-export default function Navbar() {
+const NAV_LINKS = ['About', 'Skills', 'Experience', 'Projects', 'Education'] as const;
+
+interface NavbarProps {
+  currentSection?: string;
+}
+
+export default function Navbar({ currentSection }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
@@ -40,13 +44,12 @@ export default function Navbar() {
   }
 
   return (
-    <nav 
+    <nav
       ref={navRef}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 select-none ${
-        scrolled 
-          ? 'bg-black/95 backdrop-blur-md border-b border-gray-800' 
-          : 'bg-transparent backdrop-transparent border-b border-transparent'
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 select-none ${scrolled
+        ? 'bg-black/95 backdrop-blur-md border-b border-black'
+        : 'bg-transparent backdrop-transparent border-b border-transparent'
+        }`}
     >
       {/* Terminal-style navbar container */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -55,38 +58,61 @@ export default function Navbar() {
           onClick={() => scrollTo('home')}
           className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
-          <span className="text-green-400">$</span>
-          <span className="text-white group-hover:text-green-400 transition-colors">muneeb</span>
-          <span className="text-green-400 group-hover:text-white transition-colors hidden sm:inline">@devmachine</span>
-          <span className="text-green-400 group-hover:text-white transition-colors sm:hidden">@dev</span>
+          <span>
+            <span className="text-green-400" style={{ fontFamily: 'monospace, "Fira Mono", "JetBrains Mono", "Menlo", "Consolas", "Liberation Mono", "Courier New", monospace' }}></span>
+            <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
+            <span className="text-blue-400 group-hover:text-green-300 transition-colors hidden sm:inline">＠</span>
+            <span className="text-gray-400 group-hover:text-white transition-colors hidden sm:inline">devmachine</span>
+          </span>
         </button>
 
         {/* Center nav links - terminal style */}
         <ul className="hidden md:flex items-center space-x-1">
-          {NAV_LINKS.map((label) => (
-            <li key={label}>
-              <button
-                onClick={() => scrollTo(label.toLowerCase())}
-                className="px-4 py-2 font-mono text-base text-gray-400 hover:text-green-400 hover:bg-gray-900 rounded transition-all duration-200 flex items-center gap-2"
-              >
-                <span className="text-gray-600">./</span>
-                {label.toLowerCase()}
-                <span className="text-gray-600">.sh</span>
-              </button>
-            </li>
-          ))}
+          {NAV_LINKS.map((label) => {
+            const sectionId = label.toLowerCase();
+            const isActive = currentSection === sectionId;
+            return (
+              <li key={label}>
+                <button
+                  onClick={() => scrollTo(sectionId)}
+                  className={`px-4 py-1 font-mono text-base flex items-center gap-2 rounded-md transition-colors duration-200
+                    ${isActive
+                      ? 'bg-black text-gray-100 font-bold border border-gray-700/60 ring-1 ring-gray-500/40 ring-offset-1 ring-offset-black shadow-sm'
+                      : 'text-gray-300 hover:text-gray-00 hover:bg-black'}
+                  `}
+                  style={isActive ? { boxShadow: '0 1px 6px 0 #0003, 0 0 0 1.5px #4448', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s' } : { transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s' }}
+                >
+                  <span>
+                    <span className="text-blue-400">.</span>
+                    <span className="text-gray-600">/</span>
+                  </span>
+                  <span>
+                    {sectionId}
+                    <span className="text-green-400">.</span>sh
+                  </span>
+                </button>
+              </li>
+            );
+          })}
         </ul>
 
         {/* Right-side: Terminal-style CTA + mobile toggle */}
         <div className="flex items-center space-x-4">
           {/* Desktop Contact CTA - terminal button style */}
-          <button
+          {/* Animated Contact Button - terminal style, matches Hero page */}
+          <a
+            href="#contact"
             onClick={() => scrollTo('contact')}
-            className="hidden md:flex items-center px-4 py-2 font-mono text-sm border border-green-400 text-green-400 bg-transparent hover:bg-green-400 hover:text-black transition-all duration-200 gap-2"
+            className="hidden md:flex group relative items-center px-4 py-2 font-mono text-sm border-2 border-gray-400 text-white bg-black hover:bg-gray-200 hover:text-black hover:border-gray-600 transition-all duration-300 gap-2 overflow-hidden hover:scale-105 hover:shadow-lg hover:shadow-gray-400/30 hover:-translate-y-1"
+            style={{ minWidth: '120px', justifyContent: 'center' }}
           >
-            <span>./contact</span>
-            <span className="text-xs opacity-60">[ENTER]</span>
-          </button>
+            <span className="absolute -inset-1 bg-gray-400 opacity-10 group-hover:bg-gray-200 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-400 rounded-lg"></span>
+            <span className="relative flex items-center gap-2">
+              <span className="animate-bounce group-hover:animate-pulse text-white group-hover:text-black">$</span>
+              <span className="group-hover:tracking-wider transition-all duration-300 text-white group-hover:text-black">./contact</span>
+              <span className="text-white group-hover:text-black transition-colors opacity-100 group-hover:animate-bounce transition-opacity duration-300">↗</span>
+            </span>
+          </a>
 
           {/* Mobile hamburger - terminal style */}
           <button
@@ -153,35 +179,46 @@ export default function Navbar() {
           <div className="font-mono text-xs text-gray-500 mb-1.5">
             <span className="text-green-400">$</span> ls nav/
           </div>
-          
-          {NAV_LINKS.map((label, index) => (
-            <div key={label} className="font-mono">
-              <button
-                onClick={() => scrollTo(label.toLowerCase())}
-                className="w-full text-left py-1 px-2 text-white hover:text-green-400 hover:bg-gray-900/50 rounded transition-all duration-200 flex items-center gap-2 border border-transparent hover:border-gray-700 group"
-              >
-                <span className="text-gray-600 group-hover:text-green-400">→</span>
-                <span className="text-gray-500">./</span>
-                <span className="text-sm">{label.toLowerCase()}</span>
-                <div className="ml-auto flex items-center gap-1">
-                  <span className="text-xs text-gray-600">0{index + 1}</span>
-                </div>
-              </button>
-            </div>
-          ))}
-          
+
+          {NAV_LINKS.map((label, index) => {
+            const sectionId = label.toLowerCase();
+            const isActive = currentSection === sectionId;
+            return (
+              <div key={label} className="font-mono">
+                <button
+                  onClick={() => scrollTo(sectionId)}
+                  className={`w-full text-left py-1 px-2 rounded transition-all duration-200 flex items-center gap-2 border border-transparent group
+                    ${isActive ? 'bg-green-900/60 text-green-400 underline underline-offset-4' : 'text-white hover:text-green-400 hover:bg-gray-900/50'}`}
+                >
+                  <span className="text-gray-600 group-hover:text-green-400">→</span>
+                  <span className="text-gray-500">./</span>
+                  <span className="text-sm">{sectionId}</span>
+                  <div className="ml-auto flex items-center gap-1">
+                    <span className="text-xs text-gray-600">0{index + 1}</span>
+                  </div>
+                </button>
+              </div>
+            );
+          })}
+
           {/* Mobile Contact Section */}
           <div className="pt-1.5 border-t border-gray-800 space-y-1">
             <div className="font-mono text-xs text-gray-500">
               <span className="text-green-400">$</span> ./contact
             </div>
-            <button
+            <a
+              href="#contact"
               onClick={() => scrollTo('contact')}
-              className="w-full px-2 py-1.5 font-mono text-xs border border-green-400 text-green-400 bg-transparent hover:bg-green-400 hover:text-black transition-all duration-200 flex items-center justify-center gap-1.5 rounded hover:shadow-lg hover:shadow-green-400/20 group"
+              className="w-full group relative px-2 py-1.5 font-mono text-xs border-2 border-green-400 text-green-400 bg-transparent hover:bg-black hover:text-green-400 hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-1.5 rounded hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '90px' }}
             >
-              <span>contact</span>
-              <span className="text-xs opacity-60 group-hover:opacity-100">↗</span>
-            </button>
+              <span className="absolute -inset-1 bg-green-400 opacity-20 group-hover:bg-green-400 group-hover:opacity-30 group-hover:animate-pulse transition-all duration-300 border-2 border-green-400 rounded-lg"></span>
+              <span className="relative flex items-center gap-1.5">
+                <span className="animate-bounce group-hover:animate-pulse">$</span>
+                <span className="group-hover:tracking-wider transition-all duration-300">contact</span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
+              </span>
+            </a>
           </div>
 
           {/* Terminal Footer */}
@@ -192,6 +229,19 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+      {/* KEYFRAMES & UTILITIES for button animations */}
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.5; }
+        }
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        .animate-bounce { animation: bounce 1s infinite; }
+        .animate-pulse { animation: pulse 2s infinite; }
+      `}</style>
     </nav>
   )
 }
