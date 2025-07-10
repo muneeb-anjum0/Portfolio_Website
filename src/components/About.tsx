@@ -250,15 +250,15 @@ const About = () => {
               {/* Content area with two columns - compact */}
               <div className="relative z-20 px-4 pt-1 pb-4 flex flex-col gap-2 transition-all duration-500">
                 {/* Terminal command style heading - compact, force single line and scrollable */}
-                <div className="font-mono text-[13px] flex items-center gap-0.5 text-green-400 mb-0 pb-0 whitespace-nowrap overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
-                  <span className="select-none">$</span>
-                  <span className="text-white font-bold">about-me</span>
-                  <span className="text-gray-400 font-bold">|</span>
-                  <span className="text-blue-400 font-bold">Full-Stack Developer</span>
+                <div className="flex flex-col gap-0.5 mb-0 pb-0">
+                  <span className="font-mono text-[13px] text-green-400 select-none">$</span>
+                  <span className="font-mono text-[13px] text-white font-bold">about-me</span>
+                  <span className="font-mono text-[13px] text-gray-400 font-bold">|</span>
+                  <span className="font-mono text-[13px] text-blue-400 font-bold">Full-Stack Developer</span>
                 </div>
-                <div className="font-mono text-[11px] text-green-400 flex items-center gap-0.5 mb-1 whitespace-nowrap overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
-                  <span className="italic">npx about-me --intro</span>
-                  <span className="font-bold text-blue-300">'Crafting code & coffee'</span>
+                <div className="flex flex-col gap-0.5 mb-1">
+                  <span className="font-mono text-[11px] text-green-400 italic">npx about-me --intro</span>
+                  <span className="font-mono text-[11px] text-blue-300 font-bold">'Crafting code & coffee'</span>
                 </div>
                 {/* Two-column sub-boxes - compact */}
                 <div className="flex flex-col gap-3 mt-1">
