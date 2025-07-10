@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 const NAV_LINKS = ['About', 'Skills', 'Experience', 'Projects', 'Education'] as const;
@@ -55,6 +54,19 @@ export default function Navbar({ currentSection }: NavbarProps) {
     window.location.hash = `#${id}`;
     setMobileOpen(false);
   };
+
+  // --- Animation state for mobile menu ---
+  const [flyoutVisible, setFlyoutVisible] = useState(false);
+  useEffect(() => {
+    if (mobileOpen) {
+      setFlyoutVisible(true);
+    } else if (flyoutVisible) {
+      // Wait for fade-out animation before hiding
+      const timeout = setTimeout(() => setFlyoutVisible(false), 300);
+      return () => clearTimeout(timeout);
+    }
+  }, [mobileOpen]);
+
   return (
     <nav
       ref={navRef}
@@ -147,8 +159,11 @@ export default function Navbar({ currentSection }: NavbarProps) {
       </div>
 
       {/* Mobile themed fly-out menu overlay */}
-      {mobileOpen && (
-        <div className="md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none animate-fade-in border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl" style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'50vh'}}>
+      {(flyoutVisible || mobileOpen) && (
+        <div
+          className={`md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl transition-all duration-300 ${mobileOpen ? 'animate-fade-in' : 'animate-fade-out pointer-events-none opacity-0'}`}
+          style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'50vh'}}
+        >
           {/* Header with close button only */}
           <div className="w-full max-w-md mx-auto bg-black px-3 py-2 border-b border-black/40 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.45)'}}>
             <button
@@ -166,7 +181,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
                 <button
                   key={label}
                   onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
-                  className={`w-full text-left py-2 px-3 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
+                  className={`mx-auto w-1/2 text-left py-2 px-2 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
                     ${isActive ? 'bg-black text-blue-400 font-bold border-[1.5px] border-gradient-to-r from-blue-400 to-green-400 shadow-md scale-105' : 'text-gray-300 border-gray-500 hover:text-white hover:bg-black/80 hover:border-transparent hover:scale-105'}`}
                   style={{ letterSpacing: '0.02em', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s', borderImage: isActive ? 'linear-gradient(to right, #60a5fa, #22d3ee, #22c55e) 1' : undefined }}
                   onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
@@ -185,8 +200,8 @@ export default function Navbar({ currentSection }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
-              className="w-full group relative px-3 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
-              style={{ minWidth: '100px' }}
+              className="mx-auto w-1/2 group relative px-2 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '80px' }}
               onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
               onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
               onMouseDown={e => e.currentTarget.classList.add('active-nav-btn')}
@@ -229,7 +244,12 @@ export default function Navbar({ currentSection }: NavbarProps) {
           from { opacity: 0; }
           to { opacity: 1; }
         }
+        @keyframes fade-out {
+          from { opacity: 1; transform: translateY(0); }
+          to { opacity: 0; transform: translateY(-40px); }
+        }
         .animate-fade-in { animation: fade-in 0.3s ease; }
+        .animate-fade-out { animation: fade-out 0.3s cubic-bezier(0.4,0,0.2,1) both; }
         /* Prevent scroll glitch on mobile menu open/close */
         body[style*='overflow: hidden'] {
           touch-action: none;
