@@ -167,7 +167,7 @@ export default function Hero() {
   // Removed unused particleCount effect
 
   return (
-    <section id="home" className="relative h-[75vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
+    <section id="home" className="relative h-[70vh] md:min-h-screen overflow-hidden bg-black text-white select-none">
       {/* Atmospheric background elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Wind effect: drifting subtle dots */}
@@ -209,10 +209,10 @@ export default function Hero() {
       </div>
 
       {/* MAIN TERMINAL WINDOW */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 sm:px-3 lg:px-4 py-2 md:py-0 md:min-h-[60vh]">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-1 sm:px-3 lg:px-4 py-1 md:py-0 md:min-h-[60vh]">
         {/* Terminal Window Header */}
-        <div className="w-full max-w-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 transform hover:scale-105 transition-transform duration-300 group">
-          <div className="bg-black rounded-t-lg px-2 sm:px-3 py-1 flex items-center gap-1 border border-black group-hover:border-gray-800 transition-colors duration-300 relative overflow-hidden">
+        <div className="w-full max-w-xs xs:max-w-sm sm:max-w-md md:max-w-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 transform hover:scale-105 transition-transform duration-300 group">
+          <div className="bg-black rounded-t-lg px-1 sm:px-3 py-1 flex items-center gap-0.5 sm:gap-1 border border-black group-hover:border-gray-800 transition-colors duration-300 relative overflow-hidden min-h-[28px]">
             {/* Subtle animated background on hover */}
             <div className="absolute inset-0 bg-black opacity-80"></div>
             <div className="flex gap-1 sm:gap-2 relative z-10">
@@ -220,25 +220,25 @@ export default function Hero() {
               <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-yellow-500 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0.2s' }}></div>
               <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0.4s' }}></div>
             </div>
-            <div className="flex-1 text-center text-xs sm:text-sm font-mono relative z-10">
-              <span className="hidden sm:inline text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-default">muneeb</span>
-              <span className="hidden sm:inline text-green-400 hover:text-green-300 transition-colors duration-300 cursor-default">
-                <span className="font-bold text-lg align-middle text-blue-400" style={{ fontFamily: 'monospace' }}>＠</span>
-                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+            <div className="flex-1 text-center text-[10px] xs:text-xs sm:text-sm font-mono relative z-10">
+              <span className="hidden xs:inline text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-default">muneeb</span>
+              <span className="hidden xs:inline text-green-400 hover:text-green-300 transition-colors duration-300 cursor-default">
+                <span className="font-bold text-base sm:text-lg align-middle text-blue-400" style={{ fontFamily: 'monospace' }}>＠</span>
+                <span className="text-green-400 font-mono font-bold text-base sm:text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
               </span>
-              <span className="hidden sm:inline text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-default">~/</span>
-              <span className="hidden sm:inline text-gray-400 hover:text-blue-300 transition-colors duration-300 cursor-default">portfolio</span>
+              <span className="hidden xs:inline text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-default">~/</span>
+              <span className="hidden xs:inline text-gray-400 hover:text-blue-300 transition-colors duration-300 cursor-default">portfolio</span>
 
             </div>
             {/* CPU usage indicator */}
-            <div className="hidden sm:flex items-center gap-1 text-xs relative z-10 hover:scale-110 transition-transform duration-200">
+            <div className="hidden xs:flex items-center gap-1 text-[10px] sm:text-xs relative z-10 hover:scale-110 transition-transform duration-200">
               <span className='text-green-400'>CPU:</span>
               <span className="animate-pulse font-bold inline-block text-right" style={{ minWidth: '2.5ch', fontVariantNumeric: 'tabular-nums' }}>{85 + Math.floor(Math.random() * 10)}%</span>
             </div>
           </div>
 
           {/* Terminal Content with enhanced effects */}
-          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden">
+          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-[11px] xs:text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden">
             {/* Subtle code-like pattern overlay */}
 
 
@@ -255,24 +255,23 @@ export default function Hero() {
             </div>
 
             {/* Active prompt with enhanced cursor */}
-            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap">
+            <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap text-[11px] xs:text-xs">
               <span>
                 <span className="text-gray-400">muneeb</span>
                 <span className="text-blue-400">＠</span>
                 <span className="text-green-400">devmachine</span>
                 <span className="text-gray-400">:</span>
-
                 <span className="text-blue-400"> ~</span>
                 <span className="text-blue-400">/</span>
                 <span className="text-gray-400">portfolio</span>
                 <span className="text-green-500"> $</span>
                 <span className="text-gray-200">echo</span>
-                <span className="typing-cursor text-gray-400 break-words animate-typewriter">  "Welcome to my portfolio"</span>
+                <span className="typing-cursor text-gray-400 break-words animate-typewriter whitespace-nowrap max-w-[90vw] overflow-x-auto">  "Welcome to my portfolio"</span>
               </span>
             </div>
 
             {/* Terminal status indicators */}
-            <div className="flex items-center justify-between mt-1 text-xs opacity-80 gap-2">
+            <div className="flex items-center justify-between mt-1 text-[10px] xs:text-xs opacity-80 gap-1 xs:gap-2">
               <div className="flex items-center gap-1">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-gray-200">Online</span>
@@ -291,23 +290,23 @@ export default function Hero() {
         </div>
 
         {/* HERO CONTENT - Unified for all breakpoints */}
-        <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-2xl px-2 sm:px-0">
+        <div className="text-center space-y-2 xs:space-y-3 md:space-y-4 lg:space-y-6 max-w-xs xs:max-w-sm sm:max-w-xl md:max-w-2xl px-1 xs:px-2 sm:px-0">
           {/* Name and Role with enhanced animations */}
           <div className="space-y-1 md:space-y-2 lg:space-y-3">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight animate-glow-text transform hover:scale-105 transition-transform duration-300 group cursor-default text-left mx-auto max-w-2xl">
+            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight animate-glow-text transform hover:scale-105 transition-transform duration-300 group cursor-default text-left mx-auto max-w-xs xs:max-w-sm sm:max-w-2xl">
               <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'>'}</span>
-              <span className="hover:text-gray-400 transition-colors duration-300">Muneeb Anjum</span>
+              <span className="hover:text-gray-400 transition-colors duration-300 whitespace-nowrap">Muneeb Anjum</span>
               <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'<'}</span>
             </h1>
-            <p className="text-base sm:text-lg md:text-lg text-gray-300 font-mono animate-role-switch hover:text-gray-300 transition-colors duration-300 cursor-default">
+            <p className="text-sm xs:text-base sm:text-lg md:text-lg text-gray-300 font-mono animate-role-switch hover:text-gray-300 transition-colors duration-300 cursor-default whitespace-nowrap max-w-full overflow-x-auto">
               {roles[currentRole]}
             </p>
             {/* Role indicator dots */}
-            <div className="flex justify-center gap-2 mt-2">
+            <div className="flex justify-center gap-1 xs:gap-2 mt-1 xs:mt-2">
               {roles.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer hover:scale-150 ${index === currentRole
+                  className={`w-1.5 h-1.5 xs:w-2 xs:h-2 rounded-full transition-all duration-300 cursor-pointer hover:scale-150 ${index === currentRole
                     ? 'bg-gray-400 animate-pulse scale-105 shadow-lg shadow-gray-400/50'
                     : 'bg-gray-600 hover:bg-gray-500'
                     }`}
@@ -318,7 +317,7 @@ export default function Hero() {
 
           {/* Mission statement - unified for all breakpoints */}
           <div
-            className="bg-black border border-gray-700 rounded-lg p-2 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-md mx-auto text-xs sm:text-sm hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 transform hover:scale-105 cursor-pointer group"
+            className="bg-black border border-gray-700 rounded-lg p-1 xs:p-2 md:p-3 lg:p-4 font-mono text-left max-w-xs xs:max-w-md mx-auto text-[11px] xs:text-xs sm:text-sm hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 transform hover:scale-105 cursor-pointer group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -344,10 +343,10 @@ export default function Hero() {
           </div>
 
           {/* Enhanced terminal-style action buttons - black & grey theme, blue/green hover with black text */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
+          <div className="flex flex-col xs:flex-row gap-1 xs:gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 xs:pt-2">
             <a
               href="#projects"
-              className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+              className="group relative px-2 xs:px-3 sm:px-2 py-1.5 xs:py-2 sm:py-2.5 font-mono text-[11px] xs:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full xs:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
             >
               <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
               <span className="relative flex items-center justify-center gap-2">
@@ -382,7 +381,7 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+              className="group px-2 xs:px-3 sm:px-5 py-1.5 xs:py-2 sm:py-2.5 font-mono text-[11px] xs:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full xs:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
             >
               <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
               <span className="relative flex items-center justify-center gap-2">
@@ -415,8 +414,8 @@ export default function Hero() {
       </div>
 
       {/* Enhanced terminal cursor with glow effect */}
-      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-bounce">
-        <span className="text-2xl filter drop-shadow-lg animate-glow">▼</span>
+      <div className="absolute bottom-2 xs:bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-10 font-mono text-green-400 animate-bounce">
+        <span className="text-xl xs:text-2xl filter drop-shadow-lg animate-glow">▼</span>
       </div>
 
       {/* KEYFRAMES & UTILITIES */}
