@@ -148,12 +148,12 @@ export default function Navbar({ currentSection }: NavbarProps) {
 
       {/* Mobile themed fly-out menu overlay */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 z-[999] bg-white/10 backdrop-blur-xl flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in border-l border-r border-white/20" style={{boxShadow:'0 8px 32px 0 rgba(31,38,135,0.37)'}}>
+        <div className="md:hidden fixed inset-0 z-[999] bg-black/80 backdrop-blur-xl flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in border-l border-r border-black/40" style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.65)'}}>
           {/* Glass effect header with close button */}
-          <div className="w-full max-w-md mx-auto bg-white/10 backdrop-blur-xl px-3 py-3 border-b border-white/20 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(31,38,135,0.17)'}}>
+          <div className="w-full max-w-md mx-auto bg-black/70 backdrop-blur-xl px-3 py-3 border-b border-black/40 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.45)'}}>
             <button
               onClick={() => setMobileOpen(false)}
-              className="text-black hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200 bg-white/20 hover:bg-black/60"
+              className="text-white hover:text-green-400 font-mono text-lg px-2 py-1 rounded transition-colors duration-200 bg-black/40 hover:bg-black/80"
               aria-label="Close menu"
             >✕</button>
           </div>
@@ -161,9 +161,9 @@ export default function Navbar({ currentSection }: NavbarProps) {
           <div className="flex items-center justify-center mb-6 mt-2 w-full">
             <span className="flex items-center gap-1 font-mono text-xl group select-none">
               <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}></span>
-              <span className="text-black group-hover:text-gray-400 transition-colors">muneeb</span>
+              <span className="text-white group-hover:text-gray-400 transition-colors">muneeb</span>
               <span className="text-blue-400 group-hover:text-green-300 transition-colors">＠</span>
-              <span className="text-gray-700 group-hover:text-black transition-colors">devmachine</span>
+              <span className="text-gray-400 group-hover:text-white transition-colors">devmachine</span>
             </span>
           </div>
           {/* Navigation Commands */}
@@ -176,7 +176,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
                   key={label}
                   onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
                   className={`w-full text-left py-3 px-4 rounded-lg font-mono text-lg flex items-center gap-3 border border-transparent group transition-all duration-200
-                    ${isActive ? 'bg-white/20 text-blue-500 font-bold border border-blue-400 ring-1 ring-blue-400/40 ring-offset-1 ring-offset-white shadow-sm' : 'text-black hover:text-blue-500 hover:bg-white/30 hover:border-blue-400'}`}
+                    ${isActive ? 'bg-black/60 text-blue-400 font-bold border border-blue-400 ring-1 ring-blue-400/40 ring-offset-1 ring-offset-black shadow-sm' : 'text-white hover:text-blue-400 hover:bg-black/40 hover:border-blue-400'}`}
                   style={{ letterSpacing: '0.02em', boxShadow: isActive ? '0 1px 6px 0 #0003, 0 0 0 1.5px #1e90ff88' : undefined, transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s' }}
                 >
                   <span className="text-blue-400">.</span>
@@ -190,7 +190,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
-              className="w-full group relative px-4 py-3 mt-4 font-mono text-lg border-2 border-blue-400 text-blue-400 bg-white/10 hover:bg-white hover:text-black hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 hover:-translate-y-1 overflow-hidden"
+              className="w-full group relative px-4 py-3 mt-4 font-mono text-lg border-2 border-blue-400 text-blue-400 bg-black/40 hover:bg-black hover:text-white hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 hover:-translate-y-1 overflow-hidden"
               style={{ minWidth: '120px' }}
             >
               <span className="absolute -inset-1 bg-blue-400 opacity-10 group-hover:bg-green-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-blue-400 rounded-lg"></span>
