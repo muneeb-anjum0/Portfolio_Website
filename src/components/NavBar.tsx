@@ -174,7 +174,51 @@ export default function Navbar({ currentSection }: NavbarProps) {
           </div>
           {/* Navigation Commands - start right from the top */}
           <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2">
+            {/* Init Section - now above About */}
+            {/* Init Section - moved above About */}
+            <a
+              href="#home"
+              onClick={() => { scrollTo('home'); setMobileOpen(false); }}
+              className="mx-auto w-3/4 group relative px-3 py-2 mt-2 font-mono text-base border border-blue-400 text-blue-400 bg-black hover:bg-blue-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '120px' }}
+              onTouchStart={e => e.currentTarget.classList.add('active-nav-btn-init')}
+              onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn-init')}
+              onMouseDown={e => e.currentTarget.classList.add('active-nav-btn-init')}
+              onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn-init')}
+            >
+              <span className="relative flex items-center gap-2">
+                <span className="animate-bounce group-hover:animate-pulse">&gt;</span>
+                <span className="group-hover:tracking-wider transition-all duration-300">Init</span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
+              </span>
+            </a>
+            {/* Nav Links - About first, then rest */}
             {NAV_LINKS.map((label, index) => {
+              const sectionId = label.toLowerCase();
+              const isActive = currentSection === sectionId;
+              if (label === 'About') {
+                return (
+                  <button
+                    key={label}
+                    onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
+                    className={`mx-auto w-3/4 text-left py-2 px-3 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
+                      ${isActive ? 'bg-black text-blue-400 font-bold border-[1.5px] border-gradient-to-r from-blue-400 to-green-400 shadow-md scale-105' : 'text-gray-300 border-gray-500 hover:text-white hover:bg-black/80 hover:border-transparent hover:scale-105'}`}
+                    style={{ letterSpacing: '0.02em', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s', borderImage: isActive ? 'linear-gradient(to right, #60a5fa, #22d3ee, #22c55e) 1' : undefined }}
+                    onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
+                    onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
+                    onMouseDown={e => e.currentTarget.classList.add('active-nav-btn')}
+                    onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn')}
+                  >
+                    <span className="text-blue-400">.</span>
+                    <span className="text-green-400">/</span>
+                    <span className="text-gray-400">{sectionId}</span>
+                    <span className="ml-auto text-xs text-gray-500">01</span>
+                  </button>
+                );
+              }
+              return null;
+            })}
+            {NAV_LINKS.filter(label => label !== 'About').map((label, index) => {
               const sectionId = label.toLowerCase();
               const isActive = currentSection === sectionId;
               return (
@@ -192,27 +236,10 @@ export default function Navbar({ currentSection }: NavbarProps) {
                   <span className="text-blue-400">.</span>
                   <span className="text-green-400">/</span>
                   <span className="text-gray-400">{sectionId}</span>
-                  <span className="ml-auto text-xs text-gray-500">0{index + 1}</span>
+                  <span className="ml-auto text-xs text-gray-500">0{index + 2}</span>
                 </button>
               );
             })}
-            {/* Init Section */}
-            <a
-              href="#home"
-              onClick={() => { scrollTo('home'); setMobileOpen(false); }}
-              className="mx-auto w-3/4 group relative px-3 py-2 mt-2 font-mono text-base border border-blue-400 text-blue-400 bg-black hover:bg-blue-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 hover:-translate-y-1 overflow-hidden"
-              style={{ minWidth: '120px' }}
-              onTouchStart={e => e.currentTarget.classList.add('active-nav-btn-init')}
-              onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn-init')}
-              onMouseDown={e => e.currentTarget.classList.add('active-nav-btn-init')}
-              onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn-init')}
-            >
-              <span className="relative flex items-center gap-2">
-                <span className="animate-bounce group-hover:animate-pulse">&gt;</span>
-                <span className="group-hover:tracking-wider transition-all duration-300">Init</span>
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
-              </span>
-            </a>
             {/* Contact Section */}
             <a
               href="#contact"
