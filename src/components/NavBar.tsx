@@ -162,7 +162,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
       {(flyoutVisible || mobileOpen) && (
         <div
           className={`md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl transition-all duration-300 ${mobileOpen ? 'animate-fade-in' : 'animate-fade-out pointer-events-none opacity-0'}`}
-          style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'50vh'}}
+          style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'60vh'}}
         >
           {/* Header with close button only */}
           <div className="w-full max-w-md mx-auto bg-black px-3 py-2 border-b border-black/40 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.45)'}}>
@@ -173,7 +173,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             >✕</button>
           </div>
           {/* Navigation Commands - start right from the top */}
-          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2 overflow-y-auto" style={{maxHeight: 'calc(50vh - 48px)'}}>
+          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2">
             {/* Init Section - now above About */}
             {/* Init Section - moved above About */}
             <a
