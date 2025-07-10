@@ -196,11 +196,28 @@ export default function Navbar({ currentSection }: NavbarProps) {
                 </button>
               );
             })}
+            {/* Init Section */}
+            <a
+              href="#home"
+              onClick={() => { scrollTo('home'); setMobileOpen(false); }}
+              className="mx-auto w-3/4 group relative px-3 py-2 mt-2 font-mono text-base border border-blue-400 text-blue-400 bg-black hover:bg-blue-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '120px' }}
+              onTouchStart={e => e.currentTarget.classList.add('active-nav-btn-init')}
+              onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn-init')}
+              onMouseDown={e => e.currentTarget.classList.add('active-nav-btn-init')}
+              onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn-init')}
+            >
+              <span className="relative flex items-center gap-2">
+                <span className="animate-bounce group-hover:animate-pulse">&gt;</span>
+                <span className="group-hover:tracking-wider transition-all duration-300">Init</span>
+                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
+              </span>
+            </a>
             {/* Contact Section */}
             <a
               href="#contact"
               onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
-              className="mx-auto w-3/4 group relative px-3 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              className="mx-auto w-3/4 group relative px-3 py-2 mt-2 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
               style={{ minWidth: '120px' }}
               onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
               onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
@@ -228,6 +245,12 @@ export default function Navbar({ currentSection }: NavbarProps) {
           border-image: linear-gradient(to right, #60a5fa, #22c55e) 1 !important;
           border-width: 2px !important;
           color: #22c55e !important;
+          background: #0f172a !important;
+        }
+        .active-nav-btn-init {
+          border-image: linear-gradient(to right, #60a5fa, #2563eb) 1 !important;
+          border-width: 2px !important;
+          color: #2563eb !important;
           background: #0f172a !important;
         }
         @keyframes pulse {
