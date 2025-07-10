@@ -259,19 +259,19 @@ export default function Hero() {
             </div>
 
             {/* Active prompt with enhanced cursor */}
-            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap">
-              <span>
+            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-nowrap overflow-x-auto">
+              {/* On small screens, force everything to stay in one line and allow horizontal scroll if needed */}
+              <span className="whitespace-nowrap overflow-x-auto text-ellipsis w-full block">
                 <span className="text-gray-400">muneeb</span>
                 <span className="text-blue-400">＠</span>
                 <span className="text-green-400">devmachine</span>
                 <span className="text-gray-400">:</span>
-
                 <span className="text-blue-400"> ~</span>
                 <span className="text-blue-400">/</span>
                 <span className="text-gray-400">portfolio</span>
                 <span className="text-green-500"> $</span>
                 <span className="text-gray-200">echo</span>
-                <span className="typing-cursor text-gray-400 break-words animate-typewriter">  "Welcome to my portfolio"</span>
+                <span className="typing-cursor text-gray-400 animate-typewriter whitespace-nowrap">  "Welcome to my portfolio"</span>
               </span>
             </div>
 

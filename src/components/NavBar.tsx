@@ -76,19 +76,15 @@ export default function Navbar({ currentSection }: NavbarProps) {
       }`}
     >
       {/* Terminal-style navbar container */}
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-2 sm:px-6 py-4">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Terminal-style brand */}
         <button
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            scrollTo('home');
-          }}
-          className="font-mono text-lg sm:text-xl group flex items-center gap-0.5 sm:gap-2 hover:scale-105 transform transition-all duration-200 whitespace-nowrap overflow-x-auto max-w-[70vw] sm:max-w-none"
-          style={{ WebkitOverflowScrolling: 'touch' }}
+          onClick={() => scrollTo('home')}
+          className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
-          <span className="flex items-center gap-0.5 whitespace-nowrap overflow-x-auto max-w-[70vw] sm:max-w-none">
+          <span className="flex items-center gap-0.5">
             <span className="text-white group-hover:text-gray-400 transition-colors">muneeb</span>
-            <span className="text-blue-400 group-hover:text-green-400 transition-colors" style={{ fontFamily: 'monospace, Fira Mono, JetBrains Mono, Menlo, Consolas, Liberation Mono, Courier New, monospace' }}>＠</span>
+            <span className="text-blue-400 group-hover:text-green-400 transition-colors" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}>＠</span>
             <span className="text-gray-400 group-hover:text-white transition-colors">devmachine</span>
           </span>
         </button>
