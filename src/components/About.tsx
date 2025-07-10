@@ -87,7 +87,7 @@ const About = () => {
             </div>
           </div>
           {/* About Card (mobile, matches desktop) */}
-          <div className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:border-blue-500 hover:shadow-blue-400/30 max-w-xs mx-auto mb-3" style={{ minHeight: '220px' }}>
+          <div className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:border-blue-500 hover:shadow-blue-400/30 w-full max-w-md mx-auto mb-3" style={{ minHeight: '220px' }}>
             <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.25)] group-hover:border-blue-400 border-1 border-transparent"></div>
             <div className="flex items-center gap-1 px-2 py-1 border-b border-gray-800 bg-black/80">
               <span className="flex gap-0.5">
