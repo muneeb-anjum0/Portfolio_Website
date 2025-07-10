@@ -173,7 +173,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             >✕</button>
           </div>
           {/* Navigation Commands - start right from the top */}
-          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2">
+          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2 overflow-y-auto" style={{maxHeight: 'calc(50vh - 48px)'}}>
             {/* Init Section - now above About */}
             {/* Init Section - moved above About */}
             <a
@@ -259,7 +259,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             </a>
           </div>
           {/* Terminal Footer */}
-          <div className="w-full max-w-md mx-auto pb-2">
+          <div className="w-full max-w-md mx-auto pb-2 bg-black rounded-b-xl">
             <div className="font-mono text-xs text-gray-500 text-center">
               <span className="text-green-400">●</span> mobile
             </div>
