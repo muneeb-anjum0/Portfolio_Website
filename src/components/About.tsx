@@ -175,40 +175,41 @@ const About = () => {
         <div className="hidden md:block">
           <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
             <div className="w-full max-w-2xl mx-auto mb-4">
-              {/* Redesigned Terminal Header with hover effect - reduced size */}
+              {/* Redesigned Terminal Header with hover effect */}
               <div className="group terminal-header-container w-full">
-                <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-2 py-1 flex items-center gap-1 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30" style={{ minHeight: '36px' }}>
+                <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
                   {/* Left dots (now same as right) */}
-                  <div className="flex gap-1 mr-1">
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  <div className="flex gap-1.5 mr-2">
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
                   </div>
                   {/* Path and user info */}
-                  <div className="flex-1 text-center font-mono text-xs text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
-                    <span className="text-gray-400 font-mono">muneeb</span>
-                    <span className="text-blue-400 font-mono font-bold align-middle text-sm">＠</span>
-                    <span className="text-green-400 font-mono font-bold align-middle text-sm">devmachine</span>
-                    <span className="text-gray-400 font-mono">:</span>
-                    <span className="text-blue-400 font-mono">~</span>
-                    <span className="text-gray-400 font-mono">/portfolio</span>
-                    <span className="text-blue-400 font-mono font-bold align-middle text-sm">/about</span>
+                  <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                    {/* Replicate Hero.tsx terminal user@host:path style, slightly larger */}
+                    <span className="text-gray-400 font-mono text-sm">muneeb</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                    <span className="text-gray-400 font-mono text-sm">:</span>
+                    <span className="text-blue-400 font-mono text-sm">~</span>
+                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/about</span>
                   </div>
                   {/* Right dots */}
-                  <div className="flex gap-1">
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  <div className="flex gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
                   </div>
                 </div>
-                {/* Terminal body with prompt - reduced size */}
-                <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-2 py-2 font-mono text-xs text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
-                  <div className="flex items-center gap-1">
+                {/* Terminal body with prompt */}
+                <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-6 py-4 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                  <div className="flex items-center gap-2">
                     <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
                     <span className="text-white font-semibold group-hover:text-green-200">npx about-me --intro</span>
                     <span className="blinking-cursor ml-1">|</span>
                   </div>
-                  <div className="absolute bottom-1 right-2 text-[10px] text-green-400 opacity-90 select-none group-hover:text-green-400">
+                  <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
                     {currentTime.toLocaleTimeString()}
                   </div>
                 </div>
@@ -235,78 +236,78 @@ const About = () => {
               {/* Animated glowing border on hover (blue glow) */}
               <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.25)] group-hover:border-blue-400 border-1 border-transparent"></div>
 
-              {/* Top status bar with animated dots */}
-              <div className="flex items-center gap-2 px-6 py-2 border-b border-gray-800 bg-black/80">
-                <span className="flex gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
+              {/* Top status bar with animated dots - compact */}
+              <div className="flex items-center gap-1 px-3 py-1 border-b border-gray-800 bg-black/80">
+                <span className="flex gap-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
                 </span>
-                <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">ABOUT ME</span>
-                <span className="ml-auto font-mono text-xs text-green-400">ACTIVE</span>
+                <span className="ml-2 font-mono text-[11px] text-gray-400 tracking-widest uppercase letter-spacing-2">ABOUT ME</span>
+                <span className="ml-auto font-mono text-[11px] text-green-400">ACTIVE</span>
               </div>
 
-              {/* Content area with two columns */}
-              <div className="relative z-20 px-8 pt-1 pb-8 flex flex-col gap-3 transition-all duration-500">
-                {/* Terminal command style heading */}
-                <div className="font-mono text-xl md:text-2xl flex items-center gap-2 text-green-400 mb-0 pb-0">
+              {/* Content area with two columns - compact */}
+              <div className="relative z-20 px-4 pt-1 pb-4 flex flex-col gap-2 transition-all duration-500">
+                {/* Terminal command style heading - compact */}
+                <div className="font-mono text-base flex items-center gap-1 text-green-400 mb-0 pb-0 whitespace-nowrap overflow-x-auto">
                   <span className="select-none">$</span>
                   <span className="text-white font-bold">about-me</span>  <span className="text-gray-400 font-bold">|</span>
                   <span className="text-blue-400 font-bold">Full-Stack Developer</span>
                 </div>
-                <div className="font-mono text-base text-green-400 flex items-center gap-2 mb-1">
+                <div className="font-mono text-xs text-green-400 flex items-center gap-1 mb-1 whitespace-nowrap overflow-x-auto">
                   <span className="italic">npx about-me --intro</span>
                   <span className="font-bold text-blue-300">'Crafting code & coffee'</span>
                 </div>
-                {/* Two-column sub-boxes */}
-                <div className="flex flex-col gap-6 mt-2">
+                {/* Two-column sub-boxes - compact */}
+                <div className="flex flex-col gap-3 mt-1">
                   {/* Right column: Location, University, Focus, Status (now on top) */}
-                  <div className="flex flex-col gap-2">
-                  <div className="bg-black/80 border border-gray-800 rounded-lg p-4 shadow-inner">
-                      <div className="font-mono text-xs text-gray-400 mb-2">// Details</div>
-                      <div className="font-mono text-base text-gray-200 flex items-center gap-2">
+                  <div className="flex flex-col gap-1">
+                    <div className="bg-black/80 border border-gray-800 rounded-lg p-2 shadow-inner">
+                      <div className="font-mono text-[10px] text-gray-400 mb-1">// Details</div>
+                      <div className="font-mono text-xs text-gray-200 flex items-center gap-1">
                         <span className="text-green-400">┌─</span>
                         <span>Location: <span className="text-cyan-300 font-medium">Islamabad, Pakistan</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-200 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-200 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>University: <span className="text-blue-300 font-medium">SZABIST</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-200 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-200 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>Focus: <span className="text-purple-300 font-medium">.NET Framework</span></span>
                       </div>
-                      <div className="font-mono text-sm text-gray-200 flex items-center gap-2">
+                      <div className="font-mono text-[10px] text-gray-200 flex items-center gap-1">
                         <span className="text-green-400">└─</span>
                         <span>Status: <span className="text-green-300 font-medium animate-statuspulse">AVAILABLE</span></span>
                       </div>
                     </div>
                   </div>
                   {/* Left column: Experience, Current Role, Tech Stack, Passion, Philosophy, Projects (now below) */}
-                  <div className="flex flex-col gap-4">
-                  <div className="bg-black/80 border border-gray-800 rounded-lg p-4 shadow-inner">
-                      <div className="font-mono text-xs text-gray-400 mb-2">// Experience</div>
-                      <div className="font-mono text-base text-gray-400 flex items-center gap-2">
+                  <div className="flex flex-col gap-1">
+                    <div className="bg-black/80 border border-gray-800 rounded-lg p-2 shadow-inner">
+                      <div className="font-mono text-[10px] text-gray-400 mb-1">// Experience</div>
+                      <div className="font-mono text-xs text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">┌─</span>
                         <span>Experience: <span className="text-yellow-400 font-medium">1+ years</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-400 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>Current Role: <span className="text-green-300 font-medium">Backend Developer Intern at App In Snap PVT Limited</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-400 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>Tech Stack: <span className="text-cyan-300 font-medium">.NET, ASP.NET MVC, C#, React, TypeScript, Tailwind CSS, AI Integration</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-400 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>Passion: <span className="text-gray-100 leading-relaxed">Fullstack development, AI-powered solutions, robust backend & intuitive frontend.</span></span>
                       </div>
-                      <div className="font-mono text-base text-gray-400 flex items-center gap-2">
+                      <div className="font-mono text-xs text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">├─</span>
                         <span>Philosophy: <span className="text-green-300 font-medium">Always learning, always building...</span></span>
                       </div>
-                      <div className="font-mono text-sm text-gray-400 flex items-center gap-2">
+                      <div className="font-mono text-[10px] text-gray-400 flex items-center gap-1">
                         <span className="text-green-400">└─</span>
                         <span>Projects: 
                           <a href="#projects" className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200">sorting-visualizer/</a>, 
@@ -319,13 +320,13 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Animated bottom status bar */}
-              <div className="flex items-center justify-between px-6 py-2 border-t border-gray-800 bg-black/80">
-                <div className="flex items-center gap-2 font-mono text-xs text-gray-500">
+              {/* Animated bottom status bar - compact */}
+              <div className="flex items-center justify-between px-3 py-1 border-t border-gray-800 bg-black/80">
+                <div className="flex items-center gap-1 font-mono text-[10px] text-gray-500">
                   <span className="animate-pulse text-green-400">●</span>
                   <span className="tracking-widest uppercase">Profile synced</span>
                 </div>
-                <div className="flex items-center gap-2 font-mono text-xs text-green-400">
+                <div className="flex items-center gap-1 font-mono text-[10px] text-green-400">
                   <span className="animate-pulse">{`Last update: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`}</span>
                 </div>
               </div>
