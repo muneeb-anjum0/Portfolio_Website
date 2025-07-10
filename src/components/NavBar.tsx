@@ -181,7 +181,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
                 <button
                   key={label}
                   onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
-                  className={`mx-auto w-1/2 text-left py-2 px-2 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
+                  className={`mx-auto w-3/4 text-left py-2 px-3 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
                     ${isActive ? 'bg-black text-blue-400 font-bold border-[1.5px] border-gradient-to-r from-blue-400 to-green-400 shadow-md scale-105' : 'text-gray-300 border-gray-500 hover:text-white hover:bg-black/80 hover:border-transparent hover:scale-105'}`}
                   style={{ letterSpacing: '0.02em', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s', borderImage: isActive ? 'linear-gradient(to right, #60a5fa, #22d3ee, #22c55e) 1' : undefined }}
                   onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
@@ -200,8 +200,8 @@ export default function Navbar({ currentSection }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
-              className="mx-auto w-1/2 group relative px-2 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
-              style={{ minWidth: '80px' }}
+              className="mx-auto w-3/4 group relative px-3 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '120px' }}
               onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
               onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
               onMouseDown={e => e.currentTarget.classList.add('active-nav-btn')}
