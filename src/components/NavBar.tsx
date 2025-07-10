@@ -148,22 +148,26 @@ export default function Navbar({ currentSection }: NavbarProps) {
       {/* Mobile themed fly-out menu overlay */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-[999] bg-black/95 backdrop-blur-lg flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in">
-          {/* Terminal window header for mobile */}
-          <div className="w-full max-w-md mx-auto bg-gray-900/90 backdrop-blur-sm px-3 py-2 border-b border-gray-800 rounded-t-lg flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              </div>
-              <span className="font-mono text-xs text-gray-400 ml-1">nav.sh</span>
-            </div>
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="text-green-400 hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200"
-              aria-label="Close menu"
-            >✕</button>
-          </div>
+      {/* Terminal window header for mobile with brand name */}
+      <div className="w-full max-w-md mx-auto bg-gray-900/90 backdrop-blur-sm px-3 py-2 border-b border-gray-800 rounded-t-lg flex items-center justify-between">
+        {/* Brand name styled as on desktop */}
+        <button
+          onClick={() => { scrollTo('home'); setMobileOpen(false); }}
+          className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
+        >
+          <span>
+            <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}></span>
+            <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
+            <span className="text-blue-400 group-hover:text-green-300 transition-colors hidden sm:inline">＠</span>
+            <span className="text-gray-400 group-hover:text-white transition-colors hidden sm:inline">devmachine</span>
+          </span>
+        </button>
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="text-green-400 hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200"
+          aria-label="Close menu"
+        >✕</button>
+      </div>
           {/* Navigation Commands */}
           <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-center gap-2 py-6">
             {NAV_LINKS.map((label, index) => {
@@ -172,7 +176,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
               return (
                 <button
                   key={label}
-                  onClick={() => scrollTo(sectionId)}
+                  onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
                   className={`w-full text-left py-3 px-4 rounded-lg font-mono text-lg flex items-center gap-3 border border-transparent group transition-all duration-200
                     ${isActive ? 'bg-green-900/60 text-green-400 underline underline-offset-4' : 'text-white hover:text-green-400 hover:bg-gray-900/50'}`}
                   style={{ letterSpacing: '0.02em' }}
@@ -187,7 +191,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             {/* Contact Section */}
             <a
               href="#contact"
-              onClick={() => scrollTo('contact')}
+              onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
               className="w-full group relative px-4 py-3 mt-4 font-mono text-lg border-2 border-green-400 text-green-400 bg-transparent hover:bg-black hover:text-green-400 hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
               style={{ minWidth: '120px' }}
             >
