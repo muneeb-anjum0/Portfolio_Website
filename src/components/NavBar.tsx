@@ -79,7 +79,10 @@ export default function Navbar({ currentSection }: NavbarProps) {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
         {/* Terminal-style brand */}
         <button
-          onClick={() => scrollTo('home')}
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scrollTo('home');
+          }}
           className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
           <span className="flex items-center gap-0.5">
