@@ -193,7 +193,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
               </span>
             </a>
             {/* Nav Links - About first, then rest */}
-            {NAV_LINKS.map((label, index) => {
+            {NAV_LINKS.map((label) => {
               const sectionId = label.toLowerCase();
               const isActive = currentSection === sectionId;
               if (label === 'About') {
