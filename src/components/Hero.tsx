@@ -294,7 +294,7 @@ export default function Hero() {
         <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-2xl px-2 sm:px-0">
           {/* Name and Role with enhanced animations */}
           <div className="space-y-1 md:space-y-2 lg:space-y-3">
-            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight animate-glow-text transform hover:scale-105 transition-transform duration-300 group cursor-default text-left mx-auto max-w-2xl">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-mono font-bold text-white leading-tight animate-glow-text transform hover:scale-105 transition-transform duration-300 group cursor-default text-center mx-auto max-w-2xl">
               <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'>'}</span>
               <span className="hover:text-gray-400 transition-colors duration-300">Muneeb Anjum</span>
               <span className="text-grey-900  animate-pulse group-hover:animate-bounce inline-block">{'<'}</span>
