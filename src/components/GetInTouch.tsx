@@ -165,11 +165,16 @@ const GetInTouch: React.FC = () => {
                 </div>
                 <div className="bg-black/80 border border-gray-800 rounded-lg p-2 shadow-inner">
                   <ul className="space-y-1">
-                    <li className="font-mono text-[11px] flex items-center gap-1 group-hover:text-blue-300 transition-colors duration-200">
+                    <li className="font-mono text-[15px] flex items-center gap-1 group-hover:text-blue-300 transition-colors duration-200">
                       <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">┌─</span>
-                      <a href={`mailto:${contactData.email}`} className="text-blue-400 hover:text-blue-300 transition-colors duration-200">Email</a>
+                      <a
+                        href={`mailto:${contactData.email}`}
+                        className="text-blue-400 hover:text-blue-300 transition-colors duration-200 font-bold"
+                      >
+                        Email
+                      </a>
                     </li>
-                    <li className="font-mono text-[11px] flex items-center gap-1 group-hover:text-blue-300 transition-colors duration-200">
+                    <li className="font-mono text-[15px] flex items-center gap-1 group-hover:text-blue-300 transition-colors duration-200">
                       <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">└─</span>
                       <span className="text-gray-300">{contactData.location}</span>
                     </li>
