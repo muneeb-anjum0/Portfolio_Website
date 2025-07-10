@@ -290,7 +290,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* HERO CONTENT */}
+        {/* HERO CONTENT - Unified for all breakpoints */}
         <div className="text-center space-y-3 md:space-y-4 lg:space-y-6 max-w-2xl px-2 sm:px-0">
           {/* Name and Role with enhanced animations */}
           <div className="space-y-1 md:space-y-2 lg:space-y-3">
@@ -316,19 +316,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Mobile: Enhanced compact mission statement */}
-          <div className="md:hidden bg-black border border-gray-700 rounded-lg p-2 font-mono text-left max-w-sm mx-auto text-xs hover:border-green-400 transition-colors duration-300 hover:shadow-lg hover:shadow-green-400/20">
-            <div className="text-center space-y-1">
-              <div className="text-green-400 animate-typewriter">"Building innovative solutions"</div>
-              <div className="flex justify-center">
-                <div className="w-4 h-0.5 bg-green-400 animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop: Enhanced mission object with interactive hover */}
+          {/* Mission statement - unified for all breakpoints */}
           <div
-            className="hidden md:block bg-black border border-gray-700 rounded-lg p-1.5 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-md mx-auto text-xs sm:text-sm hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 transform hover:scale-105 cursor-pointer group"
+            className="bg-black border border-gray-700 rounded-lg p-2 sm:p-2 md:p-3 lg:p-4 font-mono text-left max-w-md mx-auto text-xs sm:text-sm hover:border-blue-400 transition-all duration-300 hover:shadow-lg hover:shadow-blue-400/20 transform hover:scale-105 cursor-pointer group"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -353,75 +343,74 @@ export default function Hero() {
             </div>
           </div>
 
-            {/* Enhanced terminal-style action buttons - black & grey theme, blue/green hover with black text */}
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
-                <a
-                  href="#projects"
-                  className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
-                >
-                  <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
-                  <span className="relative flex items-center justify-center gap-2">
-                  <span
-                    className="text-blue-400 group-hover:text-black transition-colors duration-300 group-hover:animate-bounce"
-                    style={{
+          {/* Enhanced terminal-style action buttons - black & grey theme, blue/green hover with black text */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
+            <a
+              href="#projects"
+              className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+            >
+              <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
+              <span className="relative flex items-center justify-center gap-2">
+                <span
+                  className="text-blue-400 group-hover:text-black transition-colors duration-300 group-hover:animate-bounce"
+                  style={{
                     display: 'inline-block',
                     transition: 'transform 0.3s',
-                    // This will sync the bounce with the arrow by using the same animation
                     animation: isHovered ? 'bounce 1s' : undefined,
                     animationIterationCount: isHovered ? 'infinite' : undefined,
-                    }}
-                  >
-                    $
-                  </span>
-                  <span className="group-hover:tracking-wider transition-all duration-300">./view_projects.sh</span>
-                  <span
-                    className={`
+                  }}
+                >
+                  $
+                </span>
+                <span className="group-hover:tracking-wider transition-all duration-300">./view_projects.sh</span>
+                <span
+                  className={`
                     transition-colors duration-300
                     text-blue-400
                     opacity-100
                     group-hover:text-black
                     group-hover:animate-bounce
-                    `}
-                    style={{
+                  `}
+                  style={{
                     display: 'inline-block',
                     transition: 'transform 0.3s',
                     animation: isHovered ? 'bounce 1s' : undefined,
                     animationIterationCount: isHovered ? 'infinite' : undefined,
-                    }}
-                  >▶</span>
-                  </span>
-                </a>
-                <a
-                  href="#contact"
-                  className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+                  }}
+                >▶</span>
+              </span>
+            </a>
+            <a
+              href="#contact"
+              className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+            >
+              <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
+              <span className="relative flex items-center justify-center gap-2">
+                <span
+                  className="
+                    animate-pulse
+                    group-hover:animate-bounce
+                    transition-colors duration-300
+                    text-green-400
+                    group-hover:text-black
+                  "
                 >
-                  <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
-                  <span className="relative flex items-center justify-center gap-2">
-                    <span
-                      className="
-                        animate-pulse
-                        group-hover:animate-bounce
-                        transition-colors duration-300
-                        text-green-400
-                        group-hover:text-black
-                      "
-                    >
-                      {'>'}
-                    </span>
-                    <span className="group-hover:tracking-wider transition-all duration-300">./contact_me.sh</span>
-                    <span
-                      className="
-                        transition-colors duration-300
-                        group-hover:animate-bounce
-                        text-green-400
-                        group-hover:text-black
-                      "
-                    >
-                      ✉
-                    </span>
-                  </span>
-                </a>
-            </div>
+                  {'>'}
+                </span>
+                <span className="group-hover:tracking-wider transition-all duration-300">./contact_me.sh</span>
+                <span
+                  className="
+                    transition-colors duration-300
+                    group-hover:animate-bounce
+                    text-green-400
+                    group-hover:text-black
+                  "
+                >
+                  ✉
+                </span>
+              </span>
+            </a>
+          </div>
         </div>
       </div>
 

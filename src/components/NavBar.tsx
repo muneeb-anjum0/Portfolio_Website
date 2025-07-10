@@ -7,10 +7,22 @@ interface NavbarProps {
   currentSection?: string;
 }
 
+
 export default function Navbar({ currentSection }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,17 +51,16 @@ export default function Navbar({ currentSection }: NavbarProps) {
   }, [mobileOpen])
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setMobileOpen(false)
-  }
-
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileOpen(false);
+  };
   return (
     <nav
       ref={navRef}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 select-none ${scrolled
         ? 'bg-black/95 backdrop-blur-md border-b border-black'
         : 'bg-transparent backdrop-transparent border-b border-transparent'
-        }`}
+      }`}
     >
       {/* Terminal-style navbar container */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -59,14 +70,14 @@ export default function Navbar({ currentSection }: NavbarProps) {
           className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
           <span>
-            <span className="text-green-400" style={{ fontFamily: 'monospace, "Fira Mono", "JetBrains Mono", "Menlo", "Consolas", "Liberation Mono", "Courier New", monospace' }}></span>
+            <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}></span>
             <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
             <span className="text-blue-400 group-hover:text-green-300 transition-colors hidden sm:inline">＠</span>
             <span className="text-gray-400 group-hover:text-white transition-colors hidden sm:inline">devmachine</span>
           </span>
         </button>
 
-        {/* Center nav links - terminal style */}
+        {/* Center nav links - terminal style (desktop only) */}
         <ul className="hidden md:flex items-center space-x-1">
           {NAV_LINKS.map((label) => {
             const sectionId = label.toLowerCase();
@@ -99,7 +110,6 @@ export default function Navbar({ currentSection }: NavbarProps) {
         {/* Right-side: Terminal-style CTA + mobile toggle */}
         <div className="flex items-center space-x-4">
           {/* Desktop Contact CTA - terminal button style */}
-          {/* Animated Contact Button - terminal style, matches Hero page */}
           <a
             href="#contact"
             onClick={() => scrollTo('contact')}
@@ -110,7 +120,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             <span className="relative flex items-center gap-2">
               <span className="animate-bounce group-hover:animate-pulse text-white group-hover:text-black">$</span>
               <span className="group-hover:tracking-wider transition-all duration-300 text-white group-hover:text-black">./contact</span>
-              <span className="text-white group-hover:text-black transition-colors opacity-100 group-hover:animate-bounce transition-opacity duration-300">↗</span>
+              <span className="text-white group-hover:text-black opacity-100 group-hover:animate-bounce transition-colors duration-300">↗</span>
             </span>
           </a>
 
@@ -135,17 +145,11 @@ export default function Navbar({ currentSection }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile terminal-style menu */}
-      <div
-        className={`
-          md:hidden fixed inset-x-0 top-14 bg-black/95 backdrop-blur-md border-t border-gray-800 z-40 select-none
-          transform transition-all duration-300 ease-out shadow-2xl
-          ${mobileOpen ? 'translate-y-0 opacity-100 pointer-events-auto' : '-translate-y-full opacity-0 pointer-events-none'}
-        `}
-      >
-        {/* Terminal window header for mobile */}
-        <div className="bg-gray-900/90 backdrop-blur-sm px-3 py-1 border-b border-gray-800">
-          <div className="flex items-center justify-between">
+      {/* Mobile themed fly-out menu overlay */}
+      {mobileOpen && (
+        <div className="md:hidden fixed inset-0 z-[999] bg-black/95 backdrop-blur-lg flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in">
+          {/* Terminal window header for mobile */}
+          <div className="w-full max-w-md mx-auto bg-gray-900/90 backdrop-blur-sm px-3 py-2 border-b border-gray-800 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-red-500 rounded-full"></div>
@@ -154,81 +158,55 @@ export default function Navbar({ currentSection }: NavbarProps) {
               </div>
               <span className="font-mono text-xs text-gray-400 ml-1">nav.sh</span>
             </div>
-            <div className="font-mono text-xs text-gray-500">
-              <span className="text-green-400">●</span> online
-            </div>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="text-green-400 hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200"
+              aria-label="Close menu"
+            >✕</button>
           </div>
-        </div>
-
-        {/* Terminal Profile Section */}
-        <div className="px-3 py-1 border-b border-gray-800 bg-gray-950/50">
-          <div className="font-mono text-xs space-y-0">
-            <div className="flex items-center gap-2 text-gray-500">
-              <span className="text-green-400">$</span>
-              <span>whoami</span>
-            </div>
-            <div className="pl-2 flex items-center gap-2 text-xs">
-              <span className="text-white">muneeb</span>
-              <span className="text-cyan-400">dev</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Commands */}
-        <div className="px-3 py-1.5 space-y-1.5 bg-gradient-to-b from-transparent to-black/20 max-h-64 overflow-y-auto">
-          <div className="font-mono text-xs text-gray-500 mb-1.5">
-            <span className="text-green-400">$</span> ls nav/
-          </div>
-
-          {NAV_LINKS.map((label, index) => {
-            const sectionId = label.toLowerCase();
-            const isActive = currentSection === sectionId;
-            return (
-              <div key={label} className="font-mono">
+          {/* Navigation Commands */}
+          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-center gap-2 py-6">
+            {NAV_LINKS.map((label, index) => {
+              const sectionId = label.toLowerCase();
+              const isActive = currentSection === sectionId;
+              return (
                 <button
+                  key={label}
                   onClick={() => scrollTo(sectionId)}
-                  className={`w-full text-left py-1 px-2 rounded transition-all duration-200 flex items-center gap-2 border border-transparent group
+                  className={`w-full text-left py-3 px-4 rounded-lg font-mono text-lg flex items-center gap-3 border border-transparent group transition-all duration-200
                     ${isActive ? 'bg-green-900/60 text-green-400 underline underline-offset-4' : 'text-white hover:text-green-400 hover:bg-gray-900/50'}`}
+                  style={{ letterSpacing: '0.02em' }}
                 >
                   <span className="text-gray-600 group-hover:text-green-400">→</span>
                   <span className="text-gray-500">./</span>
-                  <span className="text-sm">{sectionId}</span>
-                  <div className="ml-auto flex items-center gap-1">
-                    <span className="text-xs text-gray-600">0{index + 1}</span>
-                  </div>
+                  <span className="text-base">{sectionId}</span>
+                  <span className="ml-auto text-xs text-gray-600">0{index + 1}</span>
                 </button>
-              </div>
-            );
-          })}
-
-          {/* Mobile Contact Section */}
-          <div className="pt-1.5 border-t border-gray-800 space-y-1">
-            <div className="font-mono text-xs text-gray-500">
-              <span className="text-green-400">$</span> ./contact
-            </div>
+              );
+            })}
+            {/* Contact Section */}
             <a
               href="#contact"
               onClick={() => scrollTo('contact')}
-              className="w-full group relative px-2 py-1.5 font-mono text-xs border-2 border-green-400 text-green-400 bg-transparent hover:bg-black hover:text-green-400 hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-1.5 rounded hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
-              style={{ minWidth: '90px' }}
+              className="w-full group relative px-4 py-3 mt-4 font-mono text-lg border-2 border-green-400 text-green-400 bg-transparent hover:bg-black hover:text-green-400 hover:border-green-400 transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '120px' }}
             >
               <span className="absolute -inset-1 bg-green-400 opacity-20 group-hover:bg-green-400 group-hover:opacity-30 group-hover:animate-pulse transition-all duration-300 border-2 border-green-400 rounded-lg"></span>
-              <span className="relative flex items-center gap-1.5">
+              <span className="relative flex items-center gap-2">
                 <span className="animate-bounce group-hover:animate-pulse">$</span>
                 <span className="group-hover:tracking-wider transition-all duration-300">contact</span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
               </span>
             </a>
           </div>
-
           {/* Terminal Footer */}
-          <div className="pt-1.5 border-t border-gray-800">
+          <div className="w-full max-w-md mx-auto pb-4">
             <div className="font-mono text-xs text-gray-500 text-center">
               <span className="text-green-400">●</span> mobile
             </div>
           </div>
         </div>
-      </div>
+      )}
       {/* KEYFRAMES & UTILITIES for button animations */}
       <style>{`
         @keyframes pulse {
@@ -241,7 +219,12 @@ export default function Navbar({ currentSection }: NavbarProps) {
         }
         .animate-bounce { animation: bounce 1s infinite; }
         .animate-pulse { animation: pulse 2s infinite; }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fade-in { animation: fade-in 0.3s ease; }
       `}</style>
     </nav>
-  )
+  );
 }

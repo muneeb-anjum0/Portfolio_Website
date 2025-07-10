@@ -161,102 +161,146 @@ const FeaturedProjects: React.FC = () => (
     </div>
 
     {/* Mobile-optimized project showcase */}
-    <div className="md:hidden px-4 relative z-10">
-      <div className="mb-4">
-        <div className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
-          <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-            <div className="flex gap-1">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+    {/* Mobile: Replicate desktop terminal header and card style, but optimized for mobile */}
+    <div className="md:hidden px-2 sm:px-4 relative z-10">
+      {/* Terminal window header - mobile version */}
+      <div className="text-center mb-3 sm:mb-4">
+        <div className="w-full max-w-md mx-auto mb-3">
+          <div className="group terminal-header-container w-full">
+            <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-3 py-2 flex items-center gap-2 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              {/* Left dots */}
+              <div className="flex gap-1.5 mr-2">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              </div>
+              {/* Path and user info */}
+              <div className="flex-1 text-center font-mono text-xs text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                <span className="text-gray-400 font-mono text-xs">muneeb</span>
+                <span className="text-blue-400 font-mono font-bold text-base align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                <span className="text-green-400 font-mono font-bold text-base align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                <span className="text-gray-400 font-mono text-xs">:</span>
+                <span className="text-blue-400 font-mono text-xs">~</span>
+                <span className="text-gray-400 font-mono text-xs">/portfolio</span>
+                <span className="text-blue-400 font-mono font-bold text-base align-middle">/projects</span>
+              </div>
+              {/* Right dots */}
+              <div className="flex gap-1.5">
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              </div>
             </div>
-            <span className="font-mono text-xs text-gray-400">~/projects</span>
-          </div>
-          <div className="p-2 font-mono text-xs">
-            <div className="flex items-center gap-1">
-              <span className="text-green-400">$</span>
-              <span className="text-white">ls -la featured/</span>
+            <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-4 py-3 font-mono text-sm text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              <div className="flex items-center gap-2">
+                <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
+                <span className="text-white font-semibold group-hover:text-green-200">npx projects --list</span>
+                <span className="blinking-cursor ml-1">|</span>
+              </div>
+              <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                {new Date().toLocaleTimeString()}
+              </div>
             </div>
-            <div className="text-gray-500 ml-2">2 featured projects found</div>
+            <style>{`
+              .blinking-cursor {
+                display: inline-block;
+                width: 1ch;
+                animation: blink 1s steps(2, start) infinite;
+              }
+              @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+              }
+            `}</style>
           </div>
         </div>
       </div>
 
-      {/* Mobile project cards in terminal style */}
-      <div className="space-y-4">
-        {projects.map((p, idx) => (
-          <div key={idx} className="bg-black border border-gray-800 rounded-lg hover:border-green-400 transition-all duration-300">
-            {/* Project status header */}
-            <div className="bg-gray-900 px-3 py-1.5 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="font-mono text-xs text-gray-300">{p.title}</span>
-              </div>
-              <span className="font-mono text-xs text-gray-500">{p.date.split(' ')[0]}</span>
+      {/* Project cards - mobile, but styled like desktop */}
+      <div className="grid grid-cols-1 gap-4">
+        {projects.map((p) => (
+          <div
+            key={p.title}
+            className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-blue-400/20 card-fade-glow"
+            style={{ minHeight: '220px' }}
+          >
+            {/* Subtle glowing border on hover, black themed, with fade-in blue overlay */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_32px_0_rgba(34,211,238,0.10)] group-hover:border-blue-400 border-2 border-transparent"></div>
+            <div className="pointer-events-none absolute inset-0 rounded-2xl z-0 bg-gradient-to-br from-gray-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <style>{`
+              .card-fade-glow {
+                background: #000;
+              }
+              .card-fade-glow:hover {
+                /* No background color change, only overlay */
+              }
+            `}</style>
+
+            {/* Top status bar with animated dots */}
+            <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800 bg-black/80">
+              <span className="flex gap-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
+              </span>
+              <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">ACTIVE PROJECT</span>
+              <span className="ml-auto font-mono text-xs text-gray-600">{p.date}</span>
             </div>
 
-            {/* Project details and features */}
-            <div className="p-3 space-y-3">
-              {/* Project initialization status */}
-              <div className="font-mono text-xs space-y-1">
-                <div className="flex items-center gap-1">
-                  <span className="text-green-400">$</span>
-                  <span className="text-white">./run {p.title.toLowerCase().replace(/ /g, '_')}</span>
-                </div>
-                <div className="text-green-400 pl-3">✓ Process initialized</div>
+            {/* Main content area: short description and 1-2 key features */}
+            <div className="relative z-20 flex flex-col gap-2 px-4 pt-3 pb-5 transition-all duration-500">
+              <div className="font-mono text-lg flex items-center gap-2 text-green-400">
+                <span className="select-none">$</span>
+                <span className="text-white font-bold">{p.title}</span>
+                <span className="text-gray-400 font-bold"> | </span>
+                <span className="text-blue-400 font-bold">{p.tag}</span>
               </div>
-
-              {/* Project overview */}
-              <div className="space-y-1">
-                <div className="flex items-center gap-1 font-mono text-xs">
-                  <span className="text-green-400">{'>'}</span>
-                  <span className="text-gray-400">Description:</span>
-                </div>
-                <p className="text-gray-300 text-xs font-mono ml-3">{p.description}</p>
+              <div className="font-mono text-xs text-gray-400">{p.subtitle}</div>
+              <div className="text-gray-300 text-sm font-mono mt-1 line-clamp-2">{p.description}</div>
+              <ul className="font-mono text-xs text-blue-300 mt-1 space-y-1">
+                {p.achievements.slice(0, 2).map((detail, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="text-green-400 select-none">{i === 0 ? '┌─' : '└─'}</span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {p.techStack.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-2 font-mono text-sm text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                    style={{ fontWeight: 600, letterSpacing: '0.01em' }}
+                  >
+                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16" className="tech-bullet">
+                      <circle cx="8" cy="8" r="6" stroke="#a3a3a3" strokeWidth="1.5" className="tech-bullet-circle"/>
+                      <circle cx="8" cy="8" r="3.5" fill="none" className="tech-bullet-inner"/>
+                    </svg>
+                    {tech}
+                  </span>
+                ))}
               </div>
-
-              {/* Feature highlights */}
-              <div className="space-y-1">
-                <div className="flex items-center gap-1 font-mono text-xs">
-                  <span className="text-green-400">{'>'}</span>
-                  <span className="text-gray-400">Key Features:</span>
-                </div>
-                <div className="space-y-1 ml-3">
-                  {p.achievements.map((achievement, i) => (
-                    <div key={i} className="flex items-start gap-1 font-mono text-xs text-gray-300">
-                      <span className="text-gray-600 mt-0.5">
-                        {i === p.achievements.length - 1 ? '└─' : '├─'}
-                      </span>
-                      <span className="leading-relaxed">{achievement}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tech Stack */}
-              <div className="space-y-1">
-                <div className="flex items-center gap-1 font-mono text-xs">
-                  <span className="text-green-400">{'>'}</span>
-                  <span className="text-gray-400">Tech Stack:</span>
-                </div>
-                <div className="flex flex-wrap gap-1 ml-3">
-                  {p.techStack.map((tech, i) => (
-                    <span key={i} className="bg-gray-900 border border-gray-700 px-2 py-0.5 rounded font-mono text-xs text-cyan-400">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Project link */}
-              <div className="pt-1 border-t border-gray-800">
-                <a 
-                  href={p.link} 
-                  className="flex items-center gap-1 font-mono text-xs text-green-400 hover:text-green-300 transition-colors"
+              <style>{`
+                .tech-bullet-circle {
+                  transition: fill 0.2s;
+                }
+                .tech-bullet-inner {
+                  transition: fill 0.2s;
+                  fill: none;
+                }
+                .group:hover .tech-bullet-inner {
+                  fill: #3b82f6;
+                }
+              `}</style>
+              <div className="pt-2">
+                <a
+                  href={p.link}
+                  className="group/view-link inline-flex items-center gap-2 font-mono text-sm text-green-400 hover:text-black hover:bg-green-400 border border-green-400 px-3 py-1 rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  style={{ fontWeight: 700, letterSpacing: '0.03em' }}
                 >
-                  <span>{'>'}</span>
-                  <span>View Project</span>
-                  <span className="text-gray-500">→</span>
+                  <span className="transition-transform duration-200 group-hover/view-link:-translate-x-1">{'>'}</span>
+                  <span className="underline underline-offset-4 decoration-green-400 group-hover/view-link:no-underline">View Project</span>
+                  <span className="transition-transform duration-200 group-hover/view-link:translate-x-1 text-green-300">→</span>
                 </a>
               </div>
             </div>

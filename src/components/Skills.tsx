@@ -149,43 +149,53 @@ const Skills: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile: Compact Skills Layout */}
+        {/* Mobile: Terminal-style Skills Layout (matches desktop) */}
         <div className="md:hidden">
-          {/* Mobile Header */}
-          <div className="text-center mb-4">
-            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-green-400 transition-all duration-300">
-              <div className="bg-gray-900 px-3 py-1.5 flex items-center gap-2">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+          <div className="space-y-4">
+            {skillCategories.map((category) => (
+              <div
+                key={category.name}
+                className={`bg-black border border-gray-800 rounded-3xl overflow-hidden transition-all duration-300 group cursor-pointer p-1.5 min-h-0 h-auto text-xs gap-0.5 relative skill-card skill-card-${category.color}`}
+              >
+                {/* Terminal window header */}
+                <div className="bg-black px-2 py-1 flex items-center gap-1.5 transition-colors duration-200 z-10">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
+                  </div>
+                  <span className="font-mono text-xs text-gray-400 ml-2 transition-colors duration-300">{category.name}.sh</span>
                 </div>
-                <span className="font-mono text-xs text-gray-400 flex-1 text-center">skills.json</span>
-              </div>
-              <div className="p-3 font-mono text-xs text-center">
-                <span className="text-green-400">$ cat skills.json</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile: Two-column compact grid */}
-          <div className="grid grid-cols-2 gap-3">
-            {skillCategories.slice(0, 6).map((category) => (
-              <div key={category.name} className="bg-black border border-gray-900 rounded-lg hover:border-green-400 transition-all duration-300">
-                <div className="bg-gray-900 px-2 py-1.5 flex items-center gap-1.5">
-                  <category.icon className="w-3 h-3 text-green-400" />
-                  <span className="font-mono text-xs text-gray-400 capitalize">{category.name}</span>
-                </div>
-                <div className="p-2">
-                  <div className="space-y-1">
-                    {category.skills.map((skill, idx) => (
-                      <div key={idx} className="flex items-center gap-1 font-mono text-xs text-gray-300">
-                        <span className="text-gray-600">
-                          {idx === category.skills.length - 1 ? '└─' : '├─'}
-                        </span>
-                        <span>{skill}</span>
-                      </div>
-                    ))}
+                {/* Terminal content */}
+                <div className="p-2 space-y-1.5 z-10">
+                  {/* Command line */}
+                  <div className="font-mono text-xs flex items-center gap-1 mb-1">
+                    <span className="text-green-400">$</span>
+                    <span className={`text-gray-400 group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.command}</span>
+                  </div>
+                  {/* Category icon and description */}
+                  <div className="flex items-center gap-1 mb-1">
+                    <category.icon className={`text-base text-${category.color}-400 group-hover:text-${category.color}-300 transition-colors duration-200`} />
+                    <span className={`font-mono text-${category.color}-400 font-bold text-sm group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.name}</span>
+                    <span className="text-gray-500 text-sm font-mono ml-1"># {category.description}</span>
+                  </div>
+                  {/* Skills list */}
+                  <div className="space-y-0.5">
+                    {category.skills.map((skill, skillIndex) => {
+                      let bullet = '├─';
+                      if (skillIndex === 0) bullet = '┌─';
+                      else if (skillIndex === category.skills.length - 1) bullet = '└─';
+                      return (
+                        <div
+                          key={skill}
+                          className="font-mono text-xs flex items-center gap-1 rounded px-0.5 py-0.5 transition-all duration-150 animate-fade-in"
+                          style={{ animationDelay: `${skillIndex * 0.08}s` }}
+                        >
+                          <span className="text-gray-600">{bullet}</span>
+                          <span className="text-white transition-colors duration-200">{skill}</span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

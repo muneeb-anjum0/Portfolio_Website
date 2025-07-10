@@ -47,18 +47,18 @@ const TerminalLoader = () => {
   if (!isLoading) return null
   return (
     <div className="fixed inset-0 bg-black z-[100] flex items-center justify-center select-none">
-      <div className="max-w-2xl w-full p-8">
+      <div className="max-w-2xl w-full p-3 sm:p-8">
         <div className="bg-black border border-black rounded-lg overflow-hidden shadow-2xl animate-[terminalPop_0.4s_ease]">
           {/* Terminal header */}
-          <div className="bg-black px-4 py-2 flex items-center gap-2 border-b border-black">
+          <div className="bg-black px-3 py-2 sm:px-4 flex items-center gap-2 border-b border-black">
             <div className="w-3 h-3 bg-red-500 rounded-full shadow-red-700/50 shadow-sm"></div>
             <div className="w-3 h-3 bg-yellow-400 rounded-full shadow-yellow-700/50 shadow-sm"></div>
             <div className="w-3 h-3 bg-green-500 rounded-full shadow-green-700/50 shadow-sm"></div>
-            <span className="font-mono text-sm text-green-300 ml-4 tracking-wide">Terminal - Boot Sequence</span>
+            <span className="font-mono text-xs sm:text-sm text-green-300 ml-2 sm:ml-4 tracking-wide">Terminal - Boot Sequence</span>
           </div>
 
           {/* Terminal content */}
-          <div className="p-6 font-mono text-[1rem] space-y-2 min-h-[300px] bg-black">
+          <div className="p-3 sm:p-6 font-mono text-[0.92rem] sm:text-[1rem] space-y-2 min-h-[220px] sm:min-h-[300px] bg-black">
             {bootSequence.slice(0, currentLine + 1).map((line, index) => (
               <div
                 key={index}

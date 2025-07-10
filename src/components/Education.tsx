@@ -117,50 +117,121 @@ const Education: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile-optimized education layout */}
+        {/* Mobile-optimized education layout - now matches laptop/desktop look */}
         <div className="md:hidden">
-          <div className="text-center mb-4">
-            <div className="bg-black border border-gray-900 rounded-lg max-w-sm mx-auto hover:border-blue-400 transition-all duration-300">
-              <div className="bg-black px-3 py-1.5 flex items-center gap-2 border-b border-blue-900">
-                <div className="flex gap-1">
-                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+          <div className="text-center mb-3 sm:mb-4">
+            <div className="w-full max-w-2xl mx-auto mb-4">
+              <div className="group terminal-header-container w-full">
+                <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                  {/* Left dots */}
+                  <div className="flex gap-1.5 mr-2">
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  </div>
+                  {/* Path and user info */}
+                  <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                    <span className="text-gray-400 font-mono text-sm">muneeb</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
+                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                    <span className="text-gray-400 font-mono text-sm">:</span>
+                    <span className="text-blue-400 font-mono text-sm">~</span>
+                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/education</span>
+                  </div>
+                  {/* Right dots */}
+                  <div className="flex gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  </div>
                 </div>
-                <span className="font-mono text-xs text-blue-400 flex-1 text-center">education.json</span>
-              </div>
-              <div className="p-3 font-mono text-xs text-center">
-                <span className="text-blue-400">$ cat education.json</span>
+                <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-4 py-3 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
+                    <span className="text-white font-semibold group-hover:text-green-200">npx education --log</span>
+                    <span className="blinking-cursor ml-1">|</span>
+                  </div>
+                  <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                    {currentTime.toLocaleTimeString()}
+                  </div>
+                </div>
+                <style>{`
+                  .blinking-cursor {
+                    display: inline-block;
+                    width: 1ch;
+                    animation: blink 1s steps(2, start) infinite;
+                  }
+                  @keyframes blink {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0; }
+                  }
+                `}</style>
               </div>
             </div>
           </div>
-
-          {/* Education details card */}
-          {educationData.map((edu, index) => (
-            <div key={index} className="bg-black border border-gray-800 rounded-lg hover:border-blue-400 transition-all duration-300">
-              <div className="bg-black px-3 py-2 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="text-blue-400">●</span>
-                  <span className="font-mono text-xs text-gray-400">{edu.status}</span>
+          {/* Education details card - mobile, matches desktop style */}
+          <div className="max-w-3xl mx-auto">
+            {educationData.map((edu) => (
+              <div
+                key={edu.degree}
+                className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-blue-400/30 mb-6"
+                style={{ minHeight: '320px' }}
+              >
+                <div className="pointer-events-none absolute inset-0 rounded-2xl z-10 transition-all duration-500 group-hover:shadow-[0_0_40px_8px_rgba(59,130,246,0.25)] group-hover:border-blue-400 border border-transparent group-hover:border-[1px]"></div>
+                <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800 bg-black/80">
+                  <span className="flex gap-1">
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
+                  </span>
+                  <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">{edu.status} EDUCATION</span>
+                  <span className="ml-auto font-mono text-xs text-gray-600">{edu.duration}</span>
                 </div>
-                <div className="font-mono text-xs text-gray-500">{edu.duration}</div>
-              </div>
-              <div className="p-3 space-y-2">
-                <div className="font-mono text-sm text-white font-bold">{edu.degree}</div>
-                <div className="font-mono text-xs text-blue-400">{edu.university}</div>
-                <div className="space-y-1">
-                  {edu.details.map((detail, idx) => (
-                    <div key={idx} className="flex items-center gap-1 font-mono text-xs text-gray-300">
-                      <span className="text-gray-600">
-                        {idx === edu.details.length - 1 ? '└─' : '├─'}
-                      </span>
-                      <span>{detail}</span>
-                    </div>
-                  ))}
+                <div className="relative z-20 px-4 pt-1 pb-8 flex flex-col gap-3 transition-all duration-500">
+                  <div className="font-mono text-base flex items-center gap-2 text-blue-400 mb-0 pb-0">
+                    <span className="select-none">$</span>
+                    <span className="text-white font-bold">{edu.degree}</span>
+                    <span className="text-gray-400 font-bold"> | </span>
+                    <span className="text-blue-300 font-bold">{edu.university}</span>
+                  </div>
+                  <div className="font-mono text-xs flex items-center gap-2 mb-1">
+                    <span className="italic text-blue-400">cat </span>
+                    <span className="italic text-green-400">education.json</span>
+                    <span className="font-bold text-blue-300">'Learning in progress!'</span>
+                  </div>
+                  <div className="bg-black/80 border border-gray-800 rounded-lg p-3 shadow-inner">
+                    <div className="font-mono text-xs text-gray-400 mb-2">// Key Details</div>
+                    <ul className="space-y-2">
+                      {edu.details.map((detail, i) => {
+                        let symbol = '├─';
+                        if (i === 0) symbol = '┌─';
+                        else if (i === edu.details.length - 1) symbol = '└─';
+                        return (
+                          <li
+                            key={i}
+                            className="font-mono text-xs text-gray-200 flex items-start gap-2 group-hover:text-blue-300 transition-colors duration-200"
+                          >
+                            <span className="text-blue-400 select-none group-hover:text-green-400 transition-colors duration-200">{symbol}</span>
+                            <span>{detail}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between px-4 py-2 border-t border-gray-800 bg-black/80">
+                  <div className="flex items-center gap-2 font-mono text-xs text-gray-500">
+                    <span className="animate-pulse text-blue-400">●</span>
+                    <span className="tracking-widest uppercase">Education synced</span>
+                  </div>
+                  <div className="flex items-center gap-2 font-mono text-xs text-blue-400">
+                    <span className="animate-pulse">{`Last update: ${currentTime.toLocaleDateString()} ${currentTime.toLocaleTimeString()}`}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Desktop full-featured layout */}
