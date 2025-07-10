@@ -185,9 +185,9 @@ const GetInTouch: React.FC = () => {
                       if (i === 0) symbol = '┌─';
                       else if (i === contactData.socials.length - 1) symbol = '└─';
                       return (
-                        <li key={social.name} className={`font-mono text-[11px] flex items-center gap-1 transition-colors duration-200`}>
+                        <li key={social.name} className={`font-mono text-[15px] flex items-center gap-2 transition-colors duration-200`}>
                           <span className="text-blue-400 select-none transition-colors duration-200">{symbol}</span>
-                          <a href={social.url} className={`${social.color} ${social.hover} transition-colors duration-200`} target="_blank" rel="noopener noreferrer">{social.name}</a>
+                          <a href={social.url} className={`${social.color} ${social.hover} transition-colors duration-200 text-[15px] font-semibold`} target="_blank" rel="noopener noreferrer">{social.name}</a>
                         </li>
                       )
                     })}
