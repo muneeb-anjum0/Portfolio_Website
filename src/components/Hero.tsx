@@ -221,14 +221,18 @@ export default function Hero() {
               <div className="w-2 h-2 sm:w-1.5 sm:h-1.5 bg-green-400 rounded-full animate-pulse hover:animate-bounce cursor-pointer transition-transform duration-200" style={{ animationDelay: '0.4s' }}></div>
             </div>
             <div className="flex-1 text-center text-xs sm:text-sm font-mono relative z-10">
+              {/* On small screens, show a compact version in one line */}
+              <span className="sm:hidden text-gray-400">
+                muneeb<span className="text-blue-400">＠</span><span className="text-green-400">devmachine</span><span className="text-blue-400">~/</span><span className="text-gray-400">portfolio</span>
+              </span>
+              {/* On sm and up, show the spaced out version */}
               <span className="hidden sm:inline text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-default">muneeb</span>
               <span className="hidden sm:inline text-green-400 hover:text-green-300 transition-colors duration-300 cursor-default">
                 <span className="font-bold text-lg align-middle text-blue-400" style={{ fontFamily: 'monospace' }}>＠</span>
-                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
+                <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
               </span>
               <span className="hidden sm:inline text-blue-400 hover:text-blue-300 transition-colors duration-300 cursor-default">~/</span>
               <span className="hidden sm:inline text-gray-400 hover:text-blue-300 transition-colors duration-300 cursor-default">portfolio</span>
-
             </div>
             {/* CPU usage indicator */}
             <div className="hidden sm:flex items-center gap-1 text-xs relative z-10 hover:scale-110 transition-transform duration-200">
