@@ -149,26 +149,23 @@ export default function Navbar({ currentSection }: NavbarProps) {
       {/* Mobile themed fly-out menu overlay */}
       {mobileOpen && (
         <div className="md:hidden fixed inset-0 z-[999] bg-black/95 backdrop-blur-lg flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in">
-      {/* Terminal window header for mobile with brand name (now always visible, styled like desktop) */}
-      <div className="w-full max-w-md mx-auto bg-black/95 backdrop-blur-md px-3 py-3 border-b border-black rounded-t-lg flex items-center justify-between shadow-lg">
-        {/* Brand name styled as on desktop, always visible */}
-        <button
-          onClick={() => { scrollTo('home'); setMobileOpen(false); }}
-          className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
-        >
-          <span className="flex items-center gap-1">
-            <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}> </span>
-            <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
-            <span className="text-blue-400 group-hover:text-green-300 transition-colors">＠</span>
-            <span className="text-gray-400 group-hover:text-white transition-colors">devmachine</span>
-          </span>
-        </button>
-        <button
-          onClick={() => setMobileOpen(false)}
-          className="text-green-400 hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200"
-          aria-label="Close menu"
-        >✕</button>
-      </div>
+          {/* Terminal window header for mobile (no brand, just close button) */}
+          <div className="w-full max-w-md mx-auto bg-black/95 backdrop-blur-md px-3 py-3 border-b border-black rounded-t-lg flex items-center justify-end shadow-lg">
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="text-green-400 hover:text-white font-mono text-lg px-2 py-1 rounded transition-colors duration-200"
+              aria-label="Close menu"
+            >✕</button>
+          </div>
+          {/* muneeb@devmachine as a header in the flyout, styled like desktop */}
+          <div className="flex items-center justify-center mb-6 mt-2 w-full">
+            <span className="flex items-center gap-1 font-mono text-xl group select-none">
+              <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}></span>
+              <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
+              <span className="text-blue-400 group-hover:text-green-300 transition-colors">＠</span>
+              <span className="text-gray-400 group-hover:text-white transition-colors">devmachine</span>
+            </span>
+          </div>
           {/* Navigation Commands */}
           <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-center gap-2 py-6">
             {NAV_LINKS.map((label, index) => {
