@@ -259,19 +259,19 @@ export default function Hero() {
             </div>
 
             {/* Active prompt with enhanced cursor */}
-            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-nowrap overflow-x-auto">
-              {/* On small screens, force everything to stay in one line and allow horizontal scroll if needed */}
-              <span className="whitespace-nowrap overflow-x-auto text-ellipsis w-full block">
+            <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap">
+              <span>
                 <span className="text-gray-400">muneeb</span>
                 <span className="text-blue-400">＠</span>
                 <span className="text-green-400">devmachine</span>
                 <span className="text-gray-400">:</span>
+
                 <span className="text-blue-400"> ~</span>
                 <span className="text-blue-400">/</span>
                 <span className="text-gray-400">portfolio</span>
                 <span className="text-green-500"> $</span>
                 <span className="text-gray-200">echo</span>
-                <span className="typing-cursor text-gray-400 animate-typewriter whitespace-nowrap">  "Welcome to my portfolio"</span>
+                <span className="typing-cursor text-gray-400 break-words animate-typewriter">  "Welcome to my portfolio"</span>
               </span>
             </div>
 
@@ -351,7 +351,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
             <a
               href="#projects"
-              className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+              className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-[75%] sm:w-[150px] text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
             >
               <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
               <span className="relative flex items-center justify-center gap-2">
@@ -386,7 +386,7 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+              className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-[75%] sm:w-[150px] text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
             >
               <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
               <span className="relative flex items-center justify-center gap-2">
