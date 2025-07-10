@@ -82,11 +82,10 @@ export default function Navbar({ currentSection }: NavbarProps) {
           onClick={() => scrollTo('home')}
           className="font-mono text-lg sm:text-xl group flex items-center gap-1 sm:gap-2 hover:scale-105 transform transition-all duration-200"
         >
-          <span>
-            <span className="text-green-400" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}></span>
-            <span className="text-gray-100 group-hover:text-gray-400 transition-colors">muneeb</span>
-            <span className="text-blue-400 group-hover:text-green-300 transition-colors hidden sm:inline">＠</span>
-            <span className="text-gray-400 group-hover:text-white transition-colors hidden sm:inline">devmachine</span>
+          <span className="flex items-center gap-0.5">
+            <span className="text-white group-hover:text-gray-400 transition-colors">muneeb</span>
+            <span className="text-blue-400 group-hover:text-green-400 transition-colors" style={{ fontFamily: 'monospace, \"Fira Mono\", \"JetBrains Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", \"Courier New\", monospace' }}>＠</span>
+            <span className="text-gray-400 group-hover:text-white transition-colors">devmachine</span>
           </span>
         </button>
 
