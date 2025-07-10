@@ -175,41 +175,40 @@ const About = () => {
         <div className="hidden md:block">
           <div className="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-12">
             <div className="w-full max-w-2xl mx-auto mb-4">
-              {/* Redesigned Terminal Header with hover effect */}
+              {/* Redesigned Terminal Header with hover effect - reduced size */}
               <div className="group terminal-header-container w-full">
-                <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-3 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-2 py-1 flex items-center gap-1 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30" style={{ minHeight: '36px' }}>
                   {/* Left dots (now same as right) */}
-                  <div className="flex gap-1.5 mr-2">
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  <div className="flex gap-1 mr-1">
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
                   </div>
                   {/* Path and user info */}
-                  <div className="flex-1 text-center font-mono text-sm text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
-                    {/* Replicate Hero.tsx terminal user@host:path style, slightly larger */}
-                    <span className="text-gray-400 font-mono text-sm">muneeb</span>
-                    <span className="text-blue-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
-                    <span className="text-green-400 font-mono font-bold text-lg align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
-                    <span className="text-gray-400 font-mono text-sm">:</span>
-                    <span className="text-blue-400 font-mono text-sm">~</span>
-                    <span className="text-gray-400 font-mono text-sm">/portfolio</span>
-                    <span className="text-blue-400 font-mono font-bold text-lg align-middle">/about</span>
+                  <div className="flex-1 text-center font-mono text-xs text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                    <span className="text-gray-400 font-mono">muneeb</span>
+                    <span className="text-blue-400 font-mono font-bold align-middle text-sm">＠</span>
+                    <span className="text-green-400 font-mono font-bold align-middle text-sm">devmachine</span>
+                    <span className="text-gray-400 font-mono">:</span>
+                    <span className="text-blue-400 font-mono">~</span>
+                    <span className="text-gray-400 font-mono">/portfolio</span>
+                    <span className="text-blue-400 font-mono font-bold align-middle text-sm">/about</span>
                   </div>
                   {/* Right dots */}
-                  <div className="flex gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                    <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+                  <div className="flex gap-1">
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                    <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
                   </div>
                 </div>
-                {/* Terminal body with prompt */}
-                <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-6 py-4 font-mono text-base text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
-                  <div className="flex items-center gap-2">
+                {/* Terminal body with prompt - reduced size */}
+                <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-2 py-2 font-mono text-xs text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+                  <div className="flex items-center gap-1">
                     <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
                     <span className="text-white font-semibold group-hover:text-green-200">npx about-me --intro</span>
                     <span className="blinking-cursor ml-1">|</span>
                   </div>
-                  <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+                  <div className="absolute bottom-1 right-2 text-[10px] text-green-400 opacity-90 select-none group-hover:text-green-400">
                     {currentTime.toLocaleTimeString()}
                   </div>
                 </div>
