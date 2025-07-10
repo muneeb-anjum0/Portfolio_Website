@@ -188,7 +188,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             >
               <span className="relative flex items-center gap-2">
                 <span className="animate-bounce group-hover:animate-pulse">&gt;</span>
-                <span className="group-hover:tracking-wider transition-all duration-300">Init</span>
+                <span className="group-hover:tracking-wider transition-all duration-300">Initialize</span>
                 <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:animate-bounce">↗</span>
               </span>
             </a>
