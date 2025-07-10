@@ -249,13 +249,14 @@ const About = () => {
 
               {/* Content area with two columns - compact */}
               <div className="relative z-20 px-4 pt-1 pb-4 flex flex-col gap-2 transition-all duration-500">
-                {/* Terminal command style heading - compact */}
-                <div className="font-mono text-base flex items-center gap-1 text-green-400 mb-0 pb-0 whitespace-nowrap overflow-x-auto">
+                {/* Terminal command style heading - compact, force single line and scrollable */}
+                <div className="font-mono text-[13px] flex items-center gap-0.5 text-green-400 mb-0 pb-0 whitespace-nowrap overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
                   <span className="select-none">$</span>
-                  <span className="text-white font-bold">about-me</span>  <span className="text-gray-400 font-bold">|</span>
+                  <span className="text-white font-bold">about-me</span>
+                  <span className="text-gray-400 font-bold">|</span>
                   <span className="text-blue-400 font-bold">Full-Stack Developer</span>
                 </div>
-                <div className="font-mono text-xs text-green-400 flex items-center gap-1 mb-1 whitespace-nowrap overflow-x-auto">
+                <div className="font-mono text-[11px] text-green-400 flex items-center gap-0.5 mb-1 whitespace-nowrap overflow-x-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
                   <span className="italic">npx about-me --intro</span>
                   <span className="font-bold text-blue-300">'Crafting code & coffee'</span>
                 </div>
