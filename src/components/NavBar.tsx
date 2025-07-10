@@ -50,8 +50,9 @@ export default function Navbar({ currentSection }: NavbarProps) {
     }
   }, [mobileOpen])
 
+  // Use hash-based navigation for GitHub Pages compatibility
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    window.location.hash = `#${id}`;
     setMobileOpen(false);
   };
   return (

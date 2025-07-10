@@ -309,9 +309,11 @@ const About = () => {
                       </div>
                       <div className="font-mono text-sm text-gray-400 flex items-center gap-2">
                         <span className="text-green-400">└─</span>
-                        <span>Projects: <span className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200">sorting-visualizer/</span>, 
-                        <span className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200"> ai-pay-solutions/</span>, 
-                        <span className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200"> portfolio-website/</span></span>
+                        <span>Projects: 
+                          <a href="#projects" className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200">sorting-visualizer/</a>, 
+                          <a href="#projects" className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200"> ai-pay-solutions/</a>, 
+                          <a href="#projects" className="text-gray-200 hover:text-green-400 cursor-pointer transition-colors duration-200"> portfolio-website/</a>
+                        </span>
                       </div>
                     </div>
                   </div>

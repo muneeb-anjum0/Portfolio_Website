@@ -256,7 +256,7 @@ const GetInTouch: React.FC = () => {
           <div className="flex-1 h-px bg-gray-800"></div>
           <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
             <span className="text-blue-400">$</span>
-            <span>exit</span>
+            <a href="#home" className="hover:text-blue-300 transition-colors">exit</a>
           </div>
           <div className="flex-1 h-px bg-gray-800"></div>
         </div>

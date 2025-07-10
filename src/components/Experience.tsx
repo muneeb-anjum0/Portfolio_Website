@@ -324,7 +324,7 @@ const Experience: React.FC = () => {
           <div className="flex-1 h-px bg-gray-800"></div>
           <div className="font-mono text-xs text-gray-500 flex items-center gap-2">
             <span className="text-green-400">$</span>
-            <span>cd ../projects</span>
+            <a href="#projects" className="hover:text-green-300 transition-colors">cd ../projects</a>
           </div>
           <div className="flex-1 h-px bg-gray-800"></div>
         </div>
