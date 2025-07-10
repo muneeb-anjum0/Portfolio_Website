@@ -167,37 +167,37 @@ const FeaturedProjects: React.FC = () => (
       <div className="text-center mb-3 sm:mb-4">
         <div className="w-full max-w-md mx-auto mb-3">
           <div className="group terminal-header-container w-full">
-            <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-3 py-2 flex items-center gap-2 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+            <div className="backdrop-blur-md bg-black/70 border border-gray-800 rounded-t-2xl px-2 py-1 flex items-center gap-1 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30" style={{ minHeight: '32px' }}>
               {/* Left dots */}
-              <div className="flex gap-1.5 mr-2">
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              <div className="flex gap-1 mr-1">
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
               </div>
               {/* Path and user info */}
-              <div className="flex-1 text-center font-mono text-xs text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
-                <span className="text-gray-400 font-mono text-xs">muneeb</span>
-                <span className="text-blue-400 font-mono font-bold text-base align-middle" style={{ fontFamily: 'monospace' }}>＠</span>
-                <span className="text-green-400 font-mono font-bold text-base align-middle" style={{ fontFamily: 'monospace' }}>devmachine</span>
-                <span className="text-gray-400 font-mono text-xs">:</span>
-                <span className="text-blue-400 font-mono text-xs">~</span>
-                <span className="text-gray-400 font-mono text-xs">/portfolio</span>
-                <span className="text-blue-400 font-mono font-bold text-base align-middle">/projects</span>
+              <div className="flex-1 text-center font-mono text-[10px] text-gray-200 select-text transition-colors duration-300 group-hover:text-green-200">
+                <span className="text-gray-400 font-mono">muneeb</span>
+                <span className="text-blue-400 font-mono font-bold text-xs align-middle">＠</span>
+                <span className="text-green-400 font-mono font-bold text-xs align-middle">devmachine</span>
+                <span className="text-gray-400 font-mono">:</span>
+                <span className="text-blue-400 font-mono">~</span>
+                <span className="text-gray-400 font-mono">/portfolio</span>
+                <span className="text-blue-400 font-mono font-bold text-xs align-middle">/projects</span>
               </div>
               {/* Right dots */}
-              <div className="flex gap-1.5">
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
-                <span className="w-1.5 h-1.5 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
+              <div className="flex gap-1">
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-green-400"></span>
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-yellow-400"></span>
+                <span className="w-1 h-1 bg-gray-600 rounded-full transition-colors duration-200 group-hover:bg-red-400"></span>
               </div>
             </div>
-            <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-4 py-3 font-mono text-sm text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
-              <div className="flex items-center gap-2">
+            <div className="backdrop-blur-md bg-black/80 border-x border-b border-gray-800 rounded-b-2xl px-2 py-2 font-mono text-xs text-green-400 shadow-lg relative overflow-hidden transition-all duration-300 group-hover:bg-black/90 group-hover:border-green-400 group-hover:shadow-green-400/30">
+              <div className="flex items-center gap-1">
                 <span className="text-green-400 font-bold group-hover:text-green-300">$</span>
                 <span className="text-white font-semibold group-hover:text-green-200">npx projects --list</span>
                 <span className="blinking-cursor ml-1">|</span>
               </div>
-              <div className="absolute bottom-2 right-4 text-xs text-green-400 opacity-90 select-none group-hover:text-green-400">
+              <div className="absolute bottom-1 right-2 text-[10px] text-green-400 opacity-90 select-none group-hover:text-green-400">
                 {new Date().toLocaleTimeString()}
               </div>
             </div>
@@ -221,7 +221,7 @@ const FeaturedProjects: React.FC = () => (
         {projects.map((p) => (
           <div
             key={p.title}
-            className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:shadow-blue-400/20 card-fade-glow"
+            className="relative group bg-black border border-gray-900 rounded-2xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.025] hover:border-blue-500 hover:shadow-blue-400/30 w-full max-w-md mx-auto mb-3"
             style={{ minHeight: '220px' }}
           >
             {/* Subtle glowing border on hover, black themed, with fade-in blue overlay */}
@@ -237,29 +237,29 @@ const FeaturedProjects: React.FC = () => (
             `}</style>
 
             {/* Top status bar with animated dots */}
-            <div className="flex items-center gap-2 px-4 py-2 border-b border-gray-800 bg-black/80">
-              <span className="flex gap-1">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
+            <div className="flex items-center gap-1 px-2 py-1 border-b border-gray-800 bg-black/80">
+              <span className="flex gap-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" style={{ animationDelay: '0.3s' }}></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" style={{ animationDelay: '0.6s' }}></span>
               </span>
-              <span className="ml-3 font-mono text-xs text-gray-400 tracking-widest uppercase letter-spacing-2">ACTIVE PROJECT</span>
-              <span className="ml-auto font-mono text-xs text-gray-600">{p.date}</span>
+              <span className="ml-2 font-mono text-[10px] text-gray-400 tracking-widest uppercase letter-spacing-2">ACTIVE PROJECT</span>
+              <span className="ml-auto font-mono text-[10px] text-gray-600">{p.date}</span>
             </div>
 
             {/* Main content area: short description and 1-2 key features */}
-            <div className="relative z-20 flex flex-col gap-2 px-4 pt-3 pb-5 transition-all duration-500">
-              <div className="font-mono text-lg flex items-center gap-2 text-green-400">
+            <div className="relative z-20 flex flex-col gap-2 px-2 pt-1 pb-3 transition-all duration-500">
+              <div className="font-mono text-[15px] flex items-center gap-1 text-green-400 mb-0 pb-0 whitespace-nowrap">
                 <span className="select-none">$</span>
                 <span className="text-white font-bold">{p.title}</span>
                 <span className="text-gray-400 font-bold"> | </span>
                 <span className="text-blue-400 font-bold">{p.tag}</span>
               </div>
-              <div className="font-mono text-xs text-gray-400">{p.subtitle}</div>
-              <div className="text-gray-300 text-sm font-mono mt-1 line-clamp-2">{p.description}</div>
-              <ul className="font-mono text-xs text-blue-300 mt-1 space-y-1">
+              <div className="font-mono text-[11px] text-gray-400">{p.subtitle}</div>
+              <div className="text-gray-300 text-[13px] font-mono mt-1 line-clamp-2">{p.description}</div>
+              <ul className="font-mono text-[11px] text-blue-300 mt-1 space-y-1">
                 {p.achievements.slice(0, 2).map((detail, i) => (
-                  <li key={i} className="flex items-start gap-2">
+                  <li key={i} className="flex items-start gap-1">
                     <span className="text-green-400 select-none">{i === 0 ? '┌─' : '└─'}</span>
                     <span>{detail}</span>
                   </li>
@@ -269,7 +269,7 @@ const FeaturedProjects: React.FC = () => (
                 {p.techStack.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-2 font-mono text-sm text-gray-300 hover:text-blue-400 transition-colors duration-200"
+                    className="inline-flex items-center gap-2 font-mono text-[11px] text-gray-300 hover:text-blue-400 transition-colors duration-200"
                     style={{ fontWeight: 600, letterSpacing: '0.01em' }}
                   >
                     <svg width="16" height="16" fill="none" viewBox="0 0 16 16" className="tech-bullet">
@@ -295,7 +295,7 @@ const FeaturedProjects: React.FC = () => (
               <div className="pt-2">
                 <a
                   href={p.link}
-                  className="group/view-link inline-flex items-center gap-2 font-mono text-sm text-green-400 hover:text-black hover:bg-green-400 border border-green-400 px-3 py-1 rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  className="group/view-link inline-flex items-center gap-2 font-mono text-[11px] text-green-400 hover:text-black hover:bg-green-400 border border-green-400 px-3 py-1 rounded-lg shadow-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
                   style={{ fontWeight: 700, letterSpacing: '0.03em' }}
                 >
                   <span className="transition-transform duration-200 group-hover/view-link:-translate-x-1">{'>'}</span>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 // Professional experience data
 const experiences = [
   {
-    title: 'Backend Developer Intern',
+    title: 'Backend Deve Intern',
     company: 'App In Snap',
     date: 'June 2025 – Present',
     status: 'ACTIVE',
