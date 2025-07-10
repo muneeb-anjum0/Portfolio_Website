@@ -148,17 +148,17 @@ export default function Navbar({ currentSection }: NavbarProps) {
 
       {/* Mobile themed fly-out menu overlay */}
       {mobileOpen && (
-        <div className="md:hidden fixed left-0 right-0 top-0 bottom-0 z-[999] bg-black flex flex-col items-center justify-start pt-20 px-4 select-none animate-fade-in border-l border-r border-black/40 max-w-lg mx-auto rounded-xl shadow-2xl" style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'90vh', marginTop:'5vh'}}>
+        <div className="md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none animate-fade-in border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl" style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'50vh'}}>
           {/* Header with close button only */}
-          <div className="w-full max-w-md mx-auto bg-black px-3 py-3 border-b border-black/40 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.45)'}}>
+          <div className="w-full max-w-md mx-auto bg-black px-3 py-2 border-b border-black/40 rounded-t-lg flex items-center justify-end shadow-lg" style={{boxShadow:'0 4px 24px 0 rgba(0,0,0,0.45)'}}>
             <button
               onClick={() => setMobileOpen(false)}
-              className="text-white hover:text-green-400 font-mono text-lg px-2 py-1 rounded transition-colors duration-200 bg-black/60 hover:bg-black"
+              className="text-white hover:text-green-400 font-mono text-base px-2 py-1 rounded transition-colors duration-200 bg-black/60 hover:bg-black"
               aria-label="Close menu"
             >✕</button>
           </div>
-          {/* Navigation Commands */}
-          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-center gap-3 py-8">
+          {/* Navigation Commands - start right from the top */}
+          <div className="w-full max-w-md mx-auto flex-1 flex flex-col justify-start gap-2 py-2">
             {NAV_LINKS.map((label, index) => {
               const sectionId = label.toLowerCase();
               const isActive = currentSection === sectionId;
@@ -166,13 +166,17 @@ export default function Navbar({ currentSection }: NavbarProps) {
                 <button
                   key={label}
                   onClick={() => { scrollTo(sectionId); setMobileOpen(false); }}
-                  className={`w-full text-left py-3 px-6 rounded-xl font-mono text-lg flex items-center gap-3 border border-transparent group transition-all duration-300
-                    ${isActive ? 'bg-gradient-to-r from-blue-900 via-black to-green-900 text-blue-300 font-bold border border-blue-400 shadow-lg scale-105' : 'text-white hover:text-green-400 hover:bg-black/80 hover:border-green-400 hover:scale-105'}`}
-                  style={{ letterSpacing: '0.02em', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s' }}
+                  className={`w-full text-left py-2 px-3 rounded-lg font-mono text-base flex items-center gap-2 border group transition-all duration-300
+                    ${isActive ? 'bg-black text-blue-400 font-bold border-[1.5px] border-gradient-to-r from-blue-400 to-green-400 shadow-md scale-105' : 'text-gray-300 border-gray-500 hover:text-white hover:bg-black/80 hover:border-transparent hover:scale-105'}`}
+                  style={{ letterSpacing: '0.02em', transition: 'box-shadow 0.2s, border-color 0.2s, background 0.2s, color 0.2s', borderImage: isActive ? 'linear-gradient(to right, #60a5fa, #22d3ee, #22c55e) 1' : undefined }}
+                  onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
+                  onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
+                  onMouseDown={e => e.currentTarget.classList.add('active-nav-btn')}
+                  onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn')}
                 >
                   <span className="text-blue-400">.</span>
-                  <span className="text-gray-600">/</span>
-                  <span className="text-base">{sectionId}</span>
+                  <span className="text-green-400">/</span>
+                  <span className="text-gray-400">{sectionId}</span>
                   <span className="ml-auto text-xs text-gray-500">0{index + 1}</span>
                 </button>
               );
@@ -181,10 +185,13 @@ export default function Navbar({ currentSection }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => { scrollTo('contact'); setMobileOpen(false); }}
-              className="w-full group relative px-6 py-3 mt-6 font-mono text-lg border-2 border-green-400 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-blue-400 transition-all duration-300 flex items-center justify-center gap-2 rounded-xl hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
-              style={{ minWidth: '120px' }}
+              className="w-full group relative px-3 py-2 mt-4 font-mono text-base border border-gray-500 text-green-400 bg-black hover:bg-green-900 hover:text-white hover:border-transparent transition-all duration-300 flex items-center justify-center gap-2 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-green-400/20 hover:-translate-y-1 overflow-hidden"
+              style={{ minWidth: '100px' }}
+              onTouchStart={e => e.currentTarget.classList.add('active-nav-btn')}
+              onTouchEnd={e => e.currentTarget.classList.remove('active-nav-btn')}
+              onMouseDown={e => e.currentTarget.classList.add('active-nav-btn')}
+              onMouseUp={e => e.currentTarget.classList.remove('active-nav-btn')}
             >
-              <span className="absolute -inset-1 bg-green-400 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-green-400 rounded-xl"></span>
               <span className="relative flex items-center gap-2">
                 <span className="animate-bounce group-hover:animate-pulse">$</span>
                 <span className="group-hover:tracking-wider transition-all duration-300">contact</span>
@@ -193,7 +200,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
             </a>
           </div>
           {/* Terminal Footer */}
-          <div className="w-full max-w-md mx-auto pb-4">
+          <div className="w-full max-w-md mx-auto pb-2">
             <div className="font-mono text-xs text-gray-500 text-center">
               <span className="text-green-400">●</span> mobile
             </div>
@@ -202,6 +209,12 @@ export default function Navbar({ currentSection }: NavbarProps) {
       )}
       {/* KEYFRAMES & UTILITIES for button animations */}
       <style>{`
+        .active-nav-btn {
+          border-image: linear-gradient(to right, #60a5fa, #22c55e) 1 !important;
+          border-width: 2px !important;
+          color: #22c55e !important;
+          background: #0f172a !important;
+        }
         @keyframes pulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
