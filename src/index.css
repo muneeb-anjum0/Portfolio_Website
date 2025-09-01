@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Mobile-specific ultra-compact spacing utilities */
+@media (max-width: 768px) {
+  .mobile-compact {
+    padding-top: 1rem !important;   
+    padding-bottom: 1rem !important;
+  }
+  
+  .mobile-tight-spacing > * + * {
+    margin-top: 0.5rem !important;
+  }
+  
+  .mobile-ultra-compact {
+    padding: 0.75rem !important;
+  }
+}
+
+/* drop animation */
+@keyframes drop {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(6px); }
+}
+.drop {
+  animation: drop 0.6s ease-out forwards;
+}
+
+/* global page background */
+@layer base {
+  html, body, #root {
+    @apply bg-black text-white h-full m-0;
+  }
+  
+  /* Make all text non-selectable by default */
+  * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Ensure no text can be highlighted */
+  *::selection {
+    background: transparent;
+  }
+  
+  *::-moz-selection {
+    background: transparent;
+  }
+}
+
+/* prompt box */
+.prompt {
+  @apply inline-flex items-center bg-[#0f111a] border border-[#233135] rounded-md px-4 py-2 font-mono;
+}
+.prompt .path { @apply text-green-400; }
+.prompt .cmd  { @apply ml-2 text-white; }
+
+/* custom scrollbar styling - fancy terminal theme */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border: 1px solid #333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db !important; /* Tailwind gray-300 */
+  border: 2px solid #000000;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af !important; /* Tailwind gray-400 */
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 0 15px #9ca3afb3;
+  transform: scale(1.05);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #6b7280 !important; /* Tailwind gray-500 */
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 20px #6b728099;
+  transform: scale(0.95);
+}
+
+/* Terminal-style scrollbar corner */
+::-webkit-scrollbar-corner {
+  background: #000000;
+  border: 1px solid #333;
+}
+
+/* Firefox scrollbar - enhanced */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #d1d5db #000000;
+}
+
+/* hover effect for Firefox */
+*:hover {
+  scrollbar-color: #9ca3af #000000;
+}
