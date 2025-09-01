@@ -57,15 +57,16 @@ export default function Navbar({ currentSection }: NavbarProps) {
 
   // --- Animation state for mobile menu ---
   const [flyoutVisible, setFlyoutVisible] = useState(false);
+  // Synchronize menu fade and hamburger cross for seamlessness
   useEffect(() => {
     if (mobileOpen) {
       setFlyoutVisible(true);
     } else if (flyoutVisible) {
       // Wait for fade-out animation before hiding
-      const timeout = setTimeout(() => setFlyoutVisible(false), 300);
+      const timeout = setTimeout(() => setFlyoutVisible(false), 320); // match fade duration
       return () => clearTimeout(timeout);
     }
-  }, [mobileOpen]);
+  }, [mobileOpen, flyoutVisible]);
 
   return (
     <nav
@@ -138,21 +139,28 @@ export default function Navbar({ currentSection }: NavbarProps) {
 
           {/* Mobile hamburger - terminal style */}
           <button
-            onClick={() => setMobileOpen((o) => !o)}
-            className="md:hidden p-2 text-green-400 hover:text-white transition-colors duration-200 font-mono relative z-50"
+            onClick={() => {
+              if (!mobileOpen) setFlyoutVisible(true);
+              setMobileOpen((o) => !o);
+            }}
+            className={`md:hidden p-2 text-green-400 hover:text-white transition-colors duration-200 font-mono relative z-50`}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? (
-              <div className="flex items-center gap-1">
-                <span className="text-lg">✕</span>
-                <span className="text-xs hidden sm:inline">close</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1">
-                <span className="text-lg">≡</span>
-                <span className="text-xs hidden sm:inline">menu</span>
-              </div>
-            )}
+            <span className="relative w-7 h-7 flex flex-col items-center justify-center">
+              {/* Top bar */}
+              <span
+                className={`block absolute h-0.5 w-7 bg-current rounded transition-all duration-300 ease-in-out origin-center ${mobileOpen ? 'rotate-45 top-3.5 left-0' : 'top-2 left-0'}`}
+              ></span>
+              {/* Middle bar */}
+              <span
+                className={`block absolute h-0.5 w-7 bg-current rounded transition-all duration-300 ease-in-out origin-center ${mobileOpen ? 'opacity-0 top-3.5 left-0' : 'top-3.5 left-0'}`}
+              ></span>
+              {/* Bottom bar */}
+              <span
+                className={`block absolute h-0.5 w-7 bg-current rounded transition-all duration-300 ease-in-out origin-center ${mobileOpen ? '-rotate-45 top-3.5 left-0' : 'top-5 left-0'}`}
+              ></span>
+            </span>
+            <span className="text-xs hidden sm:inline ml-2">{mobileOpen ? 'close' : 'menu'}</span>
           </button>
         </div>
       </div>
@@ -160,7 +168,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
       {/* Mobile themed fly-out menu overlay */}
       {(flyoutVisible || mobileOpen) && (
         <div
-          className={`md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl transition-all duration-300 ${mobileOpen ? 'animate-fade-in' : 'animate-fade-out pointer-events-none opacity-0'}`}
+          className={`md:hidden fixed left-0 right-0 top-0 z-[999] bg-black flex flex-col items-center justify-start pt-0 px-2 select-none border-l border-r border-black/40 max-w-md mx-auto rounded-b-xl shadow-2xl transition-all duration-300 ${mobileOpen ? 'simple-fade-in' : 'simple-fade-out pointer-events-none opacity-0'}`}
           style={{boxShadow:'0 8px 32px 0 rgba(0,0,0,0.85)', height:'60vh'}}
         >
           {/* Header with close button only */}
@@ -289,16 +297,16 @@ export default function Navbar({ currentSection }: NavbarProps) {
         }
         .animate-bounce { animation: bounce 1s infinite; }
         .animate-pulse { animation: pulse 2s infinite; }
-        @keyframes fade-in {
+        @keyframes simple-fade-in {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        @keyframes fade-out {
-          from { opacity: 1; transform: translateY(0); }
-          to { opacity: 0; transform: translateY(-40px); }
+        @keyframes simple-fade-out {
+          from { opacity: 1; }
+          to { opacity: 0; }
         }
-        .animate-fade-in { animation: fade-in 0.3s ease; }
-        .animate-fade-out { animation: fade-out 0.3s cubic-bezier(0.4,0,0.2,1) both; }
+        .simple-fade-in { animation: simple-fade-in 0.3s ease; }
+        .simple-fade-out { animation: simple-fade-out 0.3s cubic-bezier(0.4,0,0.2,1) both; }
         /* Prevent scroll glitch on mobile menu open/close */
         body[style*='overflow: hidden'] {
           touch-action: none;

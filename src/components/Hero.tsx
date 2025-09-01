@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 // WindParticles component for animated drifting dots (wind effect)
@@ -211,7 +210,7 @@ export default function Hero() {
       {/* MAIN TERMINAL WINDOW */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 sm:px-3 lg:px-4 py-2 md:py-0 md:min-h-[60vh]">
         {/* Terminal Window Header */}
-        <div className="w-full max-w-xl mb-1 sm:mb-2 md:mb-3 lg:mb-4 transform hover:scale-105 transition-transform duration-300 group">
+  <div className="w-full max-w-sm sm:max-w-md md:max-w-xl mb-4 sm:mb-6 md:mb-8 lg:mb-10 transform hover:scale-105 transition-transform duration-300 group">
           <div className="bg-black rounded-t-lg px-2 sm:px-3 py-1 flex items-center gap-1 border border-black group-hover:border-gray-800 transition-colors duration-300 relative overflow-hidden">
             {/* Subtle animated background on hover */}
             <div className="absolute inset-0 bg-black opacity-80"></div>
@@ -242,7 +241,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal Content with enhanced effects */}
-          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden">
+          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden min-h-[75px] sm:min-h-[95px] md:min-h-[115px]" style={{ padding: '0.25rem 0.5rem' }}>
             {/* Subtle code-like pattern overlay */}
 
 
@@ -260,12 +259,17 @@ export default function Hero() {
 
             {/* Active prompt with enhanced cursor */}
             <div className="flex items-center gap-1 sm:gap-2 mt-1 sm:mt-2 md:mt-3 flex-wrap">
-              <span>
+              {/* Show shorter welcome message on mobile, full on sm+ */}
+              <span className="block sm:hidden">
+                <span className="text-gray-400">$</span>
+                <span className="text-gray-200">echo</span>
+                <span className="typing-cursor text-gray-400 break-words animate-typewriter"> "Welcome!"</span>
+              </span>
+              <span className="hidden sm:block">
                 <span className="text-gray-400">muneeb</span>
                 <span className="text-blue-400">＠</span>
                 <span className="text-green-400">devmachine</span>
                 <span className="text-gray-400">:</span>
-
                 <span className="text-blue-400"> ~</span>
                 <span className="text-blue-400">/</span>
                 <span className="text-gray-400">portfolio</span>
@@ -281,7 +285,8 @@ export default function Hero() {
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-gray-200">Online</span>
               </div>
-              <div className="flex items-center gap-1 text-gray-300">
+              {/* Hide status indicators on mobile */}
+              <div className="hidden sm:flex items-center gap-1 text-gray-300">
                 <span>
                   Lines: <span className="text-blue-400">{terminalLines.length}</span>
                 </span>
@@ -351,7 +356,19 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-3 justify-center items-center pt-1 sm:pt-2">
             <a
               href="#projects"
-              className="group relative px-3 sm:px-2 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+              className="group relative px-3 sm:px-2 py-1.5 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 bg-black border-2 border-gray-700 hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 w-full max-w-[200px] sm:w-auto sm:max-w-none text-center transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/40 hover:-translate-y-1"
+              onClick={e => {
+                e.preventDefault();
+                const href = '#projects';
+                setTimeout(() => {
+                  const el = document.querySelector(href);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.hash = href;
+                  }
+                }, 350); // 350ms delay for animation
+              }}
             >
               <span className="absolute -inset-1 bg-gray-700 opacity-10 group-hover:bg-blue-400 group-hover:opacity-20 group-hover:animate-pulse transition-all duration-300 border-2 border-gray-700 rounded-lg"></span>
               <span className="relative flex items-center justify-center gap-2">
@@ -386,7 +403,19 @@ export default function Hero() {
             </a>
             <a
               href="#contact"
-              className="group px-3 sm:px-5 py-2 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full sm:w-auto text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+              className="group px-3 sm:px-5 py-1.5 sm:py-2.5 font-mono text-sm sm:text-sm text-gray-200 border-2 border-gray-700 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 w-full max-w-[200px] sm:w-auto sm:max-w-none text-center transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 relative overflow-hidden hover:-translate-y-1"
+              onClick={e => {
+                e.preventDefault();
+                const href = '#contact';
+                setTimeout(() => {
+                  const el = document.querySelector(href);
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.location.hash = href;
+                  }
+                }, 350); // 350ms delay for animation
+              }}
             >
               <span className="absolute inset-0 bg-gray-700 transform scale-x-0 group-hover:scale-x-100 group-hover:bg-green-400 transition-transform duration-300 origin-left"></span>
               <span className="relative flex items-center justify-center gap-2">

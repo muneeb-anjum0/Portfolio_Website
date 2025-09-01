@@ -23,7 +23,7 @@ const About = () => {
         </div>
         <div className="hidden lg:block absolute bottom-24 right-8 font-mono text-blue-400 opacity-80 animate-pulse-slow select-none">
           <div className="text-blue-300/95">$ cat about.txt</div>
-          <div className="text-gray-100/95">Full-Stack Developer</div>
+          <div className="text-gray-100/95">MERN-Stack Developer</div>
         </div>
         <style>{`
           @keyframes pulse-slow {
@@ -102,7 +102,7 @@ const About = () => {
               <div className="font-mono text-[15px] flex items-center gap-1 text-green-400 mb-0 pb-0 whitespace-nowrap">
                 <span className="select-none">$</span>
                 <span className="text-white font-bold">about-me</span> <span className="text-gray-400 font-bold">|</span>
-                <span className="text-blue-400 font-bold">Full-Stack Developer</span>
+                <span className="text-blue-400 font-bold">MERN-Stack Developer</span>
               </div>
               <div className="font-mono text-[11px] text-green-400 flex items-center gap-1 mb-1 whitespace-nowrap">
                 <span className="italic">npx about-me --intro</span>
@@ -255,7 +255,7 @@ const About = () => {
                 <div className="font-mono text-xl md:text-2xl flex items-center gap-2 text-green-400 mb-0 pb-0">
                   <span className="select-none">$</span>
                   <span className="text-white font-bold">about-me</span>  <span className="text-gray-400 font-bold">|</span>
-                  <span className="text-blue-400 font-bold">Full-Stack Developer</span>
+                  <span className="text-blue-400 font-bold">MERN-Stack Developer</span>
                 </div>
                 <div className="font-mono text-base text-green-400 flex items-center gap-2 mb-1">
                   <span className="italic">npx about-me --intro</span>

@@ -40,7 +40,7 @@ const Skills: React.FC = () => {
       command: 'show databases',
       icon: FaDatabase,
       color: 'purple',
-      skills: ['MongoDB'],
+      skills: ['MongoDB','Firebase','Supabase'],
       description: 'Data storage solutions'
     },
     {
@@ -48,7 +48,7 @@ const Skills: React.FC = () => {
       command: 'kubectl get pods',
       icon: FaCloud,
       color: 'orange',
-      skills: ['To-Do'],
+      skills: ['Docker'],
       description: 'Cloud & deployment tools'
     },
     {
@@ -59,7 +59,38 @@ const Skills: React.FC = () => {
       skills: ['Git', 'Langchain', 'Caddy', 'Traefik'],
       description: 'Development utilities'
     }
-  ]
+  ];
+
+  // Deck of cards state for mobile
+  const [deck, setDeck] = React.useState(skillCategories);
+  const [animating, setAnimating] = React.useState(false);
+  const [animationDirection, setAnimationDirection] = React.useState<'none'|'up'>('none');
+
+  // For uniform card height
+  const cardRefs = React.useRef<(HTMLDivElement|null)[]>([]);
+  const [maxCardHeight, setMaxCardHeight] = React.useState<number>(0);
+
+  React.useEffect(() => {
+    // After mount or deck change, measure all card heights
+    const heights = cardRefs.current.map(ref => ref?.offsetHeight || 0);
+    const max = Math.max(...heights, 0);
+    if (max > 0 && max !== maxCardHeight) setMaxCardHeight(max);
+  }, [deck, maxCardHeight]);
+
+  // Handle card click: animate top card, then cycle it to bottom
+  const handleCardClick = () => {
+    if (animating) return;
+    setAnimating(true);
+    setAnimationDirection('up');
+    setTimeout(() => {
+      setDeck((prev) => {
+        const [first, ...rest] = prev;
+        return [...rest, first];
+      });
+      setAnimating(false);
+      setAnimationDirection('none');
+    }, 400); // Animation duration
+  };
 
 
 
@@ -151,55 +182,95 @@ const Skills: React.FC = () => {
 
         {/* Mobile: Terminal-style Skills Layout (matches desktop) */}
         <div className="md:hidden">
-          <div className="space-y-4">
-            {skillCategories.map((category) => (
-              <div
-                key={category.name}
-                className={`bg-black border border-gray-800 rounded-3xl overflow-hidden transition-all duration-300 group cursor-pointer p-1.5 min-h-0 h-auto text-xs gap-0.5 relative skill-card skill-card-${category.color}`}
-              >
-                {/* Terminal window header */}
-                <div className="bg-black px-2 py-1 flex items-center gap-1.5 transition-colors duration-200 z-10">
-                  <div className="flex gap-1.5">
-                    <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
-                    <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
-                    <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
+          {/* Deck of cards effect */}
+          <div className="relative max-w-sm mx-auto" style={{ perspective: '1200px', height: maxCardHeight ? maxCardHeight + 36 : 420 }}>
+            {deck.map((category, idx) => {
+              // Top card is idx 0
+              const isTop = idx === 0;
+              const z = deck.length - idx;
+              // Decking: translateY and scale for a natural stack
+              const baseY = idx * 18; // px vertical offset, more spacing
+              const scale = 1 - idx * 0.06;
+              let cardStyle: React.CSSProperties = {
+                zIndex: z,
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                margin: 'auto',
+                width: '100%',
+                height: maxCardHeight ? maxCardHeight : undefined,
+                transform: `translateY(${baseY}px) scale(${scale})`,
+                boxShadow: isTop ? '0 8px 32px 0 #22d3ee33' : '0 2px 8px 0 #0008',
+                transition: animating && isTop
+                  ? 'transform 0.5s cubic-bezier(.4,1.6,.6,1), opacity 0.4s, box-shadow 0.3s, height 0.2s'
+                  : 'transform 0.4s cubic-bezier(.4,1.2,.6,1), opacity 0.3s, box-shadow 0.3s, height 0.2s',
+                cursor: isTop ? 'pointer' : 'default',
+                opacity: idx > 3 ? 0 : 1,
+                pointerEvents: isTop ? 'auto' : 'none',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              };
+              if (animating && isTop && animationDirection === 'up') {
+                cardStyle.transform = `translateY(-120%) scale(1.08)`;
+                cardStyle.opacity = 0;
+              }
+              return (
+                <div
+                  key={category.name}
+                  ref={el => { cardRefs.current[idx] = el; }}
+                  className={`bg-black border border-gray-800 rounded-3xl overflow-hidden transition-all duration-300 group skill-card skill-card-${category.color}`}
+                  style={cardStyle}
+                  onClick={isTop ? handleCardClick : undefined}
+                >
+                  {/* Terminal window header */}
+                  <div className="bg-black px-2 py-1 flex items-center gap-1.5 transition-colors duration-200 z-10">
+                    <div className="flex gap-1.5">
+                      <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
+                      <div className="w-2 h-2 bg-green-500 rounded-full group-hover:animate-pulse"></div>
+                    </div>
+                    <span className="font-mono text-xs text-gray-400 ml-2 transition-colors duration-300">{category.name}.sh</span>
                   </div>
-                  <span className="font-mono text-xs text-gray-400 ml-2 transition-colors duration-300">{category.name}.sh</span>
+                  {/* Terminal content */}
+                  <div className="p-2 space-y-1.5 z-10" style={{flex:1, minHeight:0}}>
+                    {/* Command line */}
+                    <div className="font-mono text-xs flex items-center gap-1 mb-1">
+                      <span className="text-green-400">$</span>
+                      <span className={`text-gray-400 group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.command}</span>
+                    </div>
+                    {/* Category icon and description */}
+                    <div className="flex items-center gap-1 mb-1">
+                      <category.icon className={`text-base text-${category.color}-400 group-hover:text-${category.color}-300 transition-colors duration-200`} />
+                      <span className={`font-mono text-${category.color}-400 font-bold text-sm group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.name}</span>
+                      <span className="text-gray-500 text-sm font-mono ml-1"># {category.description}</span>
+                    </div>
+                    {/* Skills list */}
+                    <div className="space-y-0.5">
+                      {category.skills.map((skill, skillIndex) => {
+                        let bullet = '├─';
+                        if (skillIndex === 0) bullet = '┌─';
+                        else if (skillIndex === category.skills.length - 1) bullet = '└─';
+                        return (
+                          <div
+                            key={skill}
+                            className="font-mono text-xs flex items-center gap-1 rounded px-0.5 py-0.5 transition-all duration-150 animate-fade-in"
+                            style={{ animationDelay: `${skillIndex * 0.08}s` }}
+                          >
+                            <span className="text-gray-600">{bullet}</span>
+                            <span className="text-white transition-colors duration-200">{skill}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-                {/* Terminal content */}
-                <div className="p-2 space-y-1.5 z-10">
-                  {/* Command line */}
-                  <div className="font-mono text-xs flex items-center gap-1 mb-1">
-                    <span className="text-green-400">$</span>
-                    <span className={`text-gray-400 group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.command}</span>
-                  </div>
-                  {/* Category icon and description */}
-                  <div className="flex items-center gap-1 mb-1">
-                    <category.icon className={`text-base text-${category.color}-400 group-hover:text-${category.color}-300 transition-colors duration-200`} />
-                    <span className={`font-mono text-${category.color}-400 font-bold text-sm group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.name}</span>
-                    <span className="text-gray-500 text-sm font-mono ml-1"># {category.description}</span>
-                  </div>
-                  {/* Skills list */}
-                  <div className="space-y-0.5">
-                    {category.skills.map((skill, skillIndex) => {
-                      let bullet = '├─';
-                      if (skillIndex === 0) bullet = '┌─';
-                      else if (skillIndex === category.skills.length - 1) bullet = '└─';
-                      return (
-                        <div
-                          key={skill}
-                          className="font-mono text-xs flex items-center gap-1 rounded px-0.5 py-0.5 transition-all duration-150 animate-fade-in"
-                          style={{ animationDelay: `${skillIndex * 0.08}s` }}
-                        >
-                          <span className="text-gray-600">{bullet}</span>
-                          <span className="text-white transition-colors duration-200">{skill}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
+            {/* Deck tap hint */}
+            <div className="absolute bottom-2 left-0 right-0 mx-auto text-center text-xs text-cyan-400 opacity-70 select-none pointer-events-none animate-fade-in" style={{zIndex:0}}>
+              Tap the top card!
+            </div>
           </div>
         </div>
 
