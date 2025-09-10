@@ -32,7 +32,7 @@ const Skills: React.FC = () => {
       command: 'systemctl status backend',
       icon: FaServer,
       color: 'cyan',
-      skills: ['Node.js', 'ASP.NET'],
+      skills: ['Node.js', 'ASP.NET', 'Express', 'Flask', 'Django'],
       description: 'Server-side frameworks'
     },
     {
@@ -40,7 +40,7 @@ const Skills: React.FC = () => {
       command: 'show databases',
       icon: FaDatabase,
       color: 'purple',
-      skills: ['MongoDB','Firebase','Supabase'],
+      skills: ['MongoDB','Firebase','Supabase', 'PostgreSQL', 'MySQL'],
       description: 'Data storage solutions'
     },
     {
@@ -48,7 +48,7 @@ const Skills: React.FC = () => {
       command: 'kubectl get pods',
       icon: FaCloud,
       color: 'orange',
-      skills: ['Docker'],
+      skills: ['Docker', 'Nginx', 'AWS'],
       description: 'Cloud & deployment tools'
     },
     {
@@ -56,7 +56,7 @@ const Skills: React.FC = () => {
       command: 'which --all',
       icon: FaTools,
       color: 'pink',
-      skills: ['Git', 'Langchain', 'Caddy', 'Traefik'],
+      skills: ['Git', 'Langchain', 'Caddy', 'Traefik', 'Vercel'],
       description: 'Development utilities'
     }
   ];
@@ -183,7 +183,7 @@ const Skills: React.FC = () => {
         {/* Mobile: Terminal-style Skills Layout (matches desktop) */}
         <div className="md:hidden">
           {/* Deck of cards effect */}
-          <div className="relative max-w-sm mx-auto" style={{ perspective: '1200px', height: maxCardHeight ? maxCardHeight + 36 : 420 }}>
+          <div className="relative max-w-sm mx-auto w-full px-2" style={{ perspective: '1200px', height: Math.max(200, maxCardHeight) + 36 }}>
             {deck.map((category, idx) => {
               // Top card is idx 0
               const isTop = idx === 0;
@@ -198,12 +198,13 @@ const Skills: React.FC = () => {
                 right: 0,
                 margin: 'auto',
                 width: '100%',
-                height: maxCardHeight ? maxCardHeight : undefined,
+                minHeight: 200,
+                height: Math.max(200, maxCardHeight),
                 transform: `translateY(${baseY}px) scale(${scale})`,
                 boxShadow: isTop ? '0 8px 32px 0 #22d3ee33' : '0 2px 8px 0 #0008',
                 transition: animating && isTop
-                  ? 'transform 0.5s cubic-bezier(.4,1.6,.6,1), opacity 0.4s, box-shadow 0.3s, height 0.2s'
-                  : 'transform 0.4s cubic-bezier(.4,1.2,.6,1), opacity 0.3s, box-shadow 0.3s, height 0.2s',
+                  ? 'transform 0.7s cubic-bezier(.22,1,.36,1), opacity 0.5s, box-shadow 0.4s, height 0.3s'
+                  : 'transform 0.6s cubic-bezier(.22,1,.36,1), opacity 0.4s, box-shadow 0.4s, height 0.3s',
                 cursor: isTop ? 'pointer' : 'default',
                 opacity: idx > 3 ? 0 : 1,
                 pointerEvents: isTop ? 'auto' : 'none',

@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import React, { useEffect, useState, useCallback } from 'react'
 
 const contactData = {
@@ -88,6 +89,25 @@ const GetInTouch: React.FC = () => {
       setTimeout(() => setCopied(null), 1200)
     } catch {}
   }
+
+  // Mobile menu state for CV actions
+  const [cvMenuOpen, setCvMenuOpen] = useState(false)
+  const cvBtnRef = useRef<HTMLAnchorElement>(null)
+
+  // Close menu on outside click (mobile)
+  useEffect(() => {
+    if (!cvMenuOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (cvBtnRef.current && !cvBtnRef.current.contains(e.target as Node)) {
+        setCvMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [cvMenuOpen])
+
+  // Helper: is mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <section id="contact" className="relative py-6 md:py-12 lg:py-16 xl:py-20 bg-black text-white overflow-hidden select-none">
@@ -204,7 +224,7 @@ const GetInTouch: React.FC = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   <a
                     href={`mailto:${contactData.email}?subject=Project%20Inquiry&body=Hi%20Muneeb%2C%0A`}
                     className="group relative inline-flex items-center gap-2 font-mono text-sm border-2 border-green-400 rounded-lg px-3 py-2 text-green-400 bg-black hover:bg-green-400 hover:text-black hover:border-green-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-400/30 overflow-hidden"
@@ -212,9 +232,45 @@ const GetInTouch: React.FC = () => {
                     <span className="transition-colors duration-300 group-hover:animate-bounce">{'>'}</span>
                     <span className="group-hover:tracking-wider transition-all duration-300">Send Message</span>
                   </a>
+                  <div className="relative group/cv inline-block">
+                    {/* Download/View CV button and menu */}
+                    <div className="relative w-full min-w-[140px]">
+                      <a
+                        ref={cvBtnRef}
+                        href={isMobile ? undefined : "/CV.pdf"}
+                        download={isMobile ? undefined : true}
+                        className="relative inline-flex items-center gap-2 font-mono text-sm border-2 border-blue-400 rounded-lg px-3 py-2 text-blue-400 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden w-full justify-center select-none cursor-pointer"
+                        onClick={e => {
+                          if (isMobile) {
+                            e.preventDefault();
+                            setCvMenuOpen(v => !v);
+                          }
+                        }}
+                        tabIndex={0}
+                      >
+                        <span className="transition-colors duration-300 group-hover/cv:animate-bounce">↓</span>
+                        <span className="group-hover/cv:tracking-wider transition-all duration-300">Download CV</span>
+                      </a>
+                      {/* Menu: show on hover (desktop) or open (mobile) */}
+                      <div className={`absolute left-1/2 -translate-x-1/2 top-full z-20 pointer-events-none ${isMobile ? (cvMenuOpen ? 'block' : 'hidden') : 'hidden group-hover/cv:block group-focus-within/cv:block'}`}>
+                        <div className="flex flex-col gap-1 w-full min-w-[140px] pointer-events-auto">
+                          <a
+                            href="/CV.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block px-2.5 py-1 rounded-lg border-2 border-blue-400 text-blue-400 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 font-mono text-xs transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 w-full text-center"
+                            tabIndex={0}
+                            onClick={() => setCvMenuOpen(false)}
+                          >
+                            View
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <a
                     href="#home"
-                    className="group relative inline-flex items-center gap-2 font-mono text-sm border-2 border-gray-700 rounded-lg px-3 py-2 text-gray-300 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden"
+                    className="group relative inline-flex items-center gap-2 font-mono text-sm border-2 border-gray-700 rounded-lg px-2 py-2 min-w-0 sm:px-3 sm:min-w-[80px] text-gray-300 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden"
                   >
                     <span className="transition-colors duration-300 group-hover:animate-bounce">Exit</span>
                   </a>
