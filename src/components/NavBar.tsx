@@ -82,7 +82,7 @@ export default function Navbar({ currentSection }: NavbarProps) {
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative">
         {/* Brand logo using SVG with hover effect */}
         <button
-          onClick={() => scrollTo('hero')}
+          onClick={() => scrollTo('home')}
           className="flex items-center group hover:scale-105 transform transition-all duration-200"
           style={{ padding: 0, background: 'none', border: 'none' }}
           onMouseEnter={() => setLogoHover(true)}
