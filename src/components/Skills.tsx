@@ -189,7 +189,7 @@ const Skills: React.FC = () => {
               const isTop = idx === 0;
               const z = deck.length - idx;
               // Decking: translateY and scale for a natural stack
-              const baseY = idx * 18; // px vertical offset, more spacing
+              const baseY = idx * 10; // px vertical offset, tighter spacing
               const scale = 1 - idx * 0.06;
               let cardStyle: React.CSSProperties = {
                 zIndex: z,
@@ -201,20 +201,37 @@ const Skills: React.FC = () => {
                 minHeight: 200,
                 height: Math.max(200, maxCardHeight),
                 transform: `translateY(${baseY}px) scale(${scale})`,
-                boxShadow: isTop ? '0 8px 32px 0 #22d3ee33' : '0 2px 8px 0 #0008',
+                boxShadow: isTop ? 'none' : '0 2px 8px 0 #22d3ee33',
+                border: `2px solid ${
+                  category.color === 'green' ? '#22c55e' :
+                  category.color === 'blue' ? '#3b82f6' :
+                  category.color === 'cyan' ? '#22d3ee' :
+                  category.color === 'purple' ? '#a855f7' :
+                  category.color === 'orange' ? '#f59e42' :
+                  category.color === 'pink' ? '#ec4899' :
+                  category.color === 'yellow' ? '#fde047' :
+                  '#22d3ee'
+                }`,
                 transition: animating && isTop
                   ? 'transform 0.7s cubic-bezier(.22,1,.36,1), opacity 0.5s, box-shadow 0.4s, height 0.3s'
                   : 'transform 0.6s cubic-bezier(.22,1,.36,1), opacity 0.4s, box-shadow 0.4s, height 0.3s',
                 cursor: isTop ? 'pointer' : 'default',
-                opacity: idx > 3 ? 0 : 1,
+                opacity: (isTop || (animating && idx === 1 && animationDirection === 'up')) ? 1 : 0.7 - idx * 0.1,
                 pointerEvents: isTop ? 'auto' : 'none',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
               };
               if (animating && isTop && animationDirection === 'up') {
-                cardStyle.transform = `translateY(-120%) scale(1.08)`;
-                cardStyle.opacity = 0;
+                // Animate top card to the same position, scale, opacity, and add rotation for a deck shuffle effect
+                const lastIdx = deck.length - 1;
+                const lastBaseY = lastIdx * 10;
+                const lastScale = 1 - lastIdx * 0.06;
+                const lastOpacity = 0.7 - lastIdx * 0.1;
+                const lastRotate = -8 + lastIdx * 2; // slight rotation for realism
+                cardStyle.transform = `translateY(${lastBaseY}px) scale(${lastScale}) rotate(${lastRotate}deg)`;
+                cardStyle.opacity = lastOpacity;
+                cardStyle.transition = 'transform 0.7s cubic-bezier(.22,1,.36,1), opacity 0.6s cubic-bezier(.22,1,.36,1), box-shadow 0.4s, height 0.3s';
               }
               return (
                 <div
@@ -225,7 +242,7 @@ const Skills: React.FC = () => {
                   onClick={isTop ? handleCardClick : undefined}
                 >
                   {/* Terminal window header */}
-                  <div className="bg-black px-2 py-1 flex items-center gap-1.5 transition-colors duration-200 z-10">
+                  <div className="bg-black px-2 py-1 pl-4 pt-2 mt-1 ml-1 flex items-center gap-1.5 transition-colors duration-200 z-10 rounded-t-xl" style={{boxSizing: 'border-box'}}>
                     <div className="flex gap-1.5">
                       <div className="w-2 h-2 bg-red-500 rounded-full group-hover:animate-pulse"></div>
                       <div className="w-2 h-2 bg-yellow-500 rounded-full group-hover:animate-pulse"></div>
@@ -234,20 +251,20 @@ const Skills: React.FC = () => {
                     <span className="font-mono text-xs text-gray-400 ml-2 transition-colors duration-300">{category.name}.sh</span>
                   </div>
                   {/* Terminal content */}
-                  <div className="p-2 space-y-1.5 z-10" style={{flex:1, minHeight:0}}>
+                  <div className="p-1 space-y-0.5 z-10" style={{flex:1, minHeight:0}}>
                     {/* Command line */}
-                    <div className="font-mono text-xs flex items-center gap-1 mb-1">
+                    <div className="font-mono text-xs flex items-center gap-0.5 mb-0.5 pl-4">
                       <span className="text-green-400">$</span>
                       <span className={`text-gray-400 group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.command}</span>
                     </div>
                     {/* Category icon and description */}
-                    <div className="flex items-center gap-1 mb-1">
+                    <div className="flex items-center gap-0.5 mb-0.5 pl-4">
                       <category.icon className={`text-base text-${category.color}-400 group-hover:text-${category.color}-300 transition-colors duration-200`} />
                       <span className={`font-mono text-${category.color}-400 font-bold text-sm group-hover:text-${category.color}-300 transition-colors duration-200`}>{category.name}</span>
-                      <span className="text-gray-500 text-sm font-mono ml-1"># {category.description}</span>
+                      <span className="text-gray-500 text-xs font-mono ml-1 whitespace-nowrap"># {category.description}</span>
                     </div>
                     {/* Skills list */}
-                    <div className="space-y-0.5">
+                    <div className="space-y-0.5 pl-4">
                       {category.skills.map((skill, skillIndex) => {
                         let bullet = '├─';
                         if (skillIndex === 0) bullet = '┌─';
@@ -268,10 +285,6 @@ const Skills: React.FC = () => {
                 </div>
               );
             })}
-            {/* Deck tap hint */}
-            <div className="absolute bottom-2 left-0 right-0 mx-auto text-center text-xs text-cyan-400 opacity-70 select-none pointer-events-none animate-fade-in" style={{zIndex:0}}>
-              Tap the top card!
-            </div>
           </div>
         </div>
 

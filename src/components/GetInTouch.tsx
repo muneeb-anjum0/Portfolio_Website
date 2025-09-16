@@ -258,7 +258,7 @@ const GetInTouch: React.FC = () => {
                             href="/CV.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block px-2.5 py-1 rounded-lg border-2 border-blue-400 text-blue-400 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 font-mono text-xs transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 w-full text-center"
+                            className="block px-3 py-2 rounded-lg border-2 border-blue-400 text-blue-400 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 font-mono text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 w-full text-center"
                             tabIndex={0}
                             onClick={() => setCvMenuOpen(false)}
                           >
@@ -268,12 +268,14 @@ const GetInTouch: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <a
-                    href="#home"
-                    className="group relative inline-flex items-center gap-2 font-mono text-sm border-2 border-gray-700 rounded-lg px-2 py-2 min-w-0 sm:px-3 sm:min-w-[80px] text-gray-300 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden"
-                  >
-                    <span className="transition-colors duration-300 group-hover:animate-bounce">Exit</span>
-                  </a>
+                  {!isMobile && (
+                    <a
+                      href="#home"
+                      className="group relative inline-flex items-center gap-2 font-mono text-sm border-2 border-gray-700 rounded-lg px-2 py-2 min-w-0 sm:px-3 sm:min-w-[80px] text-gray-300 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden flex justify-center"
+                    >
+                      <span className="transition-colors duration-300 group-hover:animate-bounce text-center w-full">Exit</span>
+                    </a>
+                  )}
                 </div>
               </div>
 

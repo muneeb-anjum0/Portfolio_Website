@@ -207,10 +207,10 @@ export default function Hero() {
       {/* Terminal history and System info removed as requested */}
       </div>
 
-      {/* MAIN TERMINAL WINDOW */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-2 sm:px-3 lg:px-4 py-2 md:py-0 md:min-h-[60vh]">
-        {/* Terminal Window Header */}
-  <div className="w-full max-w-sm sm:max-w-md md:max-w-xl mb-4 sm:mb-6 md:mb-8 lg:mb-10 transform hover:scale-105 transition-transform duration-300 group">
+  {/* MAIN TERMINAL WINDOW */}
+  <div className="relative z-10 flex flex-col items-center justify-center h-full px-1 sm:px-3 lg:px-4 py-2 md:py-0 md:min-h-[60vh]">
+    {/* Terminal Window Header */}
+  <div className="w-full max-w-xs sm:max-w-md md:max-w-xl mb-3 sm:mb-6 md:mb-8 lg:mb-10 transform hover:scale-105 transition-transform duration-300 group">
           <div className="bg-black rounded-t-lg px-2 sm:px-3 py-1 flex items-center gap-1 border border-black group-hover:border-gray-800 transition-colors duration-300 relative overflow-hidden">
             {/* Subtle animated background on hover */}
             <div className="absolute inset-0 bg-black opacity-80"></div>
@@ -241,7 +241,7 @@ export default function Hero() {
           </div>
 
           {/* Terminal Content with enhanced effects */}
-          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-xs sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden min-h-[60px] sm:min-h-[75px] md:min-h-[90px]" style={{ padding: '0.25rem 0.5rem' }}>
+          <div className="bg-black border border-gray-900 rounded-b-lg p-0.5 sm:p-1 md:p-2 lg:p-2 font-mono text-[10px] sm:text-sm space-y-1 sm:space-y-1.5 md:space-y-2 group-hover:border-gray-800 transition-colors duration-300 shadow-lg group relative overflow-hidden min-h-[40px] sm:min-h-[75px] md:min-h-[90px]" style={{ padding: '0.15rem 0.3rem' }}>
             {/* Subtle code-like pattern overlay */}
 
 

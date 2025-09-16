@@ -73,10 +73,11 @@ export default function Navbar({ currentSection }: NavbarProps) {
   return (
     <nav
       ref={navRef}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 select-none backdrop-blur-sm ${scrolled
-        ? 'bg-black/95 border-b border-black'
-        : 'bg-transparent border-b border-transparent'
-      }`}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 select-none
+        ${scrolled
+          ? 'bg-black/30 border-b border-black backdrop-blur-lg'
+          : 'bg-transparent border-b border-transparent'}
+      `}
     >
       {/* Terminal-style navbar container */}
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 relative">
