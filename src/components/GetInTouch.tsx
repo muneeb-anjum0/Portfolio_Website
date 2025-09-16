@@ -242,7 +242,7 @@ const GetInTouch: React.FC = () => {
                         {...(!isMobile ? { download: true } : {})}
                         target={isMobile ? "_blank" : undefined}
                         rel={isMobile ? "noopener noreferrer" : undefined}
-                        onClick={e => {
+                        onClick={() => {
                           if (isMobile) {
                             setCvMenuOpen(false);
                           }
