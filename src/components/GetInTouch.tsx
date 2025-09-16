@@ -239,7 +239,7 @@ const GetInTouch: React.FC = () => {
                         ref={cvBtnRef}
                         href="/CV.pdf"
                         className="relative inline-flex items-center gap-2 font-mono text-sm border-2 border-blue-400 rounded-lg px-3 py-2 text-blue-400 bg-black hover:bg-blue-400 hover:text-black hover:border-blue-400 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-blue-400/30 overflow-hidden w-full justify-center select-none cursor-pointer"
-                        {...(!isMobile ? { download: true } : {})}
+                        download={!isMobile ? "CV.pdf" : undefined}
                         target={isMobile ? "_blank" : undefined}
                         rel={isMobile ? "noopener noreferrer" : undefined}
                         onClick={() => {
