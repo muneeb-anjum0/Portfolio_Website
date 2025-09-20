@@ -2,8 +2,8 @@
   <img src="./public/image.png" width="120" alt="Logo" />
   
   <h1 align="center">Portfolio Website</h1>
-  <a href="https://muneeb.anjum.vercel.app" target="_blank">
-    muneeb.anjum.vercel.app
+  <a href="https://muneeb-anjum.vercel.app" target="_blank">
+    muneeb-anjum.vercel.app
   </a>
   <p align="center">
     <b>My digital playground, creative resume, and a love letter to code.</b>
