@@ -12,7 +12,7 @@
 
 ---
 
-## 🌟 Inspiration
+## Inspiration
 
 I wanted a portfolio that felt like <b>me</b> — not just another cookie-cutter template. I was inspired by:
 
@@ -20,7 +20,7 @@ I wanted a portfolio that felt like <b>me</b> — not just another cookie-cutter
 - Minimal, fast, and interactive UIs
 - The desire to show not just my work, but my <b>personality</b>
 
-## 🧠 Thought Process
+## Thought Process
 
 I started with a blank canvas and a lot of caffeine. My goals:
 
@@ -29,7 +29,7 @@ I started with a blank canvas and a lot of caffeine. My goals:
 - Keep it <b>blazing fast</b> and responsive
 - Let my story, skills, and journey shine through
 
-## 😤 The Struggle
+## The Struggle
 
 Building this wasn't all rainbows:
 
@@ -40,7 +40,7 @@ Building this wasn't all rainbows:
 
 But every bug squashed and every late-night commit made it better.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Tool/Library      | Why I Used It                                  |
 |-------------------|-----------------------------------------------|
@@ -50,7 +50,7 @@ But every bug squashed and every late-night commit made it better.
 | Tailwind CSS      | Utility-first, rapid styling                  |
 | Custom Components | For everything from nav to terminal loader    |
 
-## 📁 Project Structure
+## Project Structure
 
 ```bash
 src/
@@ -64,7 +64,7 @@ public/
   ...
 ```
 
-## 🚦 Features
+## Features
 
 - ⚡ Super fast load times (thanks, Vite!)
 - 🎨 Custom, modern design (no boring templates)
@@ -74,14 +74,14 @@ public/
 - 🛡️ TypeScript for safety
 - 🌙 Dark mode ready (if you want it)
 
-## 🧩 How I Used Each Tech
+## How I Used Each Tech
 
 - **React**: Broke everything into reusable, logical components (see `src/components/`)
 - **TypeScript**: Strict types everywhere, so fewer runtime surprises
 - **Vite**: Instant reloads, zero config headaches
 - **Tailwind**: Custom utility classes for every pixel, with a few overrides in `tailwind.config.js`
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the repo:**
    ```bash
@@ -101,14 +101,14 @@ public/
    npm run build
    ```
 
-## 💡 What I Learned
+## What I Learned
 
 - How to wrangle Tailwind for custom designs
 - The power (and pain) of strict TypeScript
 - The importance of accessibility and performance
 - That the best projects are the ones that feel personal
 
-## 🤝 Credits & Thanks
+## Credits & Thanks
 
 - [React](https://react.dev/)
 - [Vite](https://vitejs.dev/)
