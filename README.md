@@ -17,7 +17,7 @@
 
 ## Inspiration
 
-I wanted a portfolio that felt like <b>me</b> — not just another cookie-cutter template. I was inspired by:
+I wanted a portfolio that felt like <b>me</b>, not just another cookie-cutter template. I was inspired by:
 
 - The <b>terminal aesthetic</b> (because, let's be honest, the command line is home)
 - Minimal, fast, and interactive UIs
